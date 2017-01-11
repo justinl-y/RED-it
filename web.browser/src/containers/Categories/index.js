@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import Week from '../Week';
 
 class Categories extends Component {
    render() {
       return (
-         <p>Categories</p>
+        <div>
+            <p>Categories</p>
+            {<Week />}
+        </div>
       );
    }
 }
