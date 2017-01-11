@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Week from '../Week';
+import Week from '../../components/Week';
 
 class Categories extends Component {
    render() {

@@ -5,7 +5,7 @@ import HeaderBar from '../../components/HeaderBar';
 const MainLayout = ({ children }) => {
   return (
     <div className={styles.mainLayout}>
-      {<HeaderBar/>}
+      {<HeaderBar />}
       {children}
     </div>
   );

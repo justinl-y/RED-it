@@ -1,10 +1,14 @@
 import React from 'react';
 import AppBar from 'material-ui/AppBar';
+import FlatButton from 'material-ui/FlatButton';
 
 const HeaderBar = () => (
   <AppBar
-    title="RED it"
-    iconClassNameRight="muidocs-icon-navigation-expand-more"
+    iconElementRight={
+      <div>
+       <FlatButton label="Login" />       
+      </div>
+    }
   />
 )
 
