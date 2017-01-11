@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Week extends Component {
-   render() {
-      return (
-         <p>Week</p>
-      );
-   }
+const Week = () => {
+  return (
+    <p>Week</p>
+  );
 }
 
 export default Week;
