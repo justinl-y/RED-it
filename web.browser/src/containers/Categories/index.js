@@ -6,11 +6,11 @@ import Drawer from 'material-ui/Drawer';
 class Categories extends Component {
   constructor() {
     super();
-    this.state = { open: false };
+    this.state = { open: true };
   }
    render() {
       return (
-        <Drawer open={ this.state.closed }>
+        <Drawer open={ this.state.open }>
           <AppBar
             title="RED it"
           />

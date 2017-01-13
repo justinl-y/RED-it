@@ -4,7 +4,6 @@ import FlatButton from 'material-ui/FlatButton';
 
 const HeaderBar = () => (
   <AppBar
-    title="RED it"
     iconElementRight={
       <div>
        <FlatButton label="Login" />       
