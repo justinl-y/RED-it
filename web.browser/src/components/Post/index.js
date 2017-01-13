@@ -13,11 +13,12 @@ const Post = ({ title, link, description, vote, updateVote, categories }) => (
       <CardText>
         <p>{ description }</p>
       </CardText>
+      
       <FlatButton onClick={ updateVote }>
         Vote { vote }
       </FlatButton>
       {
-        categories.map(( e, i ) => ( <Chip key={ i }>{ e }</Chip> ))
+        categories.map(( e, i ) => ( <Chip key={ i + e }>{ e }</Chip> ))
       }
     }
     </Card>
