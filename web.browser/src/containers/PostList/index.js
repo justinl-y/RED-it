@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styles from './styles.css';
 import * as data from '../../mock-data';
 import Post from './../../components/Post';
+import { Toolbar, ToolbarTitle } from 'material-ui/Toolbar';
 
 class PostList extends Component {
   constructor() {
@@ -29,7 +30,8 @@ class PostList extends Component {
     //console.log(postList)
 
     return (
-      <div className={ styles.postList }>
+      <div className={ styles['post-list'] }>
+        <Toolbar/>
         <ul>
           { postList.map(( post ) => (
             <Post

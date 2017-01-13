@@ -5,7 +5,7 @@ import Chip from 'material-ui/Chip';
 import styles from './styles.css';
 
 const Post = ({ title, link, description, vote, updateVote, categories }) => (
-  <li className={ styles.post }>
+  <li className={ styles['post'] }>
     <Card>
       <CardHeader>
         <h2><a href={ link } target="_blank">{ title }</a></h2>
@@ -13,13 +13,16 @@ const Post = ({ title, link, description, vote, updateVote, categories }) => (
       <CardText>
         <p>{ description }</p>
       </CardText>
-      
-      <FlatButton onClick={ updateVote }>
-        Vote { vote }
-      </FlatButton>
-      {
-        categories.map(( e, i ) => ( <Chip key={ i + e }>{ e }</Chip> ))
-      }
+      <div className={ styles['post-buttons'] }>
+        <FlatButton onClick={ updateVote } className={ styles['vote-button'] }>
+          Vote { vote }
+        </FlatButton>
+        <div className={ styles['category-chips'] }>
+          {
+            categories.map(( e, i ) => ( <Chip key={ i + e }>{ e }</Chip> ))
+          }
+        </div>
+      </div>
     }
     </Card>
   </li>

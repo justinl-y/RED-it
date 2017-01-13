@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import Week from '../../components/Week';
+import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 
 class Categories extends Component {
   constructor() {
     super();
-    this.state = { open: true };
+    this.state = { open: false };
   }
    render() {
       return (
-        <Drawer >
+        <Drawer open={ this.state.closed }>
+          <AppBar
+            title="RED it"
+          />
           <p>Categories</p>
           <Week />
         </Drawer>

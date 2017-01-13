@@ -1,3 +1,8 @@
+.post-list {
+    padding-left: 15%;
+}
+
 ul {
+    padding-right: 15px;
     list-style: none;
 }

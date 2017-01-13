@@ -1,0 +1,9 @@
+.post-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.category-chips {
+    display: flex;
+    justify-content: flex-end;
+}
