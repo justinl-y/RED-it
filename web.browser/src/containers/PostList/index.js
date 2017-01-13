@@ -12,32 +12,34 @@ class PostList extends Component {
   }
   
   handleClick( item ) {
-    const newPost = this.state.post.map(( popo ) => {
-      if ( popo.id === item.id ) {
-        popo.votes += 1
+    const newPost = this.state.post.map(( e ) => {
+      if ( e.id === item.id ) {
+        e.votes += 1;
       }
 
-      return popo
+      return e;
     })
 
     this.setState({ post: newPost })
   }
 
   render() {
-    let short = data.data.posts;
+    let postList = data.data.posts;
 
-    //console.log(short)
+    console.log(postList)
 
     return (
       <div className={ styles.postList }>
         <ul>
-          { short.map(( post ) => (
+          { postList.map(( post ) => (
             <Post
               title={ post.title }
+              link={ post.link }
               key={ post.id }
               description={ post.description }
               vote={ post.votes }
               updateVote={ this.handleClick.bind( this, post )}
+              categories={ this.votes.categories }
             />
           ))}
         </ul>

@@ -41,6 +41,7 @@ ReactDOM.render(
   </MuiThemeProvider>,
   document.getElementById('root')
 );
+
 /*<Route path="posts">
   <Route path="new" component={ CreatePost } />
   <Route path=":name" component={ PostList } />
