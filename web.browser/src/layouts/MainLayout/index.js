@@ -4,9 +4,9 @@ import styles from './styles.css';
 
 const MainLayout = ({ children }) => {
   return (
-    <div className={styles.mainLayout}>
+    <div className={ styles[ 'main-layout' ]}>
       <HeaderBar />
-      {children}
+      { children }
     </div>
   );
 };

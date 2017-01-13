@@ -5,7 +5,7 @@ import styles from './styles.css'
 class CreatePost extends Component {
   render() {
     return (
-      <div className={styles.createPost}>
+      <div className={ styles['create-post'] }>
         <p>CreatePost</p>
       </div>
     );

@@ -7,6 +7,7 @@ import {
    IndexRoute,
    browserHistory 
 } from 'react-router';
+import './styles/index.css';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import muiTheme from './styles/mui-theme';
@@ -17,8 +18,6 @@ import Login from './containers/Login';
 import CreatePost from './containers/CreatePost';
 import PostList from './containers/PostList';
 import Welcome from './containers/Welcome';
-
-import './styles/index.css';
 
 // Needed for onTouchTap (Material UI)
 // http://stackoverflow.com/a/34015469/988941

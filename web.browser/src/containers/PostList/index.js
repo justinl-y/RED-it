@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import styles from './styles.css';
-import * as data from '../../mock-data';
-import Post from './../../components/Post';
 import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
 import FlatButton from 'material-ui/FlatButton';
+import Post from './../../components/Post';
+import * as data from '../../mock-data';
 
 class PostList extends Component {
   constructor() {
