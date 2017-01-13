@@ -6,7 +6,7 @@ class Categories extends Component {
       return (
         <div>
             <p>Categories</p>
-            {<Week />}
+            <Week />
         </div>
       );
    }

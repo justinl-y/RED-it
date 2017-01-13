@@ -1,21 +1,13 @@
 import React, { Component, PropTypes } from 'react';
+import Categories from '../Categories'
 import styles from './styles.css';
-import Categories from '../../containers/Categories';
-import Welcome from '../../containers/Welcome';
-import Login from '../../containers/Login';
-import CreatePost from '../../containers/CreatePost';
-import PostList from '../../containers/PostList';
 
 class App extends Component {
   render() {
     return (
       <div className={styles.app}>
+        <Categories />
         {this.props.children}
-        {<Categories />}
-        {<Welcome />}
-        {<Login />}
-        {<CreatePost />}
-        {<PostList />}
       </div>
     );
   }
