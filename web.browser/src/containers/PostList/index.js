@@ -8,12 +8,29 @@ import * as data from '../../mock-data';
 class PostList extends Component {
   constructor() {
     super();
+
     this.state = {
-      posts: data.data.posts
+      posts: data.data.posts,
+      //orderBy: orderBy
     }
   }
-  
-  handleClick( item ) {
+
+  // re-sort the posts 
+  componentDidUpdate() {
+
+  }
+
+  // sort by votes
+  sortPopular( posts ){
+
+  };
+
+  // sort by id
+  sortNewest( posts ){
+
+  };
+
+  updateVote( item ) {
     const newPost = this.state.posts.map(( e ) => {
       if ( e.id === item.id ) {
         e.votes += 1;
@@ -23,15 +40,14 @@ class PostList extends Component {
     })
 
     this.setState({ posts: newPost })
-  }
+  };
 
   render() {
-    let postList = data.data.posts;
-
+    const postList = data.data.posts;
     //console.log(postList)
 
     return (
-      <div className={ styles['post-list'] }>
+      <div className={ styles[ 'post-list' ] }>
         <Toolbar>
           <ToolbarTitle text="Posts" />
           <ToolbarGroup>
@@ -48,14 +64,14 @@ class PostList extends Component {
               key={ post.id }
               description={ post.description }
               vote={ post.votes }
-              updateVote={ this.handleClick.bind( this, post )}
+              updateVote={ this.updateVote.bind( this, post )}
               categories={ post.categories }
             />
           ))}
         </ul>
       </div>
     );
-  }
+  };
 }
 
 export default PostList;
