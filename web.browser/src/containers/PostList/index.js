@@ -11,27 +11,35 @@ class PostList extends Component {
 
     this.state = {
       posts: data.data.posts,
-      //orderBy: orderBy
+      //orderBy: 
     }
   }
 
   // re-sort the posts 
-  componentDidUpdate() {
-
+  componentDidUpdate( posts ) {
+    console.log('something happened');
   }
 
   // sort by votes
   sortPopular( posts ){
+    const popularPosts = posts.sort( ( a, b ) => {
+      return ( Number( b.votes ) - Number( a.votes ) );
+    })
 
+    this.setState({ posts: popularPosts });
   };
 
   // sort by id
   sortNewest( posts ){
+    const newestPosts = posts.sort( ( a, b ) => {
+      return ( Number( a.id ) - Number( b.id ) );
+    })
 
-  };
+    this.setState({ posts: newestPosts });
+  }; 
 
   updateVote( item ) {
-    const newPost = this.state.posts.map(( e ) => {
+    const votedPosts = this.state.posts.map(( e ) => {
       if ( e.id === item.id ) {
         e.votes += 1;
       }
@@ -39,12 +47,15 @@ class PostList extends Component {
       return e;
     })
 
-    this.setState({ posts: newPost })
+    this.setState({ posts: votedPosts })
   };
 
+  renderPosts( postList ) {
+    
+  }
+
   render() {
-    const postList = data.data.posts;
-    //console.log(postList)
+    const postList = this.state.posts;
 
     return (
       <div className={ styles[ 'post-list' ] }>
@@ -52,22 +63,24 @@ class PostList extends Component {
           <ToolbarTitle text="Posts" />
           <ToolbarGroup>
             <ToolbarTitle text="Sort:" />
-            <FlatButton label="Newest" />
-            <FlatButton label="Popular" />
+            <FlatButton label="Newest" onClick={ this.sortNewest.bind( this, postList ) }/>
+            <FlatButton label="Popular" onClick={ this.sortPopular.bind( this, postList ) }/>
           </ToolbarGroup>
         </Toolbar>
         <ul>
-          { postList.map(( post ) => (
-            <Post
-              title={ post.title }
-              link={ post.link }
-              key={ post.id }
-              description={ post.description }
-              vote={ post.votes }
-              updateVote={ this.updateVote.bind( this, post )}
-              categories={ post.categories }
-            />
-          ))}
+          { 
+            postList.map(( post ) => (
+              <Post
+                title={ post.title }
+                link={ post.link }
+                key={ post.id }
+                description={ post.description }
+                vote={ post.votes }
+                updateVote={ this.updateVote.bind( this, post )}
+                categories={ post.categories }
+              />
+            ))
+          }
         </ul>
       </div>
     );

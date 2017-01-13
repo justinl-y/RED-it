@@ -30,7 +30,7 @@ export const data = {
       'React',
     ],
     title: 'React!!!!',
-    description: 'Some React resource',
+    description: 'Some React resource - init popular',
     link: '//github.com/react',
   }, {
     id: '1',
@@ -41,7 +41,7 @@ export const data = {
       'Redux',
     ],
     title: 'React ?',
-    description: 'Some React resource',
+    description: 'Some React resource - init votes',
     link: '//github.com/react',
   }],
 };
