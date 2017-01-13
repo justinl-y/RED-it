@@ -7,12 +7,12 @@ class PostList extends Component {
   constructor() {
     super();
     this.state = {
-      post: data.data.posts
+      posts: data.data.posts
     }
   }
   
   handleClick( item ) {
-    const newPost = this.state.post.map(( e ) => {
+    const newPost = this.state.posts.map(( e ) => {
       if ( e.id === item.id ) {
         e.votes += 1;
       }
@@ -20,13 +20,13 @@ class PostList extends Component {
       return e;
     })
 
-    this.setState({ post: newPost })
+    this.setState({ posts: newPost })
   }
 
   render() {
     let postList = data.data.posts;
 
-    console.log(postList)
+    //console.log(postList)
 
     return (
       <div className={ styles.postList }>
@@ -39,7 +39,7 @@ class PostList extends Component {
               description={ post.description }
               vote={ post.votes }
               updateVote={ this.handleClick.bind( this, post )}
-              categories={ this.votes.categories }
+              categories={ post.categories }
             />
           ))}
         </ul>
