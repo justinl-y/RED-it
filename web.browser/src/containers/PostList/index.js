@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import styles from './styles.css';
 import * as data from '../../mock-data';
 import Post from './../../components/Post';
-import { Toolbar, ToolbarTitle } from 'material-ui/Toolbar';
+import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
+import FlatButton from 'material-ui/FlatButton';
 
 class PostList extends Component {
   constructor() {
@@ -31,7 +32,14 @@ class PostList extends Component {
 
     return (
       <div className={ styles['post-list'] }>
-        <Toolbar/>
+        <Toolbar>
+          <ToolbarTitle text="Posts" />
+          <ToolbarGroup>
+            <ToolbarTitle text="Sort:" />
+            <FlatButton label="Newest" />
+            <FlatButton label="Popular" />
+          </ToolbarGroup>
+        </Toolbar>
         <ul>
           { postList.map(( post ) => (
             <Post
