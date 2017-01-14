@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import {
    Router,
    Route,
-   Link,
    IndexRoute,
    browserHistory 
 } from 'react-router';

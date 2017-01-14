@@ -20,7 +20,7 @@ class PostList extends Component {
   }*/
 
   // sort by votes
-sortPopular( posts ){
+  sortPopular( posts ){
     const popularPosts = posts.sort( ( a, b ) => {
       return ( Number( b.votes ) - Number( a.votes ) );
     })
@@ -63,15 +63,15 @@ sortPopular( posts ){
            />
         <ul>
           { 
-            postList.map(( post ) => ( 
+            postList.map(( e ) => ( 
               <Post
-                title={ post.title }
-                link={ post.link }
-                key={ post.id }
-                description={ post.description }
-                vote={ post.votes }
-                updateVote={ this.updateVote.bind( this, post )}
-                categories={ post.categories }
+                title={ e.title }
+                link={ e.link }
+                key={ e.id }
+                description={ e.description }
+                vote={ e.votes }
+                updateVote={ this.updateVote.bind( this, e )}
+                categories={ e.categories }
               />
             ))
           }
