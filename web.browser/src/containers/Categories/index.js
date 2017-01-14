@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Week from '../../components/Week';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
+import * as data from '../../mock-data';
 
 class Categories extends Component {
   constructor() {

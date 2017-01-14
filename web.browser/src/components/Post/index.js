@@ -5,7 +5,7 @@ import Chip from 'material-ui/Chip';
 import styles from './styles.css';
 
 const Post = ({ title, link, description, vote, updateVote, categories }) => (
-  <li className={ styles['post'] }>
+  <li className={ styles[ 'post' ] }>
     <Card>
       <CardHeader>
         <h2><a href={ link } target="_blank">{ title }</a></h2>

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styles from './styles.css';
-import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
-import FlatButton from 'material-ui/FlatButton';
+import PostToolbar from '../../components/PostToolbar';
 import Post from './../../components/Post';
 import * as data from '../../mock-data';
 
@@ -11,17 +10,17 @@ class PostList extends Component {
 
     this.state = {
       posts: data.data.posts,
-      //orderBy: 
+      //orderBy: newest
     }
   }
 
   // re-sort the posts 
-  componentDidUpdate( posts ) {
+  /*componentDidUpdate( posts ) {
     console.log('something happened');
-  }
+  }*/
 
   // sort by votes
-  sortPopular( posts ){
+sortPopular( posts ){
     const popularPosts = posts.sort( ( a, b ) => {
       return ( Number( b.votes ) - Number( a.votes ) );
     })
@@ -50,26 +49,21 @@ class PostList extends Component {
     this.setState({ posts: votedPosts })
   };
 
-  renderPosts( postList ) {
-    
-  }
+  /*renderPosts( postList ) {
+  }*/
 
   render() {
     const postList = this.state.posts;
 
     return (
       <div className={ styles[ 'post-list' ] }>
-        <Toolbar>
-          <ToolbarTitle text="Posts" />
-          <ToolbarGroup>
-            <ToolbarTitle text="Sort:" />
-            <FlatButton label="Newest" onClick={ this.sortNewest.bind( this, postList ) }/>
-            <FlatButton label="Popular" onClick={ this.sortPopular.bind( this, postList ) }/>
-          </ToolbarGroup>
-        </Toolbar>
+        <PostToolbar 
+          sortNewest={ this.sortNewest.bind( this, postList ) } 
+          sortPopular={ this.sortPopular.bind( this, postList ) } 
+           />
         <ul>
           { 
-            postList.map(( post ) => (
+            postList.map(( post ) => ( 
               <Post
                 title={ post.title }
                 link={ post.link }
