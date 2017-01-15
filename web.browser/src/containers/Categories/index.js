@@ -30,7 +30,6 @@ class Categories extends Component {
                 weekItems={ e } />
             ))
           }
-
         </Drawer>
       );
    }

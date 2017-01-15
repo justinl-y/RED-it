@@ -7,10 +7,8 @@ import {
    browserHistory 
 } from 'react-router';
 import './styles/index.css';
-
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import muiTheme from './styles/mui-theme';
-
 import MainLayout from './layouts/MainLayout';
 import App from './containers/App';
 import Login from './containers/Login';

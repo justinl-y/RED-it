@@ -14,7 +14,7 @@ class PostList extends Component {
     }
   }
 
-  // re-sort the posts 
+  // re-sort the posts - needs work
   componentDidUpdate( posts ) {
     switch ( this.state.orderBy ) {
       case "newest":
@@ -26,7 +26,6 @@ class PostList extends Component {
       default:
         break;
     }
-    
   }
 
   // sort by votes

@@ -7,7 +7,7 @@ import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
 import RaisedButton from 'material-ui/RaisedButton';
 
-const NewPost = ( { selectControlItems, selectFieldValue, handleSelectChange }) => {
+const NewPost = ({ selectControlItems, selectFieldValue, handleSelectChange }) => {
     return(
         <Card className={ styles[ 'new-post' ] }>
           <Paper>
@@ -59,7 +59,6 @@ const NewPost = ( { selectControlItems, selectFieldValue, handleSelectChange }) 
             </CardText>
           </Paper>
         </Card>
-
     )
 }
 
