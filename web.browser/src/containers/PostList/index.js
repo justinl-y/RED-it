@@ -10,14 +10,24 @@ class PostList extends Component {
 
     this.state = {
       posts: data.data.posts,
-      //orderBy: newest
+      orderBy: "newest"
     }
   }
 
   // re-sort the posts 
-  /*componentDidUpdate( posts ) {
-    console.log('something happened');
-  }*/
+  componentDidUpdate( posts ) {
+    switch ( this.state.orderBy ) {
+      case "newest":
+        console.log('newest happened');
+        break;
+      case "popular":
+        console.log('popular happened');
+        break;
+      default:
+        break;
+    }
+    
+  }
 
   // sort by votes
   sortPopular( posts ){
@@ -26,6 +36,7 @@ class PostList extends Component {
     })
 
     this.setState({ posts: popularPosts });
+    this.setState({ orderBy: "popular" });
   };
 
   // sort by id
@@ -35,6 +46,7 @@ class PostList extends Component {
     })
 
     this.setState({ posts: newestPosts });
+    this.setState({ orderBy: "newest" });
   }; 
 
   updateVote( item ) {
