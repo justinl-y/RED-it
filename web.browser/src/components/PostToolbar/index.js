@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
+import styles from './styles.css';
 import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
 import FlatButton from 'material-ui/FlatButton';
 
 const PostToolbar = ({ sortNewest, sortPopular }) => (
-    <Toolbar>
+    <Toolbar className={ styles[ 'posts-toolbar' ] }>
         <ToolbarTitle text="Posts" />
         <ToolbarGroup>
         <ToolbarTitle text="Sort:" />
