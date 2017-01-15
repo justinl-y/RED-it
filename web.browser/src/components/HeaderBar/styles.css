@@ -3,6 +3,18 @@
     text-transform: uppercase;
 }
 
-.header-bar a:link, a:visited, a:hover , a:active {
+.header-bar a:link {
+    color: white;
+}
+
+.header-bar a:visited {
+    color: white;
+}
+
+.header-bar a:hover {
+    color: white;
+}
+
+.header-bar a:active {
     color: white;
 }
