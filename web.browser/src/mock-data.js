@@ -38,7 +38,7 @@ export const data = {
     votes: 5,
     categories: [
       'React',
-      'Redux',
+      'React-Router',
     ],
     title: 'React ?',
     description: 'Some React resource - init votes',

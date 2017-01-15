@@ -1,14 +1,23 @@
 import React, { PropTypes} from 'react';
+import { List, ListItem } from 'material-ui/List';
+import Divider from 'material-ui/Divider';
+import Subheader from 'material-ui/Subheader';
 
 const Week = ({ weekItems }) => {
   return (
     <div>
-      <h2>{ weekItems.title }</h2>
-      {
-        weekItems.categories.map(( e ) => ( 
-          <p key={ `${e}-${Date.now()}` } >{ e }</p> 
-        ))
-      }
+      <List>
+        <Subheader>{ weekItems.title }</Subheader>
+        <Divider />
+        {
+          weekItems.categories.map(( e ) => ( 
+            <ListItem 
+              key={ `${e}-${Date.now()}` }
+              primaryText={ e } /> 
+          ))
+        }
+      </List>
+      <Divider />
     </div>
   );
 }
