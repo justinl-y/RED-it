@@ -7,7 +7,7 @@ import styles from './styles.css';
 const HeaderBar = ( { newPost, home }) => (
   <AppBar
     iconElementRight={
-      <div className={ styles[ 'header' ] }>
+      <div className={ styles[ 'header-bar' ] }>
         <FlatButton> 
             <Link to="posts/new">Share a new link</Link>
         </FlatButton>   

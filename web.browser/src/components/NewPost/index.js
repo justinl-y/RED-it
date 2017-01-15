@@ -9,7 +9,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 const NewPost = ( { selectControlItems, selectFieldValue, handleSelectChange }) => {
     return(
-
         <Card className={ styles[ 'new-post' ] }>
           <Paper>
             <Toolbar>
@@ -64,4 +63,10 @@ const NewPost = ( { selectControlItems, selectFieldValue, handleSelectChange }) 
     )
 }
 
+NewPost.propTypes = {
+    selectControlItems: PropTypes.array.isRequired,
+    //selectFieldValue: PropTypes.array.isRequired,
+    handleSelectChange: PropTypes.func.isRequired
+}
+ 
 export default NewPost;

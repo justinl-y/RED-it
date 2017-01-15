@@ -1,0 +1,8 @@
+.header-bar a {
+    text-decoration : none;
+    text-transform: uppercase;
+}
+
+.header-bar a:link, a:visited, a:hover , a:active {
+    color: white;
+}

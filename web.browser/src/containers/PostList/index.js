@@ -60,7 +60,7 @@ class PostList extends Component {
         <PostToolbar 
           sortNewest={ this.sortNewest.bind( this, postList ) } 
           sortPopular={ this.sortPopular.bind( this, postList ) } 
-           />
+        />
         <ul>
           { 
             postList.map(( e ) => ( 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import styles from './styles.css'
+//import styles from './styles.css'
 import MenuItem from 'material-ui/MenuItem';
 import NewPost from '../../components/NewPost';
 
