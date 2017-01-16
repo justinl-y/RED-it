@@ -5,23 +5,23 @@ import Post from './../../components/Post';
 import * as data from '../../mock-data';
 
 class PostList extends Component {
-  constructor() {
-    super();
+  constructor( props ) {
+    super( props );
 
     this.state = {
       posts: data.data.posts,
-      orderBy: "newest"
+      orderBy: 'newest'
     }
   }
 
   // re-sort the posts - needs work
   componentDidUpdate( posts ) {
     switch ( this.state.orderBy ) {
-      case "newest":
-        console.log('newest happened');
+      case 'newest':
+        //console.log('newest happened');
         break;
-      case "popular":
-        console.log('popular happened');
+      case 'popular':
+        //console.log('popular happened');
         break;
       default:
         break;
@@ -35,7 +35,7 @@ class PostList extends Component {
     })
 
     this.setState({ posts: popularPosts });
-    this.setState({ orderBy: "popular" });
+    this.setState({ orderBy: 'popular' });
   };
 
   // sort by id
@@ -45,7 +45,7 @@ class PostList extends Component {
     })
 
     this.setState({ posts: newestPosts });
-    this.setState({ orderBy: "newest" });
+    this.setState({ orderBy: 'newest' });
   }; 
 
   updateVote( item ) {
@@ -61,6 +61,33 @@ class PostList extends Component {
   };
 
   /*renderPosts( postList ) {
+    const renderedPosts = postList.map(( e ) => ( 
+                            <Post
+                              title={ e.title }
+                              link={ e.link }
+                              key={ e.id }
+                              description={ e.description }
+                              vote={ e.votes }
+                              updateVote={ this.updateVote.bind( this, e )}
+                              categories={ e.categories }
+                            />
+                          ))
+
+     return renderedPosts;                     
+  }*/
+
+  /*renderPost( post ) {
+    return (
+      <Post
+        title={ post.title }
+        link={ post.link }
+        key={ post.id }
+        description={ post.description }
+        vote={ post.votes }
+        updateVote={ this.updateVote.bind( this, post )}
+        categories={ post.categories }
+      />
+    )
   }*/
 
   render() {
@@ -85,6 +112,11 @@ class PostList extends Component {
                 categories={ e.categories }
               />
             ))
+
+            /*this.renderPosts( postList )*/
+            
+            /*postList.map( this.renderPost )*/
+
           }
         </ul>
       </div>

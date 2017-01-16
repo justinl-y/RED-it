@@ -6,11 +6,11 @@ import FlatButton from 'material-ui/FlatButton';
 const PostToolbar = ({ sortNewest, sortPopular }) => {
     return (
         <Toolbar className={ styles[ 'posts-toolbar' ] }>
-            <ToolbarTitle text="Posts" />
+            <ToolbarTitle text='Posts' />
             <ToolbarGroup>
-            <ToolbarTitle text="Sort:" />
-            <FlatButton label="Newest" onClick={ sortNewest } />
-            <FlatButton label="Popular" onClick={ sortPopular } />
+            <ToolbarTitle text='Sort:' />
+            <FlatButton label='Newest' onClick={ sortNewest } />
+            <FlatButton label='Popular' onClick={ sortPopular } />
             </ToolbarGroup>
         </Toolbar>
     )

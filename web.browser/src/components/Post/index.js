@@ -2,14 +2,16 @@ import React, { PropTypes } from 'react';
 import { Card, CardHeader, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import Chip from 'material-ui/Chip';
-import styles from './styles.css';
+import styles from './styles.css'
 
 const Post = ({ title, link, description, vote, updateVote, categories }) => {
   return (
     <li className={ styles[ 'post-list' ] }>
       <Card className={ styles[ 'post-item' ] }>
         <CardHeader className={ styles[ 'post-header' ] }>
-          <h2><a href={ link } target="_blank">{ title }</a></h2>
+          <h2>
+            <a href={ link } target="_blank">{ title }</a>
+          </h2>
         </CardHeader>
         <CardText>
           <p>{ description }</p>

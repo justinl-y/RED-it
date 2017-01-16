@@ -7,28 +7,28 @@ import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
 import RaisedButton from 'material-ui/RaisedButton';
 
-const NewPost = ({ selectControlItems, selectFieldValue, handleSelectChange }) => {
+const NewPost = ({ selectFieldValue, handleSelectChange, selectControlItems }) => {
     return(
         <Card className={ styles[ 'new-post' ] }>
           <Paper>
             <Toolbar>
               <ToolbarGroup>
-                <ToolbarTitle text="Share a new link" />
+                <ToolbarTitle text='Share a new link' />
               </ToolbarGroup>
             </Toolbar>
             <CardText>
               <TextField
-                hintText="Title"
-                errorText="Please provide a title"
-                floatingLabelText="Title"
+                hintText='Title'
+                errorText='Please provide a title'
+                floatingLabelText='Title'
                 multiLine={ true }
                 rows={ 1 }
               /><br />
 
               <TextField
-                hintText="Description"
-                errorText="Please provide a description"
-                floatingLabelText="Description"
+                hintText='Description'
+                errorText='Please provide a description'
+                floatingLabelText='Description'
                 multiLine={ true }
                 rows={ 1 }
               /><br />
@@ -36,26 +36,26 @@ const NewPost = ({ selectControlItems, selectFieldValue, handleSelectChange }) =
               <SelectField
                 value={ selectFieldValue }
                 onChange={ handleSelectChange }
-                floatingLabelText="Select a lesson"
+                floatingLabelText='Select a lesson'
               >
               { selectControlItems }
               </SelectField><br />
 
               <TextField
-                hintText="Link"
+                hintText='Link'
                 errorText="You're sharing a link, provide a link"
-                floatingLabelText="Link"
+                floatingLabelText='Link'
                 multiLine={ true }
                 rows={ 1 }
               /><br />
 
               <TextField
-                hintText="Tags"
-                floatingLabelText="Tags"
+                hintText='Tags'
+                floatingLabelText='Tags'
                 multiLine={ true }
                 rows={ 1 }
               /><br />
-              <RaisedButton label="Submit"/>
+              <RaisedButton label='Submit' />
             </CardText>
           </Paper>
         </Card>

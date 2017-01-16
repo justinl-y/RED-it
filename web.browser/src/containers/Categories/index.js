@@ -19,9 +19,8 @@ class Categories extends Component {
       return (
         <Drawer open={ this.state.open }>
           <AppBar
-            title="RED it"
-            
-            iconClassNameLeft="material-icons"
+            title='RED it'
+            iconClassNameLeft='material-icons'
           />
           {
             categories.map( ( e ) => (
