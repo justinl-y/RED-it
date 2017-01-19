@@ -4,10 +4,12 @@ import {
    Router,
    Route,
    IndexRoute,
-   browserHistory 
+   browserHistory,
 } from 'react-router';
-import './styles/index.css';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+import './styles/index.css';
 import muiTheme from './styles/mui-theme';
 import MainLayout from './layouts/MainLayout';
 import App from './containers/App';
@@ -18,23 +20,22 @@ import Welcome from './containers/Welcome';
 
 // Needed for onTouchTap (Material UI)
 // http://stackoverflow.com/a/34015469/988941
-import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 ReactDOM.render(
-  <MuiThemeProvider muiTheme={ muiTheme }>
-      <Router history={ browserHistory }>
-        <Route component={ MainLayout }> 
-          <Route path="/" component={ App }>
-            <IndexRoute component={ Welcome } />
-            <Route path="login" component={ Login } />
-            <Route path="posts">
-              <Route path="new" component={ CreatePost } />
-              <Route path=":topic-name" component={ PostList } />
-            </Route>
+  <MuiThemeProvider muiTheme={muiTheme}>
+    <Router history={browserHistory}>
+      <Route component={MainLayout}>
+        <Route path="/" component={App}>
+          <IndexRoute component={Welcome} />
+          <Route path="login" component={Login} />
+          <Route path="posts">
+            <Route path="new" component={CreatePost} />
+            <Route path=":topic-name" component={PostList} />
           </Route>
         </Route>
-      </Router>
+      </Route>
+    </Router>
   </MuiThemeProvider>,
-  document.getElementById( 'root' )
+  document.getElementById('root'),
 );

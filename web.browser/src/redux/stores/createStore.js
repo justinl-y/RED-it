@@ -7,14 +7,14 @@ const store = createStore(
     composeWithDevTools(),
 );
 
-//console.log(postsStore);
+// console.log(postsStore);
 
 store.dispatch(sortPopular());
 store.dispatch(voteUp(1));
 store.dispatch(voteDown(1));
-//store.dispatch(voteDown(1));
-//store.dispatch(voteDown(1));
+store.dispatch(voteDown(1));
+store.dispatch(voteDown(1));
 store.dispatch(sortNewest());
-//store.dispatch(voteUp(1));
+store.dispatch(sortPopular());
 
 export default store;

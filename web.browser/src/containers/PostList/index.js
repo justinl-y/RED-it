@@ -4,7 +4,7 @@ import PostToolbar from '../../components/PostToolbar';
 import Post from './../../components/Post';
 import * as data from '../../mock-data';
 import store from '../../redux/stores/createStore';
-import { voteUp, voteDown, sortPopular, sortNewest } from '../../redux/posts';
+// import { voteUp, voteDown, sortPopular, sortNewest } from '../../redux/posts';
 
 class PostList extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class PostList extends Component {
   }
 
   // re-sort the posts - needs work
-  /*componentDidUpdate(posts) {
+  /* componentDidUpdate(posts) {
     switch ( this.state.orderBy ) {
       case 'newest':
         //console.log('newest happened');
@@ -63,8 +63,8 @@ class PostList extends Component {
     this.setState({ posts: votedPosts });
   }
 
-  /*renderPosts( postList ) {
-    const renderedPosts = postList.map(( e ) => ( 
+  /* renderPosts( postList ) {
+    const renderedPosts = postList.map(( e ) => (
                             <Post
                               title={ e.title }
                               link={ e.link }
@@ -76,10 +76,10 @@ class PostList extends Component {
                             />
                           ))
 
-     return renderedPosts;                     
+     return renderedPosts;
   }*/
 
-  /*renderPost( post ) {
+  /* renderPost( post ) {
     return (
       <Post
         title={ post.title }
@@ -116,8 +116,8 @@ class PostList extends Component {
               />
             ))
 
-            /*this.renderPosts( postList )*/
-            /*postList.map( this.renderPost )*/
+            /* this.renderPosts( postList )*/
+            /* postList.map( this.renderPost )*/
           }
         </ul>
       </div>
