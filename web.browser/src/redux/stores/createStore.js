@@ -3,7 +3,9 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { reducer as postsReducer, voteUp, voteDown, sortPopular, sortNewest } from '../posts';
 
 const store = createStore(
-    combineReducers({ posts: postsReducer }),
+    combineReducers({
+      posts: postsReducer,
+    }),
     composeWithDevTools(),
 );
 

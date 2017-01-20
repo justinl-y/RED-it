@@ -12,7 +12,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
-import AppReducer from './src/Pages/redux';
+import AppReducer from './containers/redux';
 
 import './styles/index.css';
 import muiTheme from './styles/mui-theme';

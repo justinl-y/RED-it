@@ -1,20 +1,25 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+
+import { connect } from 'react-redux';
+
 import styles from './styles.css';
 import PostToolbar from '../../components/PostToolbar';
 import Post from './../../components/Post';
-import * as data from '../../mock-data';
-import store from '../../redux/stores/createStore';
+// import data from '../../mock-data';
+// import store from '../../redux/stores/createStore';
 // import { voteUp, voteDown, sortPopular, sortNewest } from '../../redux/posts';
 
+import { postsSortNewest, postsSortPopular } from '../PostList/actions';
+
 class PostList extends Component {
-  constructor(props) {
+  /* constructor(props) {
     super(props);
 
-    this.state = {
-      posts: data.data.posts,
-      orderBy: 'newest',
-    };
-  }
+    // this.state = {
+      // posts: data.posts,
+      // orderBy: 'newest',
+    // };
+  }*/
 
   // re-sort the posts - needs work
   /* componentDidUpdate(posts) {
@@ -28,10 +33,10 @@ class PostList extends Component {
       default:
         break;
     }
-  }*/
+  } */
 
   // sort by votes
-  sortPopular(posts) {
+  /* sortPopular(posts) {
     const popularPosts = posts.sort((a, b) => {
       return (Number(b.votes) - Number(a.votes));
     });
@@ -62,49 +67,27 @@ class PostList extends Component {
 
     this.setState({ posts: votedPosts });
   }
-
-  /* renderPosts( postList ) {
-    const renderedPosts = postList.map(( e ) => (
-                            <Post
-                              title={ e.title }
-                              link={ e.link }
-                              key={ e.id }
-                              description={ e.description }
-                              vote={ e.votes }
-                              updateVote={ this.updateVote.bind( this, e )}
-                              categories={ e.categories }
-                            />
-                          ))
-
-     return renderedPosts;
-  }*/
-
-  /* renderPost( post ) {
-    return (
-      <Post
-        title={ post.title }
-        link={ post.link }
-        key={ post.id }
-        description={ post.description }
-        vote={ post.votes }
-        updateVote={ this.updateVote.bind( this, post )}
-        categories={ post.categories }
-      />
-    )
   }*/
 
   render() {
-    const postList = this.state.posts;
-
+    // const postList = this.state.posts;
+    const { posts, onSortNewestClick, onSortPopularClick } = this.props;
+    console.log(posts);
     return (
       <div className={styles['post-list']}>
         <PostToolbar
-          sortNewest={this.sortNewest.bind(this, postList)}
-          sortPopular={this.sortPopular.bind(this, postList)}
+          onclickSortNewest={(e) => {
+            e.preventDefault();
+            onSortNewestClick(posts);
+          }}
+          onClickSortPopular={(e) => {
+            e.preventDefault();
+            onSortPopularClick(posts);
+          }}
         />
         <ul>
           {
-            postList.map(e => (
+            posts.map(e => (
               <Post
                 title={e.title}
                 link={e.link}
@@ -115,9 +98,6 @@ class PostList extends Component {
                 categories={e.categories}
               />
             ))
-
-            /* this.renderPosts( postList )*/
-            /* postList.map( this.renderPost )*/
           }
         </ul>
       </div>
@@ -125,4 +105,27 @@ class PostList extends Component {
   }
 }
 
-export default PostList;
+const mapStateToProps = state => ({
+  posts: state.appData.posts,
+});
+
+const mapDispatchToProps = dispatch => ({
+  onSortNewestClick: (postList) => {
+    dispatch(postsSortNewest(postList));
+  },
+  onSortPopularClick: (postList) => {
+    dispatch(postsSortPopular(postList));
+  },
+});
+
+PostList.propTypes = {
+  posts: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onSortNewestClick: PropTypes.func.isRequired,
+  onSortPopularClick: PropTypes.func.isRequired,
+};
+
+// export default PostList;
+export default connect(mapStateToProps, mapDispatchToProps)(PostList);
+
+/* {sortNewest={this.sortNewest.bind(this, postList)}
+sortPopular={this.sortPopular.bind(this, postList)}} */

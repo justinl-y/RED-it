@@ -41,7 +41,7 @@ Post.propTypes = {
   description: PropTypes.string.isRequired,
   vote: PropTypes.number.isRequired,
   updateVote: PropTypes.func.isRequired,
-  categories: PropTypes.arrayOf(PropTypes.object).isRequired,
+  // categories: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Post;
