@@ -17,7 +17,10 @@ const Post = ({ title, link, description, vote, updateVote, categories }) => {
           <p>{ description }</p>
         </CardText>
         <div className={styles['post-buttons']}>
-          <FlatButton className={styles['post-vote-button']} onClick={updateVote}>
+          <FlatButton
+            className={styles['post-vote-button']}
+            onClick={updateVote}
+          >
             Vote { vote }
           </FlatButton>
           <div className={styles['post-categories']}>

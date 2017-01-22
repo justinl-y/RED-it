@@ -1,24 +1,29 @@
 import React, { PropTypes } from 'react';
-import styles from './styles.css';
 import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
 import FlatButton from 'material-ui/FlatButton';
+import styles from './styles.css';
 
-const PostToolbar = ({ sortNewest, sortPopular }) => {
-    return (
-        <Toolbar className={ styles[ 'posts-toolbar' ] }>
-            <ToolbarTitle text='Posts' />
-            <ToolbarGroup>
-            <ToolbarTitle text='Sort:' />
-            <FlatButton label='Newest' onClick={ sortNewest } />
-            <FlatButton label='Popular' onClick={ sortPopular } />
-            </ToolbarGroup>
-        </Toolbar>
-    )
-}
+const PostToolbar = ({ onSortNewestClick, onSortPopularClick }) => (
+  <Toolbar className={styles['posts-toolbar']}>
+    <ToolbarTitle text="Posts" />
+    <ToolbarGroup>
+      <ToolbarTitle text="Sort:" />
+      <FlatButton
+        label="Newest"
+        onClick={onSortNewestClick}
+      />
+      <FlatButton
+        label="Popular"
+        onClick={onSortPopularClick}
+      />
+    </ToolbarGroup>
+  </Toolbar>
+);
 
 PostToolbar.propTypes = {
-  sortNewest: PropTypes.func.isRequired,
-  sortPopular: PropTypes.func.isRequired,
+  // posts: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onSortNewestClick: PropTypes.func.isRequired,
+  onSortPopularClick: PropTypes.func.isRequired,
 };
 
 export default PostToolbar;

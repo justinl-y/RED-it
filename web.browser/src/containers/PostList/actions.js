@@ -8,8 +8,8 @@ const VOTE_DOWN = 'VOTE_DOWN';
 const ADD_POST = 'ADD_POST';
 const DELETE_POST = 'DELETE_POST';
 const UPDATE_POST = 'UPDATE_POST';
-const SORT_NEWEST = 'SORT_NEWEST';
-const SORT_POPULAR = 'SORT_POPULAR';
+const POSTS_SORT_NEWEST = 'POSTS_SORT_NEWEST';
+const POSTS_SORT_POPULAR = 'POSTS_SORT_POPULAR';
 
 // action creator
 /* export const goToProfile = student => ({
@@ -42,12 +42,12 @@ export const updatePost = id => ({
   payload: { id },
 });
 
-export const sortNewest = () => ({
-  type: SORT_NEWEST,
+export const postsSortNewest = () => ({
+  type: POSTS_SORT_NEWEST,
 });
 
 export const postsSortPopular = () => ({
-  type: SORT_POPULAR,
+  type: POSTS_SORT_POPULAR,
 });
 
 // reducer
@@ -72,16 +72,23 @@ export default (state = postListPageInitialState, action) => {
 
         return { ...post, votes: post.votes > 0 ? post.votes - 1 : post.votes };
       });
-    case SORT_POPULAR:
-      return state.slice().sort((a, b) => (
+    case POSTS_SORT_POPULAR:
+      /* return state.slice().sort((a, b) => (
           Number(b.votes) - Number(a.votes)
           ),
-      );
-    case SORT_NEWEST:
-      return state.slice().sort((a, b) => (
+      );*/
+      console.log('sort popular');
+
+      return state;
+    case POSTS_SORT_NEWEST:
+      /* return state.slice().sort((a, b) => (
         Number(a.id) - Number(b.id)
         ),
-      );
+      ); */
+
+      console.log('sort newest');
+
+      return state;
     default:
       return state;
   }

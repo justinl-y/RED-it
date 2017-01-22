@@ -9,7 +9,7 @@ import Post from './../../components/Post';
 // import store from '../../redux/stores/createStore';
 // import { voteUp, voteDown, sortPopular, sortNewest } from '../../redux/posts';
 
-import { postsSortNewest, postsSortPopular } from '../PostList/actions';
+import { postsSortNewest, postsSortPopular, voteUp } from '../PostList/actions';
 
 class PostList extends Component {
   /* constructor(props) {
@@ -71,19 +71,14 @@ class PostList extends Component {
 
   render() {
     // const postList = this.state.posts;
-    const { posts, onSortNewestClick, onSortPopularClick } = this.props;
-    console.log(posts);
+    const { posts } = this.props;
+
+    // console.log(posts);
     return (
       <div className={styles['post-list']}>
         <PostToolbar
-          onclickSortNewest={(e) => {
-            e.preventDefault();
-            onSortNewestClick(posts);
-          }}
-          onClickSortPopular={(e) => {
-            e.preventDefault();
-            onSortPopularClick(posts);
-          }}
+          onSortNewestClick={postsSortNewest}
+          onSortPopularClick={postsSortPopular}
         />
         <ul>
           {
@@ -94,7 +89,7 @@ class PostList extends Component {
                 key={e.id}
                 description={e.description}
                 vote={e.votes}
-                updateVote={this.updateVote.bind(this, e)}
+                updateVote={voteUp}
                 categories={e.categories}
               />
             ))
@@ -105,23 +100,28 @@ class PostList extends Component {
   }
 }
 
+// onClick={props.onMessageClick}
+
 const mapStateToProps = state => ({
   posts: state.appData.posts,
 });
 
 const mapDispatchToProps = dispatch => ({
-  onSortNewestClick: (postList) => {
-    dispatch(postsSortNewest(postList));
+  onSortNewestClick: () => {
+    dispatch(postsSortNewest());
   },
-  onSortPopularClick: (postList) => {
-    dispatch(postsSortPopular(postList));
+  onSortPopularClick: () => {
+    dispatch(postsSortPopular());
+  },
+  updateVote: () => {
+    dispatch(voteUp());
   },
 });
 
 PostList.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.object).isRequired,
-  onSortNewestClick: PropTypes.func.isRequired,
-  onSortPopularClick: PropTypes.func.isRequired,
+  // onSortNewestClick: PropTypes.func.isRequired,
+  // onSortPopularClick: PropTypes.func.isRequired,
 };
 
 // export default PostList;
@@ -129,3 +129,15 @@ export default connect(mapStateToProps, mapDispatchToProps)(PostList);
 
 /* {sortNewest={this.sortNewest.bind(this, postList)}
 sortPopular={this.sortPopular.bind(this, postList)}} */
+
+/*onClickSortNewest={(e) => {
+  e.preventDefault();
+  onSortNewestClick(posts);
+}}
+onClickSortPopular={(e) => {
+  e.preventDefault();
+  onSortPopularClick(posts);
+}}
+
+
+*/
