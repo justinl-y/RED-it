@@ -100,7 +100,8 @@ class PostList extends Component {
 }
 
 const mapStateToProps = state => ({
-  posts: state.appData.posts,
+  // posts: state.appData.posts,
+  posts: state.posts,
 });
 
 const mapDispatchToProps = dispatch => ({
