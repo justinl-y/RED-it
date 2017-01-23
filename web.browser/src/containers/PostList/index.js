@@ -5,10 +5,6 @@ import PostToolbar from '../../components/PostToolbar';
 import Post from './../../components/Post';
 import { postsSortNewest, postsSortPopular, voteUp } from '../PostList/actions';
 
-// import data from '../../mock-data';
-// import store from '../../redux/stores/createStore';
-// import { voteUp, voteDown, sortPopular, sortNewest } from '../../redux/posts';
-
 class PostList extends Component {
   /* constructor(props) {
     super(props);
@@ -32,40 +28,6 @@ class PostList extends Component {
         break;
     }
   } */
-
-  // sort by votes
-  /* sortPopular(posts) {
-    const popularPosts = posts.sort((a, b) => {
-      return (Number(b.votes) - Number(a.votes));
-    });
-
-    this.setState({ posts: popularPosts });
-    this.setState({ orderBy: 'popular' });
-  }
-
-  // sort by id
-  sortNewest(posts) {
-    const newestPosts = posts.sort((a, b) => {
-      return (Number(a.id) - Number(b.id));
-    });
-
-    this.setState({ posts: newestPosts });
-    this.setState({ orderBy: 'newest' });
-  }
-
-  updateVote(item) {
-    const votedPosts = this.state.posts.map((e) => {
-      if (e.id === item.id) {
-        e.votes += 1;
-        // store.dispatch(voteUp(e.id)); // updates with redux
-      }
-
-      return e;
-    });
-
-    this.setState({ posts: votedPosts });
-  }
-  }*/
 
   render() {
     // const postList = this.state.posts;
