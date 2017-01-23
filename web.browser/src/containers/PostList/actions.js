@@ -1,8 +1,9 @@
+// import expect from 'expect';
 import deepFreeze from 'deep-freeze';
 
 // const postListPageInitialState = { postsPage: undefined };
 
-import mockData from '../../mock-data'; // should be from store?
+import mockData from '../../mock-data'; // should be slice from main reducer?
 // import appInitialState from '../../index';
 
 const postListPageInitialState = mockData.posts;
@@ -83,3 +84,7 @@ export default (state = postListPageInitialState, action) => {
 };
 
 deepFreeze(postListPageInitialState);
+
+// const updated = reducer(postListPageInitialState, voteUp(1));
+// console.log(updated);
+// expect(updated[1].votes).toEqual(6); */
