@@ -1,10 +1,12 @@
+import deepFreeze from 'deep-freeze';
+
 // const postListPageInitialState = { postsPage: undefined };
 
 import mockData from '../../mock-data'; // should be from store?
 // import appInitialState from '../../index';
 
 const postListPageInitialState = mockData.posts;
-// const postListPageInitialState = appInitialState.posts;
+// const postListPageInitialState = appInitialState;
 
 // action type
 const VOTE_UP = 'VOTE_UP';
@@ -79,3 +81,5 @@ export default (state = postListPageInitialState, action) => {
       return state;
   }
 };
+
+deepFreeze(postListPageInitialState);

@@ -23,16 +23,31 @@ import CreatePost from './containers/CreatePost';
 import PostList from './containers/PostList';
 import Welcome from './containers/Welcome';
 
-
 // Needed for onTouchTap (Material UI)
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
+
+// middleware
+const actionLogger = theStore => next => (action) => {
+  let result;
+  console.info('DISPATCHING:', action);
+
+  try {
+    result = next(action);
+    console.info('NEXT STATE', theStore.getState());
+  } catch (e) {
+    console.warn('There was an error!');
+    throw (e);
+  }
+
+  return result;
+};
 
 // create store
 const store = createStore(
   AppReducer,
   composeWithDevTools(
-    applyMiddleware(),
+    applyMiddleware(actionLogger),
   ),
 );
 
