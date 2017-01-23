@@ -4,7 +4,7 @@ import styles from './styles.css';
 
 const MainLayout = ({ children }) => {
   return (
-    <div className={ styles[ 'main-layout' ]}>
+    <div className={styles['main-layout']}>
       <HeaderBar />
       { children }
     </div>

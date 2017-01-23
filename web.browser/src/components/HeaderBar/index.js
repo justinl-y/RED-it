@@ -4,21 +4,21 @@ import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
 import styles from './styles.css';
 
-const HeaderBar = ({ newPost, home }) => {
-  return(
+const HeaderBar = () => {
+  return (
     <AppBar
       iconElementRight={
-        <div className={ styles[ 'header-bar' ] }>
-          <FlatButton> 
+        <div className={styles['header-bar']}>
+          <FlatButton>
             <Link to="posts/new">Share a new link</Link>
-          </FlatButton>   
-          <FlatButton> 
+          </FlatButton>
+          <FlatButton>
             <Link to="/">Home</Link>
           </FlatButton>
         </div>
       }
     />
-  )
-}
+  );
+};
 
 export default HeaderBar;

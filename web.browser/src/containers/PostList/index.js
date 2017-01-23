@@ -1,15 +1,13 @@
 import React, { Component, PropTypes } from 'react';
-
 import { connect } from 'react-redux';
-
 import styles from './styles.css';
 import PostToolbar from '../../components/PostToolbar';
 import Post from './../../components/Post';
+import { postsSortNewest, postsSortPopular, voteUp } from '../PostList/actions';
+
 // import data from '../../mock-data';
 // import store from '../../redux/stores/createStore';
 // import { voteUp, voteDown, sortPopular, sortNewest } from '../../redux/posts';
-
-import { postsSortNewest, postsSortPopular, voteUp } from '../PostList/actions';
 
 class PostList extends Component {
   /* constructor(props) {
@@ -122,26 +120,9 @@ PostList.propTypes = {
   onSortNewestClick: PropTypes.func.isRequired,
   onSortPopularClick: PropTypes.func.isRequired,
   updateVote: PropTypes.func.isRequired,
-  // dispatch: PropTypes.func, // eslint-disable-line
 };
 
-// export default PostList;
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(PostList);
-
-/* {sortNewest={this.sortNewest.bind(this, postList)}
-sortPopular={this.sortPopular.bind(this, postList)}} */
-
-/* onClickSortNewest={(e) => {
-  e.preventDefault();
-  onSortNewestClick(posts);
-}}
-onClickSortPopular={(e) => {
-  e.preventDefault();
-  onSortPopularClick(posts);
-}}
-
-
-*/

@@ -1,4 +1,4 @@
-import { createStore, combineReducers } from 'redux';
+/* import { createStore, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { reducer as postsReducer, voteUp, voteDown, sortPopular, sortNewest } from '../posts';
 
@@ -19,4 +19,4 @@ store.dispatch(voteDown(1));
 store.dispatch(sortNewest());
 store.dispatch(sortPopular());
 
-export default store;
+export default store;*/

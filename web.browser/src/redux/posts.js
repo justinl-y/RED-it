@@ -1,5 +1,5 @@
 // import expect from 'expect';
-import deepFreeze from 'deep-freeze';
+/* import deepFreeze from 'deep-freeze';
 import * as data from '../mock-data';
 
 // action type
@@ -83,4 +83,4 @@ deepFreeze(data.data.posts);
 
 // const updated = reducer(data.data.posts, voteUp(1));
 // console.log(updated);
-// expect(updated[1].votes).toEqual(6);
+// expect(updated[1].votes).toEqual(6); */
