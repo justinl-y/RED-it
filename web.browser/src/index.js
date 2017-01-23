@@ -34,6 +34,8 @@ const actionLogger = theStore => next => (action) => {
 
   try {
     result = next(action);
+    // add store to local storage
+    localStorage.setItem('theStore', JSON.stringify(theStore.getState()));
     console.info('NEXT STATE', theStore.getState());
   } catch (e) {
     console.warn('There was an error!');
