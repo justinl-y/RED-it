@@ -7,7 +7,6 @@ import { postsSortNewest, postsSortPopular, voteUp } from '../PostList/actions';
 
 class PostList extends Component {
   render() {
-    // const postList = this.state.posts;
     const { posts } = this.props;
 
     return (
