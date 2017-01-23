@@ -9,11 +9,7 @@ import { selectCategory } from '../Categories/actions';
 
 class Categories extends Component {
   render() {
-    // const categories = this.state.categories;
     const { categories } = this.props;
-
-    // console.log(categories);
-
     return (
       <Drawer>
         <AppBar

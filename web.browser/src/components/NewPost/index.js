@@ -7,60 +7,58 @@ import SelectField from 'material-ui/SelectField';
 import RaisedButton from 'material-ui/RaisedButton';
 import styles from './styles.css';
 
-const NewPost = ({selectFieldValue, handleSelectChange, selectControlItems }) => {
-  return (
-    <Card className={styles['new-post']}>
-      <Paper>
-        <Toolbar>
-          <ToolbarGroup>
-            <ToolbarTitle text="Share a new link" />
-          </ToolbarGroup>
-        </Toolbar>
-        <CardText>
-          <TextField
-            hintText="Title"
-            errorText="Please provide a title"
-            floatingLabelText="Title"
-            // multiLine={true}
-            rows={1}
-          /><br />
+const NewPost = ({selectFieldValue, handleSelectChange, selectControlItems }) => (
+  <Card className={styles['new-post']}>
+    <Paper>
+      <Toolbar>
+        <ToolbarGroup>
+          <ToolbarTitle text="Share a new link" />
+        </ToolbarGroup>
+      </Toolbar>
+      <CardText>
+        <TextField
+          hintText="Title"
+          errorText="Please provide a title"
+          floatingLabelText="Title"
+          // multiLine={true}
+          rows={1}
+        /><br />
 
-          <TextField
-            hintText="Description"
-            errorText="Please provide a description"
-            floatingLabelText="Description"
-            // multiLine={true}
-            rows={1}
-          /><br />
+        <TextField
+          hintText="Description"
+          errorText="Please provide a description"
+          floatingLabelText="Description"
+          // multiLine={true}
+          rows={1}
+        /><br />
 
-          <SelectField
-            value={selectFieldValue}
-            onChange={handleSelectChange}
-            floatingLabelText="Select a lesson"
-          >
-            {selectControlItems}
-          </SelectField><br />
+        <SelectField
+          value={selectFieldValue}
+          onChange={handleSelectChange}
+          floatingLabelText="Select a lesson"
+        >
+          {selectControlItems}
+        </SelectField><br />
 
-          <TextField
-            hintText="Link"
-            errorText="You're sharing a link, provide a link"
-            floatingLabelText="Link"
-            // multiLine={true}
-            rows={1}
-          /><br />
+        <TextField
+          hintText="Link"
+          errorText="You're sharing a link, provide a link"
+          floatingLabelText="Link"
+          // multiLine={true}
+          rows={1}
+        /><br />
 
-          <TextField
-            hintText="Tags"
-            floatingLabelText="Tags"
-            // multiLine={true}
-            rows={1}
-          /><br />
-          <RaisedButton label="Submit" />
-        </CardText>
-      </Paper>
-    </Card>
-  );
-};
+        <TextField
+          hintText="Tags"
+          floatingLabelText="Tags"
+          // multiLine={true}
+          rows={1}
+        /><br />
+        <RaisedButton label="Submit" />
+      </CardText>
+    </Paper>
+  </Card>
+);
 
 NewPost.propTypes = {
     selectControlItems: PropTypes.array.isRequired,

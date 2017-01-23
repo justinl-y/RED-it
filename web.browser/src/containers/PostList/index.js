@@ -6,34 +6,10 @@ import Post from './../../components/Post';
 import { postsSortNewest, postsSortPopular, voteUp } from '../PostList/actions';
 
 class PostList extends Component {
-  /* constructor(props) {
-    super(props);
-
-    // this.state = {
-      // posts: data.posts,
-      // orderBy: 'newest',
-    // };
-  }*/
-
-  // re-sort the posts - needs work
-  /* componentDidUpdate(posts) {
-    switch ( this.state.orderBy ) {
-      case 'newest':
-        //console.log('newest happened');
-        break;
-      case 'popular':
-        //console.log('popular happened');
-        break;
-      default:
-        break;
-    }
-  } */
-
   render() {
     // const postList = this.state.posts;
     const { posts } = this.props;
 
-    // console.log(this.props);
     return (
       <div className={styles['post-list']}>
         <PostToolbar

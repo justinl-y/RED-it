@@ -56,7 +56,7 @@ export default (state = postListPageInitialState, action) => {
     case VOTE_UP:
       return state.map((post) => {
         if (Number(post.id) !== Number(action.payload.id)) return post;
-        // console.log(post);
+
         return { ...post, votes: post.votes + 1 };
       });
     case VOTE_DOWN:
@@ -79,37 +79,3 @@ export default (state = postListPageInitialState, action) => {
       return state;
   }
 };
-
-
-/* export const reducer = (posts = data.data.posts, action) => {
-  switch (action.type) {
-    case VOTE_UP:
-      // console.log(posts);
-      // console.log(action);
-      // console.log(action.payload);
-
-      return posts.map((post) => {
-        if (Number(post.id) !== action.payload.id) return post;
-
-        return { ...post, votes: post.votes + 1 };
-      });
-    case VOTE_DOWN:
-      return posts.map((post) => {
-        if (Number(post.id) !== action.payload.id) return post;
-
-        return { ...post, votes: post.votes > 0 ? post.votes - 1 : post.votes };
-      });
-    case SORT_POPULAR:
-      return posts.slice(0, posts.length).sort((a, b) => (
-          Number(b.votes) - Number(a.votes)
-          ),
-      );
-    case SORT_NEWEST:
-      return posts.slice(0, posts.length).sort((a, b) => (
-        Number(a.id) - Number(b.id)
-        ),
-      );
-    default:
-      return posts;
-  }
-};*/
