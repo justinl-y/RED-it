@@ -73,23 +73,24 @@ class PostList extends Component {
     // const postList = this.state.posts;
     const { posts } = this.props;
 
-    // console.log(posts);
+    // console.log(this.props);
     return (
       <div className={styles['post-list']}>
         <PostToolbar
-          onSortNewestClick={postsSortNewest}
-          onSortPopularClick={postsSortPopular}
+          onNewestClick={this.props.onSortNewestClick}
+          onPopularClick={this.props.onSortPopularClick}
         />
         <ul>
           {
             posts.map(e => (
               <Post
+                id={e.id}
                 title={e.title}
                 link={e.link}
                 key={e.id}
                 description={e.description}
                 vote={e.votes}
-                updateVote={voteUp}
+                onUpdateVoteClick={this.props.updateVote}
                 categories={e.categories}
               />
             ))
@@ -99,8 +100,6 @@ class PostList extends Component {
     );
   }
 }
-
-// onClick={props.onMessageClick}
 
 const mapStateToProps = state => ({
   posts: state.appData.posts,
@@ -113,24 +112,29 @@ const mapDispatchToProps = dispatch => ({
   onSortPopularClick: () => {
     dispatch(postsSortPopular());
   },
-  updateVote: () => {
-    dispatch(voteUp());
+  updateVote: (id) => {
+    dispatch(voteUp(id));
   },
 });
 
 PostList.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.object).isRequired,
-  // onSortNewestClick: PropTypes.func.isRequired,
-  // onSortPopularClick: PropTypes.func.isRequired,
+  onSortNewestClick: PropTypes.func.isRequired,
+  onSortPopularClick: PropTypes.func.isRequired,
+  updateVote: PropTypes.func.isRequired,
+  // dispatch: PropTypes.func, // eslint-disable-line
 };
 
 // export default PostList;
-export default connect(mapStateToProps, mapDispatchToProps)(PostList);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(PostList);
 
 /* {sortNewest={this.sortNewest.bind(this, postList)}
 sortPopular={this.sortPopular.bind(this, postList)}} */
 
-/*onClickSortNewest={(e) => {
+/* onClickSortNewest={(e) => {
   e.preventDefault();
   onSortNewestClick(posts);
 }}

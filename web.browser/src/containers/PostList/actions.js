@@ -61,11 +61,14 @@ export default (state = postListPageInitialState, action) => {
       // console.log(action);
       // console.log(action.payload);
 
-      return state.map((post) => {
+      /* return state.map((post) => {
         if (Number(post.id) !== action.payload.id) return post;
 
         return { ...post, votes: post.votes + 1 };
-      });
+      });*/
+      console.log(`vote up - ${action.payload.id}`);
+
+      return state;
     case VOTE_DOWN:
       return state.map((post) => {
         if (Number(post.id) !== action.payload.id) return post;

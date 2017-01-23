@@ -14,6 +14,6 @@ const appData = (state = appInitialState, action) => {
 };
 
 export default combineReducers({
-  postsPage: postListPageReducer,
   appData,
+  postsPage: postListPageReducer,
 });
