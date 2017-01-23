@@ -1,3 +1,26 @@
+# RED it
+
+<img src="./screenshot.png" alt="Image of Red it app" width="auto" height="500">
+
+The purpose of this project was to make a React, component based web application using Redux to manage data state within the program.
+
+This project was designed to mimic a reddit post application.
+
+## Technologies Used
+- React
+- Redux
+- Javascript
+- Webpack
+- ESLint
+- Babel
+
+## Personal Learnings
+The development of this project allowed me to explore React and Redux as a development 
+framework for building component-based single page applications.
+
+I also learned how to initiate and setup a project development environment 
+using tools such as javaScript linters and babel transpilers.
+
 ## ⚛️ RED React Seed Application
 
 #### Install
