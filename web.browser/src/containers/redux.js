@@ -3,7 +3,7 @@ import postListPageReducer from '../containers/PostList/actions';
 import categoriesReducer from '../containers/Categories/actions';
 import mockData from '../mock-data';
 
-const appInitialState = mockData;
+export const appInitialState = mockData;
 // const appInitialState = mockData.posts;
 
 const appData = (state = appInitialState, action) => {

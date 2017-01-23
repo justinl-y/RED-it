@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
+
 import styles from './styles.css';
 
 const HeaderBar = () => {

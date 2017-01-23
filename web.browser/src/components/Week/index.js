@@ -3,17 +3,18 @@ import { List, ListItem } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import Subheader from 'material-ui/Subheader';
 
-const Week = ({ weekItems }) => {
+const Week = ({ weekItems, onCategoryClick }) => {
   return (
     <div>
       <List>
         <Subheader>{ weekItems.title }</Subheader>
         <Divider />
         {
-          weekItems.categories.map(e => (
+          weekItems.categories.map(category => (
             <ListItem
-              key={`${e}-${Date.now()}`}
-              primaryText={e}
+              key={`${category}-${Date.now()}`}
+              primaryText={category}
+              onClick={(f) => { f.preventDefault(); onCategoryClick(category.toString()); }}
             />
           ))
         }
@@ -25,6 +26,7 @@ const Week = ({ weekItems }) => {
 
 Week.propTypes = {
   weekItems: PropTypes.object.isRequired,
+  onCategoryClick: PropTypes.func.isRequired,
 };
 
 export default Week;
