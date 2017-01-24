@@ -1,21 +1,28 @@
 import { combineReducers } from 'redux';
 import postListPageReducer from '../containers/PostList/actions';
 import categoriesReducer from '../containers/Categories/actions';
-import mockData from '../mock-data';
+// import mockData from '../mock-data';
 
-export const appInitialState = mockData;
+// export const appInitialState = mockData;
 // const appInitialState = mockData.posts;
 
-const appData = (state = appInitialState, action) => {
+/* const appData = (state = appInitialState, action) => {
   // console.log(state);
   switch (action.type) {
     default:
       return state;
   }
-};
+}; */
 
-export default combineReducers({
+/* export default combineReducers({
   appData,
   posts: postListPageReducer,
   categories: categoriesReducer,
+});*/
+
+export default combineReducers({
+  appData: combineReducers({
+    posts: postListPageReducer,
+    categories: categoriesReducer,
+  }),
 });

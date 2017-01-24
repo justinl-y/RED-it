@@ -17,6 +17,7 @@ const DELETE_POST = 'DELETE_POST';
 const UPDATE_POST = 'UPDATE_POST';
 const POSTS_SORT_NEWEST = 'POSTS_SORT_NEWEST';
 const POSTS_SORT_POPULAR = 'POSTS_SORT_POPULAR';
+const FILTER_POSTS = 'FILTER_POSTS';
 
 // action creator
 export const voteUp = id => ({
@@ -52,6 +53,11 @@ export const postsSortPopular = () => ({
   type: POSTS_SORT_POPULAR,
 });
 
+export const filterPosts = category => ({
+  type: FILTER_POSTS,
+  payload: { category },
+});
+
 // reducer
 export default (state = postListPageInitialState, action) => {
   // console.log(state);
@@ -78,10 +84,34 @@ export default (state = postListPageInitialState, action) => {
         Number(a.id) - Number(b.id)
         ),
       );
+    case FILTER_POSTS: {
+      return state.filter((post) => {
+        return post.categories.some(c => c === action.payload.category);
+      });
+
+      // return state;
+    }
     default:
       return state;
   }
 };
+
+/* case ADD_STUDENT_LEVEL: {
+  // console.log(state);
+  const newStudent = { ...action.payload };
+
+  if (newStudent.level === undefined) {
+    // console.log('fired0');
+    newStudent.level = 0;
+  } else {
+    // console.log('fired1');
+    newStudent.level += 1;
+  }
+
+  console.log({ ...state, viewingProfile: newStudent });
+
+  return { ...state, viewingProfile: newStudent };
+}*/
 
 deepFreeze(postListPageInitialState);
 

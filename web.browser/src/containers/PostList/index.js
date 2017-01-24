@@ -37,8 +37,8 @@ class PostList extends Component {
 }
 
 const mapStateToProps = state => ({
-  // posts: state.appData.posts, // from appData state
-  posts: state.posts, // from reducer state
+  posts: state.appData.posts, // from appData state
+  // posts: state.posts, // from reducer state
 });
 
 const mapDispatchToProps = dispatch => ({

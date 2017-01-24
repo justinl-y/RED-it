@@ -4,7 +4,7 @@ import {
    Router,
    Route,
    IndexRoute,
-   browserHistory,
+   browserHistory, // Miss, Match, BrowserRouter,
 } from 'react-router';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -73,3 +73,44 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root'),
 );
+
+/* ReactDOM.render(
+  <Provider store={store}>
+    <MuiThemeProvider muiTheme={muiTheme}>
+      <Router>
+        <div>
+          <Match exactly path="/" component={MainLayout} />
+          <Match pattern="/posts/new" component={CreatePost} />
+          <Match path="/posts" component={PostList} />
+          <Miss
+            render={() => (
+              <div>404!</div>
+            )}
+          />
+        </div>
+      </Router>
+    </MuiThemeProvider>
+  </Provider>,
+  document.getElementById('root'),
+); */
+
+
+/* ReactDOM.render(
+  <Provider store={store}>
+    <MuiThemeProvider muiTheme={muiTheme}>
+      <Router history={browserHistory}>
+        <Route component={MainLayout}>
+          <Route path="/" component={App}>
+            <IndexRoute component={Welcome} />
+            <Route path="login" component={Login} />
+            <Route path="posts">
+              <Route path="new" component={CreatePost} />
+              <Route path=":topic-name" component={PostList} />
+            </Route>
+          </Route>
+        </Route>
+      </Router>
+    </MuiThemeProvider>
+  </Provider>,
+  document.getElementById('root'),
+);*/

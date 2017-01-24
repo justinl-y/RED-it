@@ -13,7 +13,7 @@ const Week = ({ weekItems, onCategoryClick }) => (
           <ListItem
             key={`${category}-${Date.now()}`}
             primaryText={category}
-            onClick={(f) => { f.preventDefault(); onCategoryClick(category.toString()); }}
+            onClick={(e) => { e.preventDefault(); onCategoryClick(category.toString()); }}
           />
         ))
       }
