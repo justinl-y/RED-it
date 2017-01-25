@@ -2,12 +2,11 @@
 import deepFreeze from 'deep-freeze';
 
 // const postListPageInitialState = { postsPage: undefined };
+// const postListPageInitialState = { };
 
 import mockData from '../../mock-data'; // should be slice from main reducer?
-// import appInitialState from '../../index';
 
 const postListPageInitialState = mockData.posts;
-// const postListPageInitialState = appInitialState;
 
 // action type
 const VOTE_UP = 'VOTE_UP';
@@ -84,13 +83,13 @@ export default (state = postListPageInitialState, action) => {
         Number(a.id) - Number(b.id)
         ),
       );
-    case FILTER_POSTS: {
-      return state.filter((post) => {
-        return post.categories.some(c => c === action.payload.category);
-      });
+    case FILTER_POSTS:
+      return state.filter(post =>
+        post.categories.some(c =>
+          c === action.payload.category),
+      );
 
       // return state;
-    }
     default:
       return state;
   }

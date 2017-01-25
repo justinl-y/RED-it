@@ -77,40 +77,19 @@ ReactDOM.render(
 /* ReactDOM.render(
   <Provider store={store}>
     <MuiThemeProvider muiTheme={muiTheme}>
-      <Router>
-        <div>
-          <Match exactly path="/" component={MainLayout} />
-          <Match pattern="/posts/new" component={CreatePost} />
-          <Match path="/posts" component={PostList} />
-          <Miss
-            render={() => (
-              <div>404!</div>
-            )}
-          />
-        </div>
-      </Router>
-    </MuiThemeProvider>
-  </Provider>,
-  document.getElementById('root'),
-); */
-
-
-/* ReactDOM.render(
-  <Provider store={store}>
-    <MuiThemeProvider muiTheme={muiTheme}>
       <Router history={browserHistory}>
-        <Route component={MainLayout}>
-          <Route path="/" component={App}>
-            <IndexRoute component={Welcome} />
-            <Route path="login" component={Login} />
-            <Route path="posts">
-              <Route path="new" component={CreatePost} />
-              <Route path=":topic-name" component={PostList} />
-            </Route>
-          </Route>
-        </Route>
+        <Route path="/" component={MainLayout} />
       </Router>
     </MuiThemeProvider>
   </Provider>,
   document.getElementById('root'),
 );*/
+
+/* <Match pattern="/posts/new" component={CreatePost} />
+<Match path="/posts" component={PostList} />
+<Match exactly path="/" component={MainLayout} />
+<Miss
+  render={() => (
+    <div>404!</div>
+  )}
+/> */

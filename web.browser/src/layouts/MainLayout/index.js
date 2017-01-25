@@ -17,23 +17,17 @@ MainLayout.propTypes = {
 
 export default MainLayout;
 
-/* import React, { PropTypes } from 'react';
-import BrowserRouter from 'react-router';
+/* import React from 'react';
 import HeaderBar from '../../components/HeaderBar';
+import App from '../../containers/App';
 import styles from './styles.css';
 
-const MainLayout = ({ children }) => (
-  <BrowserRouter>
-    <div className={styles['main-layout']}>
-      <HeaderBar />
-      {children}
-    </div>
-  </BrowserRouter>
+const MainLayout = () => (
+  <div className={styles['main-layout']}>
+    <HeaderBar />
+    <App />
+  </div>
 );
 
-MainLayout.propTypes = {
-  children: PropTypes.object.isRequired,
-};
-
-export default MainLayout; */
+export default MainLayout;*/
 
