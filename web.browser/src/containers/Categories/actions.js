@@ -1,11 +1,10 @@
-// const categoriesInitialState = { categories: undefined };
-
-import mockData from '../../mock-data'; // should be from store?
-
-const categoriesInitialState = mockData.weeks;
+import { getJSON } from '../../lib/fetch-json'; // , postJSON, putJSON, deleteJSON
 
 // action type
-const SELECT_CATEGORY = 'SELECT_CATEGORY';
+export const SELECT_CATEGORY = 'SELECT_CATEGORY';
+export const LOADING_RESOURCE1 = 'LOADING_RESOURCE1';
+export const DONE_LOADING1 = 'DONE_LOADING1';
+export const UPDATE_CATEGORIES = 'UPDATE_CATEGORIES';
 
 // action creator
 export const selectCategory = name => ({
@@ -13,14 +12,27 @@ export const selectCategory = name => ({
   payload: { name },
 });
 
-export default (state = categoriesInitialState, action) => {
-  // console.log(state);
-  switch (action.type) {
-    case SELECT_CATEGORY:
-      // console.log(action.payload.name);
-      console.log(`Category Name: ${action.payload.name}`);
-      return state;
-    default:
-      return state;
-  }
+const loadResource = () => ({
+  type: LOADING_RESOURCE1,
+  payload: null,
+});
+const doneLoading = () => ({
+  type: DONE_LOADING1,
+  payload: null,
+});
+const updateCategories = categories => ({
+  type: UPDATE_CATEGORIES,
+  payload: categories,
+});
+
+export const fetchCategories = () => {
+  return (dispatch, getState) => {
+    // Async
+    dispatch(loadResource());
+
+    getJSON('http://localhost:8000/categories').then((category) => {
+      dispatch(updateCategories(category));
+      dispatch(doneLoading());
+    });
+  };
 };

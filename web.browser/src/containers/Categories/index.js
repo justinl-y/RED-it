@@ -5,12 +5,17 @@ import { connect } from 'react-redux';
 import IconButton from 'material-ui/IconButton';
 import CommunicationImportContacts from 'material-ui/svg-icons/communication/import-contacts';
 import Week from '../../components/Week';
-// import { selectCategory } from '../Categories/actions';
 import { filterPosts } from '../PostList/actions';
+import { fetchCategories } from './actions';
 
 class Categories extends Component {
+  componentWillMount() {
+    this.props.fetchCategories();
+  }
+
   render() {
     const { categories } = this.props;
+
     return (
       <Drawer>
         <AppBar
@@ -20,9 +25,8 @@ class Categories extends Component {
         {
           categories.map(e => (
             <Week
-              key={`${e.id}-${Date.now()}`}
+              key={`${Date.now() * Math.random()}`}
               weekItems={e}
-              // onCategoryClick={this.props.selectCategory}
               onCategoryClick={this.props.filterPosts}
             />
             ))
@@ -33,28 +37,23 @@ class Categories extends Component {
 }
 
 const mapStateToProps = state => ({
-  // categories: state.appData.weeks,
-  // categories: state.categories,
-  categories: state.appData.categories,
-
+  categories: state.appData.categories.categories,
+  loading: state.appData.categories.loadingResource,
 });
-
-/* const mapDispatchToProps = dispatch => ({
-  selectCategory: (name) => {
-    dispatch(selectCategory(name));
-  },
-});*/
 
 const mapDispatchToProps = dispatch => ({
   filterPosts: (category) => {
     dispatch(filterPosts(category));
   },
+  fetchCategories: () => {
+    dispatch(fetchCategories());
+  },
 });
 
 Categories.propTypes = {
   categories: PropTypes.arrayOf(PropTypes.object).isRequired,
-  // selectCategory: PropTypes.func.isRequired,
   filterPosts: PropTypes.func.isRequired,
+  fetchCategories: PropTypes.func.isRequired,
 };
 
 export default connect(

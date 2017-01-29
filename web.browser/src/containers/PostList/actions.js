@@ -1,22 +1,18 @@
-// import expect from 'expect';
-import deepFreeze from 'deep-freeze';
-
-// const postListPageInitialState = { postsPage: undefined };
-// const postListPageInitialState = { };
-
-import mockData from '../../mock-data'; // should be slice from main reducer?
-
-const postListPageInitialState = mockData.posts;
+import { getJSON } from '../../lib/fetch-json'; // , postJSON, putJSON, deleteJSON
 
 // action type
-const VOTE_UP = 'VOTE_UP';
-const VOTE_DOWN = 'VOTE_DOWN';
-const ADD_POST = 'ADD_POST';
-const DELETE_POST = 'DELETE_POST';
-const UPDATE_POST = 'UPDATE_POST';
-const POSTS_SORT_NEWEST = 'POSTS_SORT_NEWEST';
-const POSTS_SORT_POPULAR = 'POSTS_SORT_POPULAR';
-const FILTER_POSTS = 'FILTER_POSTS';
+export const VOTE_UP = 'VOTE_UP';
+export const VOTE_DOWN = 'VOTE_DOWN';
+export const ADD_POST = 'ADD_POST';
+export const DELETE_POST = 'DELETE_POST';
+export const UPDATE_POST = 'UPDATE_POST';
+export const POSTS_SORT_NEWEST = 'POSTS_SORT_NEWEST';
+export const POSTS_SORT_POPULAR = 'POSTS_SORT_POPULAR';
+export const FILTER_POSTS = 'FILTER_POSTS';
+
+export const LOADING_RESOURCE = 'LOADING_RESOURCE';
+export const DONE_LOADING = 'DONE_LOADING';
+export const UPDATE_POSTS = 'UPDATE_POSTS';
 
 // action creator
 export const voteUp = id => ({
@@ -31,7 +27,7 @@ export const voteDown = id => ({
 
 export const addPost = ({
   type: ADD_POST,
-  payload: { },
+  payload: null,
 });
 
 export const deletePost = id => ({
@@ -46,10 +42,12 @@ export const updatePost = id => ({
 
 export const postsSortNewest = () => ({
   type: POSTS_SORT_NEWEST,
+  payload: null,
 });
 
 export const postsSortPopular = () => ({
   type: POSTS_SORT_POPULAR,
+  payload: null,
 });
 
 export const filterPosts = category => ({
@@ -57,63 +55,28 @@ export const filterPosts = category => ({
   payload: { category },
 });
 
-// reducer
-export default (state = postListPageInitialState, action) => {
-  // console.log(state);
-  switch (action.type) {
-    case VOTE_UP:
-      return state.map((post) => {
-        if (Number(post.id) !== Number(action.payload.id)) return post;
 
-        return { ...post, votes: post.votes + 1 };
-      });
-    case VOTE_DOWN:
-      return state.map((post) => {
-        if (Number(post.id) !== action.payload.id) return post;
+const loadResource = () => ({
+  type: LOADING_RESOURCE,
+  payload: null,
+});
+const doneLoading = () => ({
+  type: DONE_LOADING,
+  payload: null,
+});
+const updatePosts = posts => ({
+  type: UPDATE_POSTS,
+  payload: posts,
+});
 
-        return { ...post, votes: post.votes > 0 ? post.votes - 1 : post.votes };
-      });
-    case POSTS_SORT_POPULAR:
-      return state.slice().sort((a, b) => (
-          Number(b.votes) - Number(a.votes)
-          ),
-      );
-    case POSTS_SORT_NEWEST:
-      return state.slice().sort((a, b) => (
-        Number(a.id) - Number(b.id)
-        ),
-      );
-    case FILTER_POSTS:
-      return state.filter(post =>
-        post.categories.some(c =>
-          c === action.payload.category),
-      );
+export const fetchPosts = () => {
+  return (dispatch, getState) => {
+    // Async
+    dispatch(loadResource());
 
-      // return state;
-    default:
-      return state;
-  }
+    getJSON('http://localhost:8000/posts').then((posts) => {
+      dispatch(updatePosts(posts));
+      dispatch(doneLoading());
+    });
+  };
 };
-
-/* case ADD_STUDENT_LEVEL: {
-  // console.log(state);
-  const newStudent = { ...action.payload };
-
-  if (newStudent.level === undefined) {
-    // console.log('fired0');
-    newStudent.level = 0;
-  } else {
-    // console.log('fired1');
-    newStudent.level += 1;
-  }
-
-  console.log({ ...state, viewingProfile: newStudent });
-
-  return { ...state, viewingProfile: newStudent };
-}*/
-
-deepFreeze(postListPageInitialState);
-
-// const updated = reducer(postListPageInitialState, voteUp(1));
-// console.log(updated);
-// expect(updated[1].votes).toEqual(6); */

@@ -9,25 +9,29 @@ const app = express();
 app.use(express.static(root));
 app.use(fallback('index.html', { root }));
 
+const cors = require('cors');
 const fs = require('fs');
 const jsonFile = require('./database/mock-data.json');
 const bodyParser = require('body-parser');
 
+app.use(cors());
+app.use(bodyParser.json());
+
 // get categories
 app.get('/categories', (req, res) => {
-  const { weeks } = jsonFile;
+  /* const { weeks } = jsonFile;
   const categories = weeks.map(week => week.categories)
                           .reduce((el, nextEl) => el.concat(nextEl))
                           .filter((category, index, categoriesFt) => categoriesFt.indexOf(category) === index);
-  res.json(categories);
+  res.json(categories); */
+
+  res.json(jsonFile.weeks);
 });
 
 // get posts
 app.get('/posts', function (req, res) {
   res.json(jsonFile.posts);
 });
-
-app.use(bodyParser.json());
 
 // post test category
 app.post('/posts', (req, res) => {

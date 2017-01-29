@@ -8,13 +8,9 @@ import {
 } from 'react-router';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
-import { createStore, applyMiddleware } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
-import AppReducer from './containers/redux';
-
 import './styles/index.css';
+import store from './redux/store';
 import muiTheme from './styles/mui-theme';
 import MainLayout from './layouts/MainLayout';
 import App from './containers/App';
@@ -26,32 +22,6 @@ import Welcome from './containers/Welcome';
 // Needed for onTouchTap (Material UI)
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
-
-// middleware
-const actionLogger = theStore => next => (action) => {
-  let result;
-  console.info('DISPATCHING:', action);
-
-  try {
-    result = next(action);
-    // add store to local storage
-    localStorage.setItem('theStore', JSON.stringify(theStore.getState()));
-    console.info('NEXT STATE', theStore.getState());
-  } catch (e) {
-    console.warn('There was an error!');
-    throw (e);
-  }
-
-  return result;
-};
-
-// create store
-const store = createStore(
-  AppReducer,
-  composeWithDevTools(
-    applyMiddleware(actionLogger),
-  ),
-);
 
 // render routes
 ReactDOM.render(

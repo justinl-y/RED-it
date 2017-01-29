@@ -1,6 +1,6 @@
-import { getJSON, postJSON, putJSON, deleteJSON } from '../routes/fetch-json';
+import { getJSON, postJSON, putJSON, deleteJSON } from '../../lib/fetch-json';
 
-const apiRoot = '../database/mock-data.json';
+const apiRoot = 'https://jsonplaceholder.typicode.com/posts';
 
 const list = () => getJSON(apiRoot);
 const get = id => getJSON(`${apiRoot}/${id}`);
@@ -9,4 +9,4 @@ const update = (id, body) => putJSON(`${apiRoot}/${id}`, body);
 const remove = id => deleteJSON(`${apiRoot}/${id}`);
 
 // API
-export default { list, get, create, update, remove }
+export default { list, get, create, update, remove };

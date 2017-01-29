@@ -15,7 +15,7 @@ const Week = ({ weekItems, onCategoryClick }) => (
           <Link
             className={styles.category}
             to={`posts/${category}`}
-            key={`${category}-${Date.now()}`}
+            key={`${Date.now() * Math.random()}`}
           >
             <ListItem
               primaryText={category}
