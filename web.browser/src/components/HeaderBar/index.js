@@ -9,7 +9,7 @@ const HeaderBar = () => (
     iconElementRight={
       <div className={styles['header-bar']}>
         <FlatButton>
-          <Link to="posts/new">Share a new link</Link>
+          <Link to="/posts/new">Share a new link</Link>
         </FlatButton>
         <FlatButton>
           <Link to="/">Home</Link>
@@ -20,3 +20,8 @@ const HeaderBar = () => (
 );
 
 export default HeaderBar;
+
+/* <ListItem
+  primaryText={<Link className={styles.category} to={`${category}`} key={`${Date.now() * Math.random()}`}>{category}</Link>}
+  onClick={(e) => { e.preventDefault(); onCategoryClick(category.toString()); }}
+/>*/

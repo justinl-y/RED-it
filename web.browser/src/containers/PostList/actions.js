@@ -3,9 +3,11 @@ import { getJSON } from '../../lib/fetch-json'; // , postJSON, putJSON, deleteJS
 // action type
 export const VOTE_UP = 'VOTE_UP';
 export const VOTE_DOWN = 'VOTE_DOWN';
+
 export const ADD_POST = 'ADD_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const UPDATE_POST = 'UPDATE_POST';
+
 export const SORT_NEWEST_POSTS = 'SORT_NEWEST_POSTS';
 export const SORT_POPULAR_POSTS = 'SORT_POPULAR_POSTS';
 export const FILTER_POSTS = 'FILTER_POSTS';

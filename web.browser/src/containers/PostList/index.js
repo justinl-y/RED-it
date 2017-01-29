@@ -46,6 +46,7 @@ class PostList extends Component {
 
 const mapStateToProps = (state) => {
   const { searchText } = state.appData.posts;
+
   return {
     loading: state.appData.posts.loadingResource,
     searchText: state.appData.posts.searchText,

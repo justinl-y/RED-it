@@ -25,7 +25,6 @@ const actionLogger = theStore => next => (action) => {
 const store = createStore(
   AppReducer,
   composeWithDevTools(
-    // applyMiddleware(thunk),
     applyMiddleware(actionLogger, thunk),
   ),
 );

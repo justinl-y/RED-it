@@ -3,7 +3,7 @@ import styles from './styles.css';
 
 const Welcome = () => (
   <div className={styles.welcome}>
-    <p>Welcome</p>
+    <h1>Welcome</h1>
   </div>
 );
 

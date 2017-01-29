@@ -14,13 +14,16 @@ const Week = ({ weekItems, onCategoryClick }) => (
         weekItems.categories.map(category => (
           <Link
             className={styles.category}
-            to={`posts/${category}`}
+            to={`/posts/${category.toLowerCase()}`}
             key={`${Date.now() * Math.random()}`}
           >
-            <ListItem
-              primaryText={category}
-              onClick={(e) => { e.preventDefault(); onCategoryClick(category.toString()); }}
-            />
+            {
+              <ListItem
+                primaryText={category}
+                // onClick={(e) => { e.preventDefault(); onCategoryClick(category.toString()); }}
+                onClick={() => onCategoryClick(category.toString())}
+              />
+            }
           </Link>
         ))
       }
@@ -29,27 +32,26 @@ const Week = ({ weekItems, onCategoryClick }) => (
   </div>
 );
 
-// <Link to='posts' key={i} style={LinkCSS}><ListItem>{category}</ListItem></Link>
-// <Link to="posts/{category}">{category}</Link>
-
 Week.propTypes = {
   weekItems: PropTypes.object.isRequired,
   onCategoryClick: PropTypes.func.isRequired,
 };
 
- /*
-
-weekItems.categories.map(category => (
-  <ListItem
-    key={`${category}-${Date.now()}`}
-    primaryText={category}
-    onClick={(f) => { f.preventDefault(); onCategoryClick(category.toString()); }}
-  />
-))
-
-// 
-*/
-
 export default Week;
 
+/*
+          <ListItem
+            primaryText={<Link
+              className={styles.category}
+              to={`${category.toLowerCase()}`}
+              key={`${Date.now() * Math.random()}`}
+            >{category}</Link>}
+            onClick={(e) => { e.preventDefault(); onCategoryClick(category.toString()); }}
+            key={`${Date.now() * Math.random()}`}
+          />
 
+// < ListItem primaryText = { <Link to="a" > as </Link> } />
+// <Link to='posts' key={i} style={LinkCSS}><ListItem>{category}</ListItem></Link>
+// <Link to="posts/{category}">{category}</Link>
+
+*/
