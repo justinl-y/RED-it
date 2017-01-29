@@ -3,7 +3,7 @@ import MenuItem from 'material-ui/MenuItem';
 import NewPost from '../../components/NewPost';
 // import styles from './styles.css'
 
-const items = [
+const menuItems = [
   <MenuItem key={1} value={1} primaryText="React" />,
   <MenuItem key={2} value={2} primaryText="React-DOM" />,
   <MenuItem key={3} value={3} primaryText="Redux" />,
@@ -24,7 +24,7 @@ class CreatePost extends Component {
       <NewPost
         selectFieldValue={this.state.selectFieldValue}
         handleSelectChange={this.handleSelectChange.bind(this)}
-        selectControlItems={items}
+        selectControlItems={menuItems}
       />
     );
   }

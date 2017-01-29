@@ -20,7 +20,6 @@ const NewPost = ({selectFieldValue, handleSelectChange, selectControlItems }) =>
           hintText="Title"
           errorText="Please provide a title"
           floatingLabelText="Title"
-          // multiLine={true}
           rows={1}
         /><br />
 
@@ -28,7 +27,6 @@ const NewPost = ({selectFieldValue, handleSelectChange, selectControlItems }) =>
           hintText="Description"
           errorText="Please provide a description"
           floatingLabelText="Description"
-          // multiLine={true}
           rows={1}
         /><br />
 
@@ -44,14 +42,12 @@ const NewPost = ({selectFieldValue, handleSelectChange, selectControlItems }) =>
           hintText="Link"
           errorText="You're sharing a link, provide a link"
           floatingLabelText="Link"
-          // multiLine={true}
           rows={1}
         /><br />
 
         <TextField
           hintText="Tags"
           floatingLabelText="Tags"
-          // multiLine={true}
           rows={1}
         /><br />
         <RaisedButton label="Submit" />

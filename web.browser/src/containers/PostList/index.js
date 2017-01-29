@@ -44,10 +44,14 @@ class PostList extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  posts: state.appData.posts.posts,
-  loading: state.appData.posts.loadingResource,
-});
+const mapStateToProps = (state) => {
+  const { searchText } = state.appData.posts;
+  return {
+    loading: state.appData.posts.loadingResource,
+    searchText: state.appData.posts.searchText,
+    posts: searchText === '' ? state.appData.posts.posts : state.appData.posts.posts.filter(item => item.categories.some(c => c === searchText)),
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   onSortNewestClick: () => {

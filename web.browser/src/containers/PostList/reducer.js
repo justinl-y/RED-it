@@ -12,6 +12,7 @@ import {
 
 const postListPageInitialState = {
   loadingResource: false,
+  searchText: '',
   posts: [],
 };
 
@@ -55,12 +56,13 @@ export default (state = postListPageInitialState, action) => {
 
       return { ...state, posts: sortNewest };
     case FILTER_POSTS:
-      const filteredPosts = state.posts.filter(post =>
+      /* const filteredPosts = state.posts.filter(post =>
         post.categories.some(c =>
           c === action.payload.category),
-      );
+      );*/
 
-      return { ...state, posts: filteredPosts };
+      // return { ...state, posts: filteredPosts };
+      return { ...state, searchText: action.payload.category };
     case LOADING_POSTS_BEGIN:
       return { ...state, loadingResource: true };
     case LOADING_POSTS_END:

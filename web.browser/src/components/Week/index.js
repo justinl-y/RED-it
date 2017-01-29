@@ -29,7 +29,6 @@ const Week = ({ weekItems, onCategoryClick }) => (
   </div>
 );
 
-
 // <Link to='posts' key={i} style={LinkCSS}><ListItem>{category}</ListItem></Link>
 // <Link to="posts/{category}">{category}</Link>
 
