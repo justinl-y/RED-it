@@ -2,11 +2,13 @@ import React, { Component, PropTypes } from 'react';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import IconButton from 'material-ui/IconButton';
 import CommunicationImportContacts from 'material-ui/svg-icons/communication/import-contacts';
 import Week from '../../components/Week';
 import { filterPosts } from '../PostList/actions';
 import { fetchCategories } from './actions';
+import styles from './styles.css';
 
 class Categories extends Component {
   componentWillMount() {
@@ -30,7 +32,16 @@ class Categories extends Component {
       <Drawer>
         <AppBar
           title="RED it"
-          iconElementLeft={<IconButton><CommunicationImportContacts /></IconButton>}
+          iconElementLeft={
+            <IconButton>
+              <Link
+                className={styles['home-icon']}
+                to="/"
+              >
+                <CommunicationImportContacts />
+              </Link>
+            </IconButton>
+          }
         />
         {
           loading ? <div><p>Loading categories...</p></div> : this.renderCategories()

@@ -14,7 +14,7 @@ import store from './redux/store';
 import muiTheme from './styles/mui-theme';
 import MainLayout from './layouts/MainLayout';
 import App from './containers/App';
-import Login from './containers/Login';
+import ProcessLogin from './containers/ProcessLogin';
 import CreatePost from './containers/CreatePost';
 import PostList from './containers/PostList';
 import Welcome from './containers/Welcome';
@@ -37,7 +37,7 @@ ReactDOM.render(
               <Route path=":category" component={PostList} />
             </Route>
           </Route>
-          <Route path="login" component={Login} />
+          <Route path="login" component={ProcessLogin} />
           <Route path="*" component={NotFound} />
         </Route>
       </Router>

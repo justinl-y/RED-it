@@ -1,6 +1,7 @@
 .header-bar a {
     text-decoration: none;
     text-transform: uppercase;
+    color: white !important;
 }
 
 .header-bar a:link {
@@ -17,4 +18,8 @@
 
 .header-bar a:active {
     color: white;
+}
+
+.header-bar svg {
+    color: white !important;
 }
