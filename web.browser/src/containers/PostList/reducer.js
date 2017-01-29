@@ -3,11 +3,11 @@ import deepFreeze from 'deep-freeze';
 import {
     VOTE_UP,
     VOTE_DOWN,
-    POSTS_SORT_POPULAR,
-    POSTS_SORT_NEWEST,
+    SORT_NEWEST_POSTS,
+    SORT_POPULAR_POSTS,
     FILTER_POSTS,
-    LOADING_RESOURCE,
-    DONE_LOADING,
+    LOADING_POSTS_BEGIN,
+    LOADING_POSTS_END,
     UPDATE_POSTS } from './actions';
 
 const postListPageInitialState = {
@@ -42,13 +42,13 @@ export default (state = postListPageInitialState, action) => {
       });
 
       return { ...state, posts: editedPosts };
-    case POSTS_SORT_POPULAR:
+    case SORT_POPULAR_POSTS:
       const sortPopular = state.posts.slice().sort((a, b) => (
         Number(b.votes) - Number(a.votes)
       ));
 
       return { ...state, posts: sortPopular };
-    case POSTS_SORT_NEWEST:
+    case SORT_NEWEST_POSTS:
       const sortNewest = state.posts.slice().sort((a, b) => (
         Number(a.id) - Number(b.id)
       ));
@@ -61,9 +61,9 @@ export default (state = postListPageInitialState, action) => {
       );
 
       return { ...state, posts: filteredPosts };
-    case LOADING_RESOURCE:
+    case LOADING_POSTS_BEGIN:
       return { ...state, loadingResource: true };
-    case DONE_LOADING:
+    case LOADING_POSTS_END:
       return { ...state, loadingResource: false };
     case UPDATE_POSTS:
       return { ...state, posts: action.payload };

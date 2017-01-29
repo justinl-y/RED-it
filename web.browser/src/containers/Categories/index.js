@@ -13,8 +13,18 @@ class Categories extends Component {
     this.props.fetchCategories();
   }
 
+  renderCategories() {
+    return this.props.categories.map(e => (
+      <Week
+        key={`${Date.now() * Math.random()}`}
+        weekItems={e}
+        onCategoryClick={this.props.filterPosts}
+      />
+    ));
+  }
+
   render() {
-    const { categories } = this.props;
+    const { loading } = this.props;
 
     return (
       <Drawer>
@@ -23,14 +33,8 @@ class Categories extends Component {
           iconElementLeft={<IconButton><CommunicationImportContacts /></IconButton>}
         />
         {
-          categories.map(e => (
-            <Week
-              key={`${Date.now() * Math.random()}`}
-              weekItems={e}
-              onCategoryClick={this.props.filterPosts}
-            />
-            ))
-          }
+          loading ? <div><p>Loading categories...</p></div> : this.renderCategories()
+        }
       </Drawer>
     );
   }
@@ -52,6 +56,7 @@ const mapDispatchToProps = dispatch => ({
 
 Categories.propTypes = {
   categories: PropTypes.arrayOf(PropTypes.object).isRequired,
+  loading: PropTypes.bool.isRequired,
   filterPosts: PropTypes.func.isRequired,
   fetchCategories: PropTypes.func.isRequired,
 };

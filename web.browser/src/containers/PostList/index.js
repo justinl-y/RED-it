@@ -11,34 +11,28 @@ class PostList extends Component {
   }
 
   renderPosts() {
-    return this.props.posts.map((e) => {
-      return (
-        <Post
-          id={e.id}
-          title={e.title}
-          link={e.link}
-          key={e.id}
-          description={e.description}
-          vote={e.votes}
-          onUpdateVoteClick={this.props.updateVote}
-          // onUpdateVoteClick={this.props.dispatch(voteUp(e.id))}
-          categories={e.categories}
-        />
-      );
-    });
+    return this.props.posts.map(e => (
+      <Post
+        id={e.id}
+        title={e.title}
+        link={e.link}
+        key={e.id}
+        description={e.description}
+        vote={e.votes}
+        onUpdateVoteClick={this.props.updateVote}
+        categories={e.categories}
+      />
+    ));
   }
 
   render() {
-    // const { posts } = this.props;
     const { loading } = this.props;
 
     return (
       <div className={styles['post-list']}>
         <PostToolbar
           onNewestClick={this.props.onSortNewestClick}
-          // onNewestClick={this.props.dispatch(postsSortNewest())}
           onPopularClick={this.props.onSortPopularClick}
-          // onPopularClick={this.props.dispatch(postsSortPopular())}
         />
         <ul>
           {
@@ -51,10 +45,8 @@ class PostList extends Component {
 }
 
 const mapStateToProps = state => ({
-  posts: state.appData.posts.posts, // from appData state
-  // posts: state.posts, // from reducer state
+  posts: state.appData.posts.posts,
   loading: state.appData.posts.loadingResource,
-  // posts: state.posts,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -75,12 +67,9 @@ const mapDispatchToProps = dispatch => ({
 PostList.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.object).isRequired,
   loading: PropTypes.bool.isRequired,
-
   onSortNewestClick: PropTypes.func.isRequired,
   onSortPopularClick: PropTypes.func.isRequired,
   updateVote: PropTypes.func.isRequired,
-
-  // dispatch: PropTypes.func.isRequired,
   fetchPosts: PropTypes.func.isRequired,
 };
 
@@ -88,16 +77,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(PostList);
-
-/* posts.map(e => (
-    <Post
-      id={e.id}
-      title={e.title}
-      link={e.link}
-      key={e.id}
-      description={e.description}
-      vote={e.votes}
-      onUpdateVoteClick={this.props.updateVote}
-      categories={e.categories}
-  />
-)) */

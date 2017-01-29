@@ -1,23 +1,17 @@
 import { getJSON } from '../../lib/fetch-json'; // , postJSON, putJSON, deleteJSON
 
 // action type
-export const SELECT_CATEGORY = 'SELECT_CATEGORY';
-export const LOADING_RESOURCE1 = 'LOADING_RESOURCE1';
-export const DONE_LOADING1 = 'DONE_LOADING1';
+export const LOADING_CATEGORIES_BEGINS = 'LOADING_CATEGORIES_BEGINS';
+export const LOADING_CATEGORIES_ENDS = 'LOADING_CATEGORIES_ENDS';
 export const UPDATE_CATEGORIES = 'UPDATE_CATEGORIES';
 
 // action creator
-export const selectCategory = name => ({
-  type: SELECT_CATEGORY,
-  payload: { name },
-});
-
 const loadResource = () => ({
-  type: LOADING_RESOURCE1,
+  type: LOADING_CATEGORIES_BEGINS,
   payload: null,
 });
 const doneLoading = () => ({
-  type: DONE_LOADING1,
+  type: LOADING_CATEGORIES_ENDS,
   payload: null,
 });
 const updateCategories = categories => ({

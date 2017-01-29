@@ -6,12 +6,12 @@ export const VOTE_DOWN = 'VOTE_DOWN';
 export const ADD_POST = 'ADD_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const UPDATE_POST = 'UPDATE_POST';
-export const POSTS_SORT_NEWEST = 'POSTS_SORT_NEWEST';
-export const POSTS_SORT_POPULAR = 'POSTS_SORT_POPULAR';
+export const SORT_NEWEST_POSTS = 'SORT_NEWEST_POSTS';
+export const SORT_POPULAR_POSTS = 'SORT_POPULAR_POSTS';
 export const FILTER_POSTS = 'FILTER_POSTS';
 
-export const LOADING_RESOURCE = 'LOADING_RESOURCE';
-export const DONE_LOADING = 'DONE_LOADING';
+export const LOADING_POSTS_BEGIN = 'LOADING_POSTS_BEGIN';
+export const LOADING_POSTS_END = 'LOADING_POSTS_END';
 export const UPDATE_POSTS = 'UPDATE_POSTS';
 
 // action creator
@@ -41,12 +41,12 @@ export const updatePost = id => ({
 });
 
 export const postsSortNewest = () => ({
-  type: POSTS_SORT_NEWEST,
+  type: SORT_NEWEST_POSTS,
   payload: null,
 });
 
 export const postsSortPopular = () => ({
-  type: POSTS_SORT_POPULAR,
+  type: SORT_POPULAR_POSTS,
   payload: null,
 });
 
@@ -57,11 +57,11 @@ export const filterPosts = category => ({
 
 
 const loadResource = () => ({
-  type: LOADING_RESOURCE,
+  type: LOADING_POSTS_BEGIN,
   payload: null,
 });
 const doneLoading = () => ({
-  type: DONE_LOADING,
+  type: LOADING_POSTS_END,
   payload: null,
 });
 const updatePosts = posts => ({
