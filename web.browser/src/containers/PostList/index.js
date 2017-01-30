@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import styles from './styles.css';
 import PostToolbar from '../../components/PostToolbar';
 import Post from './../../components/Post';
-import { postsSortNewest, postsSortPopular, voteUp, fetchPosts } from '../PostList/actions';
+import { postsSortNewest, postsSortPopular, voteUp, fetchPosts } from './actions';
 
 class PostList extends Component {
   componentWillMount() {

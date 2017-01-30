@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Login from '../../components/Login';
 import SignUp from '../../components/SignUp';
-import { userLogin, userSignUp } from '../ProcessLogin/actions';
+import { userLogin, userSignUp, userSignUpLogin } from './actions';
 
 class PostList extends Component {
   componentWillMount() {
@@ -21,7 +21,7 @@ class PostList extends Component {
             />
           :
             <SignUp
-              onLoginClick={this.props.login}
+              onSignUpLoginClick={this.props.signUpLogin}
             />
         }
       </div>
@@ -30,15 +30,18 @@ class PostList extends Component {
 }
 
 const mapStateToProps = state => ({
-  userSignedUp: state.appData.processLogin.signup,
+  userToSignUp: state.appData.processLogin.signup,
 });
 
 const mapDispatchToProps = dispatch => ({
-  onLoginClick: () => {
+  login: () => {
     dispatch(userLogin());
   },
-  onSignUpClick: () => {
+  signUp: () => {
     dispatch(userSignUp());
+  },
+  signUpLogin: () => {
+    dispatch(userSignUpLogin());
   },
 });
 
@@ -46,6 +49,7 @@ PostList.propTypes = {
   userToSignUp: PropTypes.bool.isRequired,
   login: PropTypes.func.isRequired,
   signUp: PropTypes.func.isRequired,
+  signUpLogin: PropTypes.func.isRequired,
 };
 
 export default connect(
