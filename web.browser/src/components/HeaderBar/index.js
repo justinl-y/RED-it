@@ -23,7 +23,7 @@ const HeaderBar = ({ userLoggedIn }) => (
       iconElementRight={
         <div >
           {
-            !userLoggedIn // change to userLoggedIn
+            userLoggedIn // change to userLoggedIn
               ?
                 <div>
                   <FlatButton>
@@ -52,7 +52,3 @@ HeaderBar.propTypes = {
 
 export default HeaderBar;
 
-/* <ListItem
-  primaryText={<Link className={styles.category} to={`${category}`} key={`${Date.now() * Math.random()}`}>{category}</Link>}
-  onClick={(e) => { e.preventDefault(); onCategoryClick(category.toString()); }}
-/>*/

@@ -21,7 +21,6 @@ const PostToolbar = ({ onNewestClick, onPopularClick }) => (
 );
 
 PostToolbar.propTypes = {
-  // posts: PropTypes.arrayOf(PropTypes.object).isRequired,
   onNewestClick: PropTypes.func.isRequired,
   onPopularClick: PropTypes.func.isRequired,
 };

@@ -38,20 +38,3 @@ Week.propTypes = {
 };
 
 export default Week;
-
-/*
-          <ListItem
-            primaryText={<Link
-              className={styles.category}
-              to={`${category.toLowerCase()}`}
-              key={`${Date.now() * Math.random()}`}
-            >{category}</Link>}
-            onClick={(e) => { e.preventDefault(); onCategoryClick(category.toString()); }}
-            key={`${Date.now() * Math.random()}`}
-          />
-
-// < ListItem primaryText = { <Link to="a" > as </Link> } />
-// <Link to='posts' key={i} style={LinkCSS}><ListItem>{category}</ListItem></Link>
-// <Link to="posts/{category}">{category}</Link>
-
-*/
