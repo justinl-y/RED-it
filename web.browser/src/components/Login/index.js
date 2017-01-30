@@ -8,38 +8,45 @@ import styles from './styles.css';
 
 const Login = ({ onLoginClick, onSignUpClick }) => (
   <div className={styles.login}>
-    <Card style={{ width: '500px' }}>
+    <Card
+      style={{
+        width: '480px' }}
+    >
       <Paper>
         <Toolbar>
           <ToolbarTitle text="Login" />
         </Toolbar>
         <CardText>
-          <TextField
-            style={{
-              width: '100%',
-            }}
-            hintText="Email"
-            errorText="Please enter your email"
-            floatingLabelText="Email"
-          />
-          <TextField
-            style={{ width: '100%' }}
-            hintText="Password"
-            errorText="Please enter your password"
-            floatingLabelText="Password"
-          />
-          <FlatButton
-            style={{
-              backgroundColor: 'rgb(183, 28, 28)',
-              color: 'white',
-            }}
-            onClick={(e) => { e.preventDefault(); onLoginClick(); }}
-            label="Login"
-          />
-          <FlatButton
-            onClick={(e) => { e.preventDefault(); onSignUpClick(); }}
-            label="Sign Up"
-          />
+          <form>
+            <TextField
+              style={{
+                width: '100%',
+              }}
+              hintText="Email"
+              errorText="Please enter your email"
+              floatingLabelText="Email"
+            />
+            <TextField
+              style={{
+                width: '100%',
+              }}
+              hintText="Password"
+              errorText="Please enter your password"
+              floatingLabelText="Password"
+            />
+            <FlatButton
+              style={{
+                backgroundColor: 'rgb(183, 28, 28)',
+                color: 'white',
+              }}
+              onClick={(e) => { e.preventDefault(); onLoginClick(); }}
+              label="Login"
+            />
+            <FlatButton
+              onClick={(e) => { e.preventDefault(); onSignUpClick(); }}
+              label="Sign Up"
+            />
+          </form>
         </CardText>
       </Paper>
     </Card>

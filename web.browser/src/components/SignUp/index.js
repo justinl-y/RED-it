@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { Card, CardText } from 'material-ui/Card';
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
-import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import { Toolbar, ToolbarTitle } from 'material-ui/Toolbar';
 import styles from './styles.css';
 
@@ -10,7 +10,7 @@ const SignUp = ({ onSignUpLoginClick }) => (
   <div className={styles.signup}>
     <Card
       style={{
-        width: '500px',
+        width: '480px',
       }}
     >
       <Paper>
@@ -18,38 +18,40 @@ const SignUp = ({ onSignUpLoginClick }) => (
           <ToolbarTitle text="Sign Up" />
         </Toolbar>
         <CardText>
-          <TextField
-            style={{
-              width: '100%',
-            }}
-            hintText="Your name"
-            errorText="Please enter your name"
-            floatingLabelText="Your name"
-          />
-          <TextField
-            style={{
-              width: '100%',
-            }}
-            hintText="Email"
-            errorText="Please enter your email"
-            floatingLabelText="Email"
-          />
-          <TextField
-            style={{
-              width: '100%',
-            }}
-            hintText="Password"
-            errorText="Please provide a password"
-            floatingLabelText="Password"
-          />
-          <FlatButton
-            style={{
-              backgroundColor: 'rgb(183, 28, 28)',
-              color: 'white',
-            }}
-            label="Login"
-            onClick={(e) => { e.preventDefault(); onSignUpLoginClick(); }}
-          />
+          <form>
+            <TextField
+              style={{
+                width: '100%',
+              }}
+              hintText="Your name"
+              errorText="Please enter your name"
+              floatingLabelText="Your name"
+            />
+            <TextField
+              style={{
+                width: '100%',
+              }}
+              hintText="Email"
+              errorText="Please enter your email"
+              floatingLabelText="Email"
+            />
+            <TextField
+              style={{
+                width: '100%',
+              }}
+              hintText="Password"
+              errorText="Please provide a password"
+              floatingLabelText="Password"
+            />
+            <RaisedButton
+              style={{
+                backgroundColor: 'rgb(183, 28, 28)',
+                color: 'white',
+              }}
+              label="Login"
+              onClick={(e) => { e.preventDefault(); onSignUpLoginClick(); }}
+            />
+          </form>
         </CardText>
       </Paper>
     </Card>
