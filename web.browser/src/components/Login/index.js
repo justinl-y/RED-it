@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { Card, CardText } from 'material-ui/Card';
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
-import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import { Toolbar, ToolbarTitle } from 'material-ui/Toolbar';
 import styles from './styles.css';
 
@@ -34,15 +34,13 @@ const Login = ({ onLoginClick, onSignUpClick }) => (
               errorText="Please enter your password"
               floatingLabelText="Password"
             />
-            <FlatButton
-              style={{
-                backgroundColor: 'rgb(183, 28, 28)',
-                color: 'white',
-              }}
+            <RaisedButton
+              backgroundColor="rgb(183, 28, 28)"
+              labelColor="white"
               onClick={(e) => { e.preventDefault(); onLoginClick(); }}
               label="Login"
             />
-            <FlatButton
+            <RaisedButton
               onClick={(e) => { e.preventDefault(); onSignUpClick(); }}
               label="Sign Up"
             />

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import styles from './styles.css';
 import PostToolbar from '../../components/PostToolbar';
 import Post from './../../components/Post';
-import { postsSortNewest, postsSortPopular, voteUp, fetchPosts } from './actions';
+import { postsSortNewest, postsSortPopular, voteUp, voteDown, fetchPosts } from './actions';
 
 class PostList extends Component {
   componentWillMount() {
@@ -19,7 +19,8 @@ class PostList extends Component {
         key={e.id}
         description={e.description}
         vote={e.votes}
-        onUpdateVoteClick={this.props.updateVote}
+        onUpVoteClick={this.props.updateVoteUp}
+        onDownVoteClick={this.props.updateVoteDown}
         categories={e.categories}
       />
     ));
@@ -61,8 +62,11 @@ const mapDispatchToProps = dispatch => ({
   onSortPopularClick: () => {
     dispatch(postsSortPopular());
   },
-  updateVote: (id) => {
+  updateVoteUp: (id) => {
     dispatch(voteUp(id));
+  },
+  updateVoteDown: (id) => {
+    dispatch(voteDown(id));
   },
   fetchPosts: () => {
     dispatch(fetchPosts());
@@ -74,7 +78,8 @@ PostList.propTypes = {
   loading: PropTypes.bool.isRequired,
   onSortNewestClick: PropTypes.func.isRequired,
   onSortPopularClick: PropTypes.func.isRequired,
-  updateVote: PropTypes.func.isRequired,
+  updateVoteUp: PropTypes.func.isRequired,
+  updateVoteDown: PropTypes.func.isRequired,
   fetchPosts: PropTypes.func.isRequired,
 };
 

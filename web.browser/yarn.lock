@@ -2609,6 +2609,10 @@ function-bind@^1.0.2, function-bind@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.0.tgz#16176714c801798e4e8f2cf7f7529467bb4a5771"
 
+gandalf-validator@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/gandalf-validator/-/gandalf-validator-0.1.0.tgz#f5259d587e2c8c1717bc724e98dd127e2d8cbc03"
+
 gauge@~2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/gauge/-/gauge-2.6.0.tgz#d35301ad18e96902b4751dcbbe40f4218b942a46"

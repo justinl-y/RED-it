@@ -44,10 +44,8 @@ const SignUp = ({ onSignUpLoginClick }) => (
               floatingLabelText="Password"
             />
             <RaisedButton
-              style={{
-                backgroundColor: 'rgb(183, 28, 28)',
-                color: 'white',
-              }}
+              backgroundColor="rgb(183, 28, 28)"
+              labelColor="white"
               label="Login"
               onClick={(e) => { e.preventDefault(); onSignUpLoginClick(); }}
             />

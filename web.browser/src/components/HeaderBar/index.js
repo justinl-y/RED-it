@@ -13,31 +13,47 @@ const HeaderBar = ({ userLoggedIn }) => (
       iconElementLeft={
         <IconButton>
           <Link
-            className={styles['home-icon']}
             to="/"
           >
-            <CommunicationImportContacts />
+            <CommunicationImportContacts
+              className={styles['home-icon']}
+            />
           </Link>
         </IconButton>
       }
       iconElementRight={
-        <div >
+        <div>
           {
             userLoggedIn // change to userLoggedIn
               ?
                 <div>
-                  <FlatButton>
-                    <Link to="/posts/new">Share a new link</Link>
-                  </FlatButton>
-                  <FlatButton>
-                    <Link to="/">Logout</Link>
-                  </FlatButton>
+                  <Link
+                    to="/posts/new"
+                  >
+                    <FlatButton
+                      className={styles['menu-item']}
+                      label="Share a new link"
+                    />
+                  </Link>
+                  <Link
+                    to="/"
+                  >
+                    <FlatButton
+                      className={styles['menu-item']}
+                      label="Logout"
+                    />
+                  </Link>
                 </div>
               :
                 <div >
-                  <FlatButton>
-                    <Link to="/login">Login</Link>
-                  </FlatButton>
+                  <Link
+                    to="/login"
+                  >
+                    <FlatButton
+                      className={styles['menu-item']}
+                      label="Login"
+                    />
+                  </Link>
                 </div>
           }
         </div>

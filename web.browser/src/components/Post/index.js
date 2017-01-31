@@ -4,7 +4,7 @@ import FlatButton from 'material-ui/FlatButton';
 import Chip from 'material-ui/Chip';
 import styles from './styles.css';
 
-const Post = ({ id, title, link, description, vote, onUpdateVoteClick, categories }) => (
+const Post = ({ id, title, link, description, vote, onUpVoteClick, onDownVoteClick, categories }) => (
   <li className={styles['post-list']}>
     <Card className={styles['post-item']}>
       <CardHeader className={styles['post-header']}>
@@ -15,13 +15,26 @@ const Post = ({ id, title, link, description, vote, onUpdateVoteClick, categorie
       <CardText>
         <p>{ description }</p>
       </CardText>
-      <div className={styles['post-buttons']}>
-        <FlatButton
-          className={styles['post-vote-button']}
-          onClick={(e) => { e.preventDefault(); onUpdateVoteClick(id); }}
-        >
-          Vote { vote }
-        </FlatButton>
+      <div className={styles['post-items']}>
+        <div className={styles['post-buttons']}>
+          <Chip
+            className={styles['post-vote-button']}
+          >
+            Votes: { vote }
+          </Chip>
+          <FlatButton
+            className={styles['post-vote-button']}
+            onClick={(e) => { e.preventDefault(); onUpVoteClick(id); }}
+          >
+            &#42779; Vote Up
+          </FlatButton>
+          <FlatButton
+            className={styles['post-vote-button']}
+            onClick={(e) => { e.preventDefault(); onDownVoteClick(id); }}
+          >
+            Vote Down &#65516;
+          </FlatButton>
+        </div>
         <div className={styles['post-categories']}>
           {
             categories.map(e => (<Chip
@@ -42,7 +55,8 @@ Post.propTypes = {
   link: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   vote: PropTypes.number.isRequired,
-  onUpdateVoteClick: PropTypes.func.isRequired,
+  onUpVoteClick: PropTypes.func.isRequired,
+  onDownVoteClick: PropTypes.func.isRequired,
   categories: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 

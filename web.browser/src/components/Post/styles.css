@@ -33,15 +33,20 @@
     /*padding-left: 10px;*/
 }
 
-.post-buttons {
+.post-items {
     display: flex;
     justify-content: space-between;
     padding-right: 15px;
     padding-bottom: 15px;
 }
 
+.post-buttons {
+    display: flex;
+    justify-content: flex-start;
+}
+
 .post-vote-button {
-    padding-left: 15px;
+    margin-left: 10px !important;
 }
 
 .post-categories {

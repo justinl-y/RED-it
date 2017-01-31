@@ -1,10 +1,10 @@
-.header-bar a {
+/* .header-bar a {
     text-decoration: none;
     text-transform: uppercase;
     color: white !important;
-}
+} */
 
-.header-bar a:link {
+/* .header-bar a:link {
     color: white;
 }
 
@@ -12,14 +12,18 @@
     color: white;
 }
 
-.header-bar a:hover {
+ .header-bar a:hover {
     color: white;
-}
+} 
 
 .header-bar a:active {
     color: white;
+} */
+
+.home-icon {
+    color: white !important;
 }
 
-.header-bar svg {
+.menu-item {
     color: white !important;
 }

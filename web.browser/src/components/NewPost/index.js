@@ -69,7 +69,11 @@ const NewPost = ({ selectFieldValue, handleSelectChange, selectControlItems }) =
               floatingLabelText="Tags"
               rows={1}
             /><br />
-            <RaisedButton label="Submit" />
+            <RaisedButton
+              backgroundColor="rgb(183, 28, 28)"
+              labelColor="white"
+              label="Submit"
+            />
           </form>
         </CardText>
       </Paper>
