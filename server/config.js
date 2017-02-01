@@ -8,7 +8,5 @@ const config = module.exports = nconf.argv()
 
 .defaults({
   'STATIC_PATH': '../web.browser/build',
-  // 'STATIC_PATH': '../server',
-  // 'STATIC_PATH': '../web.browser/public',
   'HTTPS': (process.env.NODE_ENV === 'production')
 })
