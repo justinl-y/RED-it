@@ -14,7 +14,6 @@ const categoriesInitialState = {
 };
 
 export default (state = categoriesInitialState, action) => {
-  // console.log(state);
   switch (action.type) {
     case LOADING_CATEGORIES_BEGINS:
       return { ...state, loadingResource: true };

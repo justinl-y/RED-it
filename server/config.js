@@ -3,7 +3,11 @@ const config = module.exports = nconf.argv()
 
 .env([
   'APP_SECRET',
-  'STATIC_PATH'
+  'STATIC_PATH',
+  'POSTGRES_HOST',
+  'POSTGRES_USER',
+  'POSTGRES_PASSWORD',
+  'POSTGRES_DBNAME',
 ])
 
 .defaults({

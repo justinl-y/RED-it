@@ -14,14 +14,14 @@ const Week = ({ weekItems, onCategoryClick }) => (
         weekItems.categories.map(category => (
           <Link
             className={styles.category}
-            to={`/posts/${category.toLowerCase()}`}
+            to={`/posts/${category[0]}`}
             key={`${Date.now() * Math.random()}`}
           >
             {
               <ListItem
-                primaryText={category}
+                primaryText={category[1]}
                 // onClick={(e) => { e.preventDefault(); onCategoryClick(category.toString()); }}
-                onClick={() => onCategoryClick(category.toString())}
+                onClick={() => onCategoryClick(category[0])}
               />
             }
           </Link>

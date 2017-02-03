@@ -29,7 +29,8 @@ export const fetchCategories = () => {
     // Async
     dispatch(loadResource());
 
-    getJSON('http://localhost:8000/categories').then((category) => {
+    // getJSON('http://localhost:8000/categories').then((category) => {
+    getJSON('http://localhost:8000/api/weeks').then((category) => {
       dispatch(updateCategories(category));
       dispatch(doneLoading());
     });

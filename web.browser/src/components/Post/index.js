@@ -4,7 +4,7 @@ import FlatButton from 'material-ui/FlatButton';
 import Chip from 'material-ui/Chip';
 import styles from './styles.css';
 
-const Post = ({ id, title, link, description, vote, onUpVoteClick, onDownVoteClick, categories }) => (
+const Post = ({ post_id, title, link, description, vote, onUpVoteClick, onDownVoteClick, categories }) => (
   <li className={styles['post-list']}>
     <Card className={styles['post-item']}>
       <CardHeader className={styles['post-header']}>
@@ -24,13 +24,13 @@ const Post = ({ id, title, link, description, vote, onUpVoteClick, onDownVoteCli
           </Chip>
           <FlatButton
             className={styles['post-vote-button']}
-            onClick={(e) => { e.preventDefault(); onUpVoteClick(id); }}
+            onClick={(e) => { e.preventDefault(); onUpVoteClick(post_id); }}
           >
             &#42779; Vote Up
           </FlatButton>
           <FlatButton
             className={styles['post-vote-button']}
-            onClick={(e) => { e.preventDefault(); onDownVoteClick(id); }}
+            onClick={(e) => { e.preventDefault(); onDownVoteClick(post_id); }}
           >
             Vote Down &#65516;
           </FlatButton>
@@ -50,7 +50,7 @@ const Post = ({ id, title, link, description, vote, onUpVoteClick, onDownVoteCli
 );
 
 Post.propTypes = {
-  id: PropTypes.string.isRequired,
+  post_id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,

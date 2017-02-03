@@ -13,15 +13,16 @@ class PostList extends Component {
   renderPosts() {
     return this.props.posts.map(e => (
       <Post
-        id={e.id}
+        id={e.post_id}
         title={e.title}
         link={e.link}
-        key={e.id}
+        key={e.post_id}
         description={e.description}
-        vote={e.votes}
+        // vote={e.votes}
+        vote={0}
         onUpVoteClick={this.props.updateVoteUp}
         onDownVoteClick={this.props.updateVoteDown}
-        categories={e.categories}
+        categories={e.tags}
       />
     ));
   }

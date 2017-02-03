@@ -32,7 +32,7 @@ ReactDOM.render(
         <Route component={MainLayout}>
           <Route path="/" component={App}>
             <IndexRoute component={Welcome} />
-            <Route path="posts">
+            <Route path="/posts">
               <Route path="new" component={CreatePost} />
               <Route path=":category" component={PostList} />
             </Route>
