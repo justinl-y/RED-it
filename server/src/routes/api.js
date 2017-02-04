@@ -7,9 +7,8 @@ import database from '../database/db';
 import { SESSION_COOKIE } from '../app';
 
 export default function APIRoutes(router){
-  //can change to 8000 on deploy
   router.use(cors({
-    origin: ['http://localhost:3000'], // origin: ['http://localhost:8000'],
+    origin: ['http://localhost:3000'], // origin: ['http://localhost:8000'], //can change to 8000 on deploy
     credentials: true
   }));
 
@@ -26,14 +25,14 @@ export default function APIRoutes(router){
     next();
   })
 
-  /* router.get('/posts/:category_id', (req, res) => {
+  router.get('/posts/:categoryId', (req, res) => {
     const querySQL = `select
                         posts.post_id,
                         posts.title,
                         posts.link,
                         posts.description,
-                        array_agg(tags.title) as tags,
-                        category_id
+                        posts.votes, 
+                        json_agg(json_build_object('tags_id', tags.tag_id, 'tags_title', tags.title)) as tags
                       from
                         posts
                         left outer join post_tags on post_tags.post_id = posts.post_id
@@ -43,15 +42,14 @@ export default function APIRoutes(router){
                       group by
 	                      posts.post_id;`;
 
-      // database.query('select * from posts where category_id = $1 ;', [req.params.category_id]).then((response) => {
-      database.query(querySQL, [req.params.category_id]).then((response) => {
+      database.query(querySQL, [req.params.categoryId]).then((response) => {
       res.json(response.rows);
     }).catch((error) => {
       res.status(500).json({error})
     })
-  });*/
+  });
 
-  router.get('/posts', (req, res) => {
+  /* router.get('/posts', (req, res) => {
     const querySQL = `select
                         posts.post_id,
                         posts.title,
@@ -72,7 +70,7 @@ export default function APIRoutes(router){
     }).catch((error) => {
       res.status(500).json({error})
     })
-  });
+  }); */
 
   router.get('/weeks', (req, res) => {
     const querySQL = `select

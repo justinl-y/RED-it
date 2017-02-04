@@ -16,44 +16,49 @@ export default function(router) {
   router.post('/register', (req, res) => {
     // create user in database with a hashed password using referrental integrity to see if user exists
     const { first_name, last_name, email, password } = req.body.register;
-    const salt = bcrypt.genSaltSync(1);
-    const hash = bcrypt.hashSync(password, salt);
+    // const salt = bcrypt.genSaltSync(1);
+    // const hashedPassword = bcrypt.hashSync(password, salt);
 
-    const querySQL = `insert into
-                        users
-                        (
-                          first_name,
-                          last_name,
-                          email,
-                          password
-                        )
-                        values
-                        (
-                          '${first_name}',
-                          '${last_name}',
-                          '${email}',
-                          '${hash}'
-                        ) returning user_id;`;
+    // encrypt password and save new user to database
+    bcrypt.genSalt(5, function(err, saltResult) {
+      bcrypt.hash(password, saltResult, function(err, hash) {
+        //define sql
+        const querySQL = `insert into
+                            users
+                            (
+                              first_name,
+                              last_name,
+                              email,
+                              password
+                            )
+                            values
+                            (
+                              '${first_name}',
+                              '${last_name}',
+                              '${email}',
+                              '${hash}'
+                            ) returning user_id;`;
+        
+        // execute query
+        database.query(querySQL, [])
+          .then((response) => {
+            // create and object with the user email
+            const sessionUser = { email: email };
+            // encrypt the object using jwt
+            const JWT = jwt.sign(sessionUser, config.get('APP_SECRET'));
 
-    database.query(querySQL, [])
-      .then((response) => {
-        // create and object with the user email
-        const sessionUser = { email: email };
-
-        // encrypt the object using jwt
-        const JWT = jwt.sign(sessionUser, config.get('APP_SECRET'));
-
-        res.status(200).cookie(SESSION_COOKIE, JWT, {
-          // secure: config.get('HTTPS'), // for production
-          secure: false,
-          maxAge: 7200000,
-          httpOnly: true,
-        }).json({ response: 'You are registered and logged in, enjoy' })
-
-      }).catch((error) => {
-        res.status(500).json({ error })
+            res.status(200).cookie(SESSION_COOKIE, JWT, {
+              // secure: config.get('HTTPS'), // for production
+              secure: false,
+              maxAge: 7200000,
+              httpOnly: true,
+            }).json({ response: 'You are registered and logged in, enjoy' })
+          }).catch((error) => {
+            res.status(500).json({ error })
+          });
       });
-  })
+    });
+  });
 
   router.post('/login', (req, res) => {
     const { email, password } = req.body.login;
@@ -85,7 +90,6 @@ export default function(router) {
               maxAge: 7200000,
               httpOnly: true,
             }).json({ response: 'You are logged in, enjoy' })
-
           } else {
             res.status(403).json({ response: 'Access denied' });
           }

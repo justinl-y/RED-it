@@ -30,12 +30,6 @@ export default (state = postListPageInitialState, action) => {
       return { ...state, posts: editedPosts };
     }
     case VOTE_DOWN:
-      /* return state.map((post) => {
-        if (Number(post.id) !== action.payload.id) return post;
-
-        return { ...post, votes: post.votes > 0 ? post.votes - 1 : post.votes };
-      });*/
-
       const editedPosts = state.posts.map((post) => {
         if (Number(post.id) !== Number(action.payload.id)) return post;
 
@@ -51,7 +45,7 @@ export default (state = postListPageInitialState, action) => {
       return { ...state, posts: sortPopular };
     case SORT_NEWEST_POSTS:
       const sortNewest = state.posts.slice().sort((a, b) => (
-        Number(a.id) - Number(b.id)
+        Number(a.post_id) - Number(b.post_id)
       ));
 
       return { ...state, posts: sortNewest };
