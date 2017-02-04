@@ -8,21 +8,14 @@ import database from '../database/db';
 import config from '../../config';
 import { SESSION_COOKIE } from '../app';
 
-// zdd cookie global
-
 export default function(router) {
   router.use(cors());
   router.use(bodyParser.json());
   router.use(cookieParser());
 
   router.post('/register', (req, res) => {
-    console.log(req.body);
-
-    // check for user exists
-    // create user in database with a hashed password
-    // create and object with the user email
-
-    const { first_name, last_name, email, password } = req.body;
+    // create user in database with a hashed password using referrental integrity to see if user exists
+    const { first_name, last_name, email, password } = req.body.register;
     const salt = bcrypt.genSaltSync(1);
     const hash = bcrypt.hashSync(password, salt);
 
@@ -44,38 +37,69 @@ export default function(router) {
 
     database.query(querySQL, [])
       .then((response) => {
-
-        // console.log(response.rows[0].user_id);
-        // user_id = response.rows[0].user_id;
-
-        // res.status(201).json(response.rows);
-        //res.status(200).json({response: 'OK'})
+        // create and object with the user email
+        const sessionUser = { email: email };
 
         // encrypt the object using jwt
-        // logic for login as well - add logic for checking decrypted cookie
-        const sessionUser = { email: email };
         const JWT = jwt.sign(sessionUser, config.get('APP_SECRET'));
 
         res.status(200).cookie(SESSION_COOKIE, JWT, {
-          secure: false, //config.get('HTTPS'),
+          // secure: config.get('HTTPS'), // for production
+          secure: false,
           maxAge: 7200000,
           httpOnly: true,
-        }).json({ success: 'You are logged in, enjoy' })
-        // }).json(response.rows);
+        }).json({ response: 'You are registered and logged in, enjoy' })
 
       }).catch((error) => {
         res.status(500).json({ error })
       });
-
-    // send the token back to the user
   })
 
   router.post('/login', (req, res) => {
-    // todo
+    const { email, password } = req.body.login;
+
+    // select username and password from database
+    const querySQL = `select
+                        email,
+                        password
+                      from
+                        users
+                      where
+                        email like '${email}';`;
+
+     database.query(querySQL, [])
+      .then((response) => {
+        // check for existing user data
+        if (response.rows.length > 0) {
+          // decrypt password
+          const decryptedPassword = bcrypt.compareSync(password, response.rows[0].password);
+
+          if (decryptedPassword) {
+            // create session cookie
+            const sessionUser = { email: email };
+            const JWT = jwt.sign(sessionUser, config.get('APP_SECRET'));
+
+            res.status(200).cookie(SESSION_COOKIE, JWT, {
+              // secure: config.get('HTTPS'), // for production
+              secure: false,
+              maxAge: 7200000,
+              httpOnly: true,
+            }).json({ response: 'You are logged in, enjoy' })
+
+          } else {
+            res.status(403).json({ response: 'Access denied' });
+          }
+        } else {
+          res.status(403).json({ response: 'Access denied' });
+        }
+      }).catch((error) => {
+        res.status(500).json({ error })
+      });                   
   })
 
   router.post('/logout', (req, res) => {
-    if(req.cookies.token) {
+    // if(req.cookies.token) {
+    if(req.cookies) {
       res.clearCookie(SESSION_COOKIE);
     }
 
@@ -84,6 +108,3 @@ export default function(router) {
 
   return router;
 }
-
-// to clear cookie
-// res.clearCookie(SESSION_COOKIE);

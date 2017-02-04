@@ -126,28 +126,26 @@ export default function APIRoutes(router){
         database.query(queryUpdateVote, [])
           .catch(err => console.log('handle cache fail'));
 
-        // return vote count
-        const querySelectVoteCount = `select 
+        // return post vote count
+        const querySelectVoteCount = `select
+                                        post_id,
                                         votes 
                                       from 
                                         posts 
                                       where
                                         post_id = '${post_id}';`;
 
-        
         return database.query(querySelectVoteCount, [])
           .then((response) => {
             res.json(console.log(response.rows));
-          }).catch((error) => {
-            res.status(500).json({error})
+          }).catch((err) => {
+            res.status(500).json({err})
           })
       })
       .catch((error) => {
         res.status(409).json({ error: 'Voted Already!'})
         // res.status(500).json({error})
       })
-
-      
     })
 
   router.post('/post' , (req, res) => {
