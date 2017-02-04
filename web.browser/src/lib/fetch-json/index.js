@@ -9,7 +9,7 @@ const createErrorContext = (url, params) => {
   };
 };
 
-const fetchJSON = (url, params = { method: 'GET' }) => {
+const fetchJSON = (url, params = { method: 'GET', credentials: 'include' }) => {
   const headers = { 'Content-Type': 'application/json; charset=utf-8' };
 
   return fetch(url, Object.assign(params, headers)).then((res) => {
@@ -29,3 +29,16 @@ const putJSON = (url, body) => requestJSON(url, body, 'PUT');
 const deleteJSON = url => requestJSON(url, null, 'DELETE');
 
 export { getJSON, postJSON, putJSON, deleteJSON };
+
+
+/* somehow integrate this */
+/* const postRequest = {
+  method: 'POST',
+  credentials: 'include', // 'same-origin'
+  headers: new Headers({
+    'Content-Type': 'application/json;charset=UTF-8',
+  }),
+};
+
+fetch('/skjdfn') */
+

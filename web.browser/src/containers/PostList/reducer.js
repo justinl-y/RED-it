@@ -62,7 +62,6 @@ export default (state = postListPageInitialState, action) => {
     case LOADING_POSTS_END:
       return { ...state, loadingResource: false };
     case UPDATE_POSTS:
-      console.log(action.payload);
       return { ...state, posts: action.payload };
     default:
       return state;

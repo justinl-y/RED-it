@@ -4,7 +4,7 @@ import FlatButton from 'material-ui/FlatButton';
 import Chip from 'material-ui/Chip';
 import styles from './styles.css';
 
-const Post = ({ post_id, title, link, description, vote, onUpVoteClick, onDownVoteClick, categories }) => (
+const Post = ({ id, title, link, description, votes, onUpVoteClick, onDownVoteClick, tags }) => (
   <li className={styles['post-list']}>
     <Card className={styles['post-item']}>
       <CardHeader className={styles['post-header']}>
@@ -20,28 +20,30 @@ const Post = ({ post_id, title, link, description, vote, onUpVoteClick, onDownVo
           <Chip
             className={styles['post-vote-button']}
           >
-            Votes: { vote }
+            Votes: { votes }
           </Chip>
           <FlatButton
             className={styles['post-vote-button']}
-            onClick={(e) => { e.preventDefault(); onUpVoteClick(post_id); }}
+            onClick={(e) => { e.preventDefault(); onUpVoteClick(id); }}
           >
             &#42779; Vote Up
           </FlatButton>
           <FlatButton
             className={styles['post-vote-button']}
-            onClick={(e) => { e.preventDefault(); onDownVoteClick(post_id); }}
+            onClick={(e) => { e.preventDefault(); onDownVoteClick(id); }}
           >
             Vote Down &#65516;
           </FlatButton>
         </div>
         <div className={styles['post-categories']}>
           {
-            categories.map(e => (<Chip
-              className={styles['post-chip']}
-              key={`${e}-${Date.now()}`}
-            >{e}
-            </Chip>))
+            tags.map(e => (e.tags_id !== null ?
+              <Chip
+                className={styles['post-chip']}
+                key={`${Math.random() * Date.now()}`}
+              >
+                {e.tags_title}
+              </Chip> : null))
           }
         </div>
       </div>
@@ -50,14 +52,14 @@ const Post = ({ post_id, title, link, description, vote, onUpVoteClick, onDownVo
 );
 
 Post.propTypes = {
-  post_id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  vote: PropTypes.number.isRequired,
+  votes: PropTypes.number.isRequired,
   onUpVoteClick: PropTypes.func.isRequired,
   onDownVoteClick: PropTypes.func.isRequired,
-  categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  tags: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Post;

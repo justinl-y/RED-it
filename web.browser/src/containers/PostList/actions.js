@@ -76,8 +76,8 @@ export const fetchPosts = () => {
     // Async
     dispatch(loadResource());
 
-    // getJSON('http://localhost:8000/posts').then((posts) => {
-    getJSON('http://localhost:8000/api/posts/4').then((posts) => {
+    getJSON('http://localhost:8000/api/posts').then((posts) => {
+    // getJSON('http://localhost:8000/api/posts/4').then((posts) => {
       dispatch(updatePosts(posts));
       dispatch(doneLoading());
     });

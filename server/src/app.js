@@ -6,6 +6,8 @@ import AUTHRoutes from './routes/auth';
 import APIRoutes from './routes/api';
 // import './database/db';
 
+export const SESSION_COOKIE = 'redit_session';
+
 const root = resolve(process.cwd(), config.get('STATIC_PATH'));
 const app = express();
 

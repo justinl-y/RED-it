@@ -8,6 +8,7 @@ const config = module.exports = nconf.argv()
   'POSTGRES_USER',
   'POSTGRES_PASSWORD',
   'POSTGRES_DBNAME',
+  'HTTPS'
 ])
 
 .defaults({

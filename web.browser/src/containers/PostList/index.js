@@ -18,11 +18,10 @@ class PostList extends Component {
         link={e.link}
         key={e.post_id}
         description={e.description}
-        // vote={e.votes}
-        vote={0}
+        votes={e.votes}
         onUpVoteClick={this.props.updateVoteUp}
         onDownVoteClick={this.props.updateVoteDown}
-        categories={e.tags}
+        tags={e.tags}
       />
     ));
   }
@@ -52,7 +51,8 @@ const mapStateToProps = (state) => {
   return {
     loading: state.appData.posts.loadingResource,
     searchText: state.appData.posts.searchText,
-    posts: searchText === '' ? state.appData.posts.posts : state.appData.posts.posts.filter(item => item.categories.some(c => c === searchText)),
+    // posts: searchText === '' ? state.appData.posts.posts : state.appData.posts.posts.filter(item => item.categories.some(c => c === searchText)),
+    posts: searchText === '' ? state.appData.posts.posts : state.appData.posts.posts.filter(item => item.category_id === parseInt(searchText, 10)),
   };
 };
 
