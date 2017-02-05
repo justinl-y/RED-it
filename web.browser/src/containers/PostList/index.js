@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import styles from './styles.css';
 import PostToolbar from '../../components/PostToolbar';
 import Post from './../../components/Post';
-import { postsSortNewest, postsSortPopular, voteUp, voteDown, fetchPosts } from './actions';
+import { postsSortNewest, postsSortPopular, voteUp, voteDown } from './actions';
 
 class PostList extends Component {
   componentWillMount() {
-    this.props.fetchPosts();
+    // this.props.fetchPosts(this.props.searchText);
   }
 
   renderPosts() {
@@ -46,13 +46,14 @@ class PostList extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { searchText } = state.appData.posts;
+  // const { searchText } = state.appData.posts;
 
   return {
     loading: state.appData.posts.loadingResource,
-    searchText: state.appData.posts.searchText,
+    // searchText: state.appData.posts.searchText,
+    posts: state.appData.posts.posts,
     // posts: searchText === '' ? state.appData.posts.posts : state.appData.posts.posts.filter(item => item.categories.some(c => c === searchText)),
-    posts: searchText === '' ? state.appData.posts.posts : state.appData.posts.posts.filter(item => item.category_id === parseInt(searchText, 10)),
+    // posts: searchText === '' ? state.appData.posts.posts : state.appData.posts.posts.filter(item => item.category_id === parseInt(searchText, 10)),
   };
 };
 
@@ -69,9 +70,9 @@ const mapDispatchToProps = dispatch => ({
   updateVoteDown: (id) => {
     dispatch(voteDown(id));
   },
-  fetchPosts: () => {
-    dispatch(fetchPosts());
-  },
+  /* fetchPosts: (id) => {
+    dispatch(fetchPosts(id));
+  },*/
 });
 
 PostList.propTypes = {
@@ -81,7 +82,8 @@ PostList.propTypes = {
   onSortPopularClick: PropTypes.func.isRequired,
   updateVoteUp: PropTypes.func.isRequired,
   updateVoteDown: PropTypes.func.isRequired,
-  fetchPosts: PropTypes.func.isRequired,
+  // fetchPosts: PropTypes.func.isRequired,
+  // searchText: PropTypes.string.isRequired,
 };
 
 export default connect(

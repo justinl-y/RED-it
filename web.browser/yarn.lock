@@ -2609,9 +2609,11 @@ function-bind@^1.0.2, function-bind@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.0.tgz#16176714c801798e4e8f2cf7f7529467bb4a5771"
 
-gandalf-validator@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/gandalf-validator/-/gandalf-validator-0.1.1.tgz#d44f60e7d08acc42eeac41cbc43c2418ae986ed0"
+gandalf-validator@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/gandalf-validator/-/gandalf-validator-0.2.0.tgz#6b8f85163995072e2c8da3d40f312576bccfd8b6"
+  dependencies:
+    react "^15.4.2"
 
 gauge@~2.6.0:
   version "2.6.0"
@@ -4945,6 +4947,14 @@ react-tap-event-plugin@^2.0.1:
   resolved "https://registry.yarnpkg.com/react-tap-event-plugin/-/react-tap-event-plugin-2.0.1.tgz#316beb3bc6556e29ec869a7293e89c826a9074d2"
   dependencies:
     fbjs "^0.8.6"
+
+react@^15.4.2:
+  version "15.4.2"
+  resolved "https://registry.yarnpkg.com/react/-/react-15.4.2.tgz#41f7991b26185392ba9bae96c8889e7e018397ef"
+  dependencies:
+    fbjs "^0.8.4"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.0"
 
 read-pkg-up@^1.0.1:
   version "1.0.1"

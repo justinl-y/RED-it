@@ -20,7 +20,7 @@ const Week = ({ weekItems, onCategoryClick }) => (
             {
               <ListItem
                 primaryText={category.category_title}
-                onClick={() => onCategoryClick(category.category_id)}
+                onClick={() => onCategoryClick(category.category_id.toString())}
               />
             }
           </Link>

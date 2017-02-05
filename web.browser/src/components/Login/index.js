@@ -6,6 +6,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { Toolbar, ToolbarTitle } from 'material-ui/Toolbar';
 import styles from './styles.css';
 
+
 const Login = ({ onLoginClick, onSignUpClick }) => (
   <div className={styles.login}>
     <Card

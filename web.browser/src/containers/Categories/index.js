@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 import IconButton from 'material-ui/IconButton';
 import CommunicationImportContacts from 'material-ui/svg-icons/communication/import-contacts';
 import Week from '../../components/Week';
-import { filterPosts } from '../PostList/actions';
+import { fetchPosts } from '../PostList/actions';
 import { fetchCategories } from './actions';
 import styles from './styles.css';
 
@@ -20,7 +20,7 @@ class Categories extends Component {
       <Week
         key={`${Date.now() * Math.random()}`}
         weekItems={e}
-        onCategoryClick={this.props.filterPosts}
+        onCategoryClick={this.props.fetchPosts}
       />
     ));
   }
@@ -57,19 +57,24 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  filterPosts: (category) => {
+  /* filterPosts: (category) => {
     dispatch(filterPosts(category));
-  },
+  },*/
   fetchCategories: () => {
     dispatch(fetchCategories());
+  },
+  fetchPosts: (id) => {
+    dispatch(fetchPosts(id));
   },
 });
 
 Categories.propTypes = {
   categories: PropTypes.arrayOf(PropTypes.object).isRequired,
   loading: PropTypes.bool.isRequired,
-  filterPosts: PropTypes.func.isRequired,
+  // filterPosts: PropTypes.func.isRequired,
   fetchCategories: PropTypes.func.isRequired,
+
+  fetchPosts: PropTypes.func.isRequired,
 };
 
 export default connect(

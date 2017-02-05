@@ -12,7 +12,7 @@ import {
 
 const postListPageInitialState = {
   loadingResource: false,
-  searchText: '',
+  searchText: '0',
   posts: [],
 };
 

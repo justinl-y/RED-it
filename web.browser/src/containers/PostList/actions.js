@@ -10,7 +10,7 @@ export const UPDATE_POST = 'UPDATE_POST';
 
 export const SORT_NEWEST_POSTS = 'SORT_NEWEST_POSTS';
 export const SORT_POPULAR_POSTS = 'SORT_POPULAR_POSTS';
-export const FILTER_POSTS = 'FILTER_POSTS';
+/* export const FILTER_POSTS = 'FILTER_POSTS'; */
 
 export const LOADING_POSTS_BEGIN = 'LOADING_POSTS_BEGIN';
 export const LOADING_POSTS_END = 'LOADING_POSTS_END';
@@ -52,34 +52,53 @@ export const postsSortPopular = () => ({
   payload: null,
 });
 
-export const filterPosts = category => ({
+/* export const filterPosts = category => ({
   type: FILTER_POSTS,
   payload: { category },
-});
-
+});*/
 
 const loadResource = () => ({
   type: LOADING_POSTS_BEGIN,
   payload: null,
 });
+
 const doneLoading = () => ({
   type: LOADING_POSTS_END,
   payload: null,
 });
+
 const updatePosts = posts => ({
   type: UPDATE_POSTS,
   payload: posts,
 });
 
-export const fetchPosts = () => {
+export const fetchPosts = (id) => {
   return (dispatch, getState) => {
     // Async
     dispatch(loadResource());
 
-    getJSON('http://localhost:8000/api/posts').then((posts) => {
-    // getJSON('http://localhost:8000/api/posts/4').then((posts) => {
+    // getJSON('http://localhost:8000/api/posts').then((posts) => {
+    getJSON(`http://localhost:8000/api/posts/${id}`).then((posts) => {
       dispatch(updatePosts(posts));
       dispatch(doneLoading());
     });
   };
 };
+
+/* const updateVotes = id => ({
+  type: UPDATE_VOTES,
+  payload: id,
+});
+
+export const updatePostVote = (id) => {
+  return (dispatch, getState) => {
+    // Async
+    // dispatch(loadResource());
+
+    // getJSON('http://localhost:8000/api/posts').then((posts) => {
+    getJSON(`http://localhost:8000/api/posts/${id}`).then((id) => {
+      dispatch(updateVotes(id));
+      // dispatch(doneLoading());
+    });
+  };
+}; */
