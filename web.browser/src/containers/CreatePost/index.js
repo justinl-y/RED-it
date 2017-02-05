@@ -18,7 +18,6 @@ const menuItems = [
 
 class CreatePost extends Component {
   state = {
-    // categories: data.data.weeks,
     selectFieldValue: null,
   };
 

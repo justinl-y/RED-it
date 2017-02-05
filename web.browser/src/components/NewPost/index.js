@@ -10,7 +10,7 @@ import styles from './styles.css';
 
 // const NewPost = ({ selectFieldValue, handleSelectChange, selectControlItems }) => (
 class NewPost extends Gandalf {
-  constructor() {
+  constructor({ selectFieldValue, handleSelectChange, selectControlItems }) {
     const fields = {
       title: {
         component: TextField,
@@ -23,6 +23,7 @@ class NewPost extends Gandalf {
             width: '100%',
           },
         },
+        debounce: 300,
       },
       description: {
         component: TextField,
@@ -35,6 +36,7 @@ class NewPost extends Gandalf {
             width: '100%',
           },
         },
+        debounce: 300,
       },
       link: {
         component: TextField,
@@ -47,6 +49,7 @@ class NewPost extends Gandalf {
             width: '100%',
           },
         },
+        debounce: 300,
       },
       tag: {
         component: TextField,
@@ -59,10 +62,11 @@ class NewPost extends Gandalf {
             width: '100%',
           },
         },
+        debounce: 300,
       },
     };
 
-    super(fields);
+    super(fields, selectFieldValue, handleSelectChange, selectControlItems);
   }
 
   handleSubmit() {
@@ -98,11 +102,11 @@ class NewPost extends Gandalf {
                   style={{
                     width: '100%',
                   }}
-                  value={this.selectFieldValue}
-                  onChange={this.handleSelectChange}
+                  value={this.props.selectFieldValue}
+                  onChange={this.props.handleSelectChange}
                   floatingLabelText="Select a lesson"
                 >
-                  {this.selectControlItems}
+                  {this.props.selectControlItems}
                 </SelectField><br />
 
                 { fields.link.element }
@@ -124,8 +128,8 @@ class NewPost extends Gandalf {
 }
 
 NewPost.propTypes = {
-  selectControlItems: PropTypes.array.isRequired,
-  // selectFieldValue: PropTypes.array.isRequired,
+  selectControlItems: PropTypes.arrayOf(PropTypes.object).isRequired,
+  // selectFieldValue: PropTypes.arrayOf(PropTypes.object).isRequired,
   handleSelectChange: PropTypes.func.isRequired,
 };
 

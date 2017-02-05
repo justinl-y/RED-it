@@ -24,6 +24,7 @@ class SignUp extends Gandalf {
           },
           type: 'password',
         },
+        debounce: 300,
       },
       email: {
         component: TextField,
@@ -49,6 +50,7 @@ class SignUp extends Gandalf {
             width: '100%',
           },
           type: 'password',
+          debounce: 300,
         },
       },
     };

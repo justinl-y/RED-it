@@ -93,6 +93,23 @@ export default function APIRoutes(router){
       })
   })
 
+  router.get('/categories', (req, res) => {
+    const querySQL = `select
+                      category_id,
+                      title
+                    from
+                      categories
+                    order by
+                      title asc;`;
+
+    database.query(querySQL, [])
+      .then((response) => {
+        res.json(response.rows);
+      }).catch((error) => {
+        res.status(500).json({error})
+      })
+  })
+
   router.post('/votes/:postid', (req, res) => {
     const { user_id, post_id } = req.body.vote
 
