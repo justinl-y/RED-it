@@ -110,9 +110,12 @@ export default function APIRoutes(router){
       })
   })
 
-  router.post('/votes/:postid', (req, res) => {
-    const { user_id, post_id } = req.body.vote
+  router.post('/votes', (req, res) => {
+    console.log(req.body);
 
+    // const { userId, postId } = req.body.vote
+
+    /*
     // attempt to insert vote into user post vote
     const queryInsertVote = `insert into
                                 user_post_votes
@@ -122,8 +125,8 @@ export default function APIRoutes(router){
                                   )
                                   values
                                   (
-                                    '${user_id}',
-                                    '${post_id}'
+                                    '${userId}',
+                                    '${postId}'
                                   );`
 
     database.query(queryInsertVote, [])
@@ -136,7 +139,7 @@ export default function APIRoutes(router){
                                   set
                                     votes = votes + 1
                                   where
-                                    post_id = '${post_id}';`;
+                                    post_id = '${postId}';`;
 
         database.query(queryUpdateVote, [])
           .catch(err => console.log('handle cache fail'));
@@ -148,7 +151,7 @@ export default function APIRoutes(router){
                                       from 
                                         posts 
                                       where
-                                        post_id = '${post_id}';`;
+                                        post_id = '${postId}';`;
 
         return database.query(querySelectVoteCount, [])
           .then((response) => {
@@ -158,9 +161,12 @@ export default function APIRoutes(router){
           })
       })
       .catch((error) => {
-        res.status(409).json({ error: 'Voted Already!'})
+        res.status(409).json({ response: false })
         // res.status(500).json({error})
       })
+      */
+
+      res.status(200).json({ success: true })
     })
 
   router.post('/post' , (req, res) => {

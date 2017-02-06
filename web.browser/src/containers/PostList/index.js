@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import PostToolbar from '../../components/PostToolbar';
 import Post from './../../components/Post';
-import { postsSortNewest, postsSortPopular, voteUp, voteDown } from './actions';
+import { postsSortNewest, postsSortPopular, updatePostVote, voteDown } from './actions'; // voteUp
 import styles from './styles.css';
 
 class PostList extends Component {
@@ -65,8 +65,9 @@ const mapDispatchToProps = dispatch => ({
   onSortPopularClick: () => {
     dispatch(postsSortPopular());
   },
-  updateVoteUp: (id) => {
-    dispatch(voteUp(id));
+  updateVoteUp: (vote) => {
+    // dispatch(voteUp(id));
+    dispatch(updatePostVote(vote));
   },
   updateVoteDown: (id) => {
     dispatch(voteDown(id));

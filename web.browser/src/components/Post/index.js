@@ -4,7 +4,7 @@ import FlatButton from 'material-ui/FlatButton';
 import Chip from 'material-ui/Chip';
 import styles from './styles.css';
 
-const Post = ({ id, title, link, description, votes, onUpVoteClick, onDownVoteClick, tags }) => (
+const Post = ({ id, title, link, description, votes, onUpVoteClick, tags }) => (
   <li className={styles['post-list']}>
     <Card className={styles['post-item']}>
       <CardHeader className={styles['post-header']}>
@@ -27,12 +27,6 @@ const Post = ({ id, title, link, description, votes, onUpVoteClick, onDownVoteCl
             onClick={(e) => { e.preventDefault(); onUpVoteClick(id); }}
           >
             &#42779; Vote Up
-          </FlatButton>
-          <FlatButton
-            className={styles['post-vote-button']}
-            onClick={(e) => { e.preventDefault(); onDownVoteClick(id); }}
-          >
-            Vote Down &#65516;
           </FlatButton>
         </div>
         <div className={styles['post-categories']}>

@@ -21,7 +21,7 @@ export default function(router) {
     const { email, password } = req.body.login;
     // select username and password from database
     const querySQL = `select
-                        email,
+                        user_id,
                         password
                       from
                         users
@@ -46,7 +46,7 @@ export default function(router) {
               secure: false,
               maxAge: 7200000,
               httpOnly: true,
-            }).json({ response: true })
+            }).json({ response: true, userId: response.rows[0].user_id })
           } else {
             res.status(200).json({ response: false });
           }
@@ -102,9 +102,9 @@ export default function(router) {
               secure: false,
               maxAge: 7200000,
               httpOnly: true,
-            }).json({ response: true })
+            }).json({ response: true, userId: response.rows[0].user_id })
           }).catch((error) => {
-            res.status(500).json({ error })
+              res.status(500).json({ error })
           });
       });
     });

@@ -7,6 +7,7 @@ import {
 const processLoginPageInitialState = {
   login: false,
   signup: false,
+  userId: 0,
 };
 
 // reducer
@@ -21,7 +22,7 @@ export default (state = processLoginPageInitialState, action) => {
         login = true;
       }
 
-      return { ...state, login, signup: false };
+      return { ...state, login, signup: false, userId: action.payload.userId };
     }
     case UPDATE_LOGIN: {
       let login = false;
@@ -30,7 +31,7 @@ export default (state = processLoginPageInitialState, action) => {
         login = true;
       }
 
-      return { ...state, login };
+      return { ...state, login, userId: action.payload.userId };
     }
     default:
       return state;

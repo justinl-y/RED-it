@@ -1,4 +1,4 @@
-import { getJSON } from '../../lib/fetch-json'; // , postJSON, putJSON, deleteJSON
+import { getJSON, postJSON } from '../../lib/fetch-json'; // , postJSON, putJSON, deleteJSON
 
 // action type
 export const VOTE_UP = 'VOTE_UP';
@@ -87,21 +87,23 @@ export const fetchPosts = (id) => {
   };
 };
 
-/* const updateVotes = id => ({
+export const UPDATE_VOTES = 'UPDATE_VOTES';
+
+const updateVotes = id => ({
   type: UPDATE_VOTES,
   payload: id,
 });
 
-export const updatePostVote = (id) => {
-  // return (dispatch, getState) => {
+export const updatePostVote = (vote) => {
+  const voteString = JSON.stringify(vote);
+
   return (dispatch) => {
-    // Async
+    console.log(voteString);
     // dispatch(loadResource());
 
-    // getJSON('http://localhost:8000/api/posts').then((posts) => {
-    getJSON(`http://localhost:8000/api/posts/${id}`).then((id) => {
-      dispatch(updateVotes(id));
+    postJSON('http://localhost:8000/api/votes', voteString).then((response) => {
+      dispatch(updateVotes(response));
       // dispatch(doneLoading());
     });
   };
-}; */
+};
