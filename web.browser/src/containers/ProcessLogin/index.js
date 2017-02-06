@@ -1,11 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import Login from '../../components/Login';
 import SignUp from '../../components/SignUp';
-import { userLogin, userSignUp, userSignUpLogin, verifyLogin } from './actions';
+import { userVerifyLogin, userSignUp, registerUser } from './actions';
 
 class PostList extends Component {
-  componentWillMount() {
+  componentWillUpdate() {
+    if (!this.props.userLoggedIn) {
+      browserHistory.push('/');
+    }
   }
 
   render() {
@@ -16,9 +20,8 @@ class PostList extends Component {
         {
           !userToSignUp ?
             <Login
-              // onLoginClick={this.props.login}
               onLoginClick={this.props.verifyLogin}
-              onSignUpClick={this.props.signUp}
+              onSignUpClick={this.props.signUpUser}
             />
           :
             <SignUp
@@ -31,31 +34,28 @@ class PostList extends Component {
 }
 
 const mapStateToProps = state => ({
+  userLoggedIn: state.appData.processLogin.login,
   userToSignUp: state.appData.processLogin.signup,
 });
 
 const mapDispatchToProps = dispatch => ({
-  login: () => {
-    dispatch(userLogin());
+  verifyLogin: (login) => {
+    dispatch(userVerifyLogin(login));
   },
-  signUp: () => {
+  signUpUser: () => {
     dispatch(userSignUp());
   },
-  signUpLogin: () => {
-    dispatch(userSignUpLogin());
-  },
-  verifyLogin: (login) => {
-    dispatch(verifyLogin(login));
+  signUpLogin: (register) => {
+    dispatch(registerUser(register));
   },
 });
 
 PostList.propTypes = {
   userToSignUp: PropTypes.bool.isRequired,
-  // login: PropTypes.func.isRequired,
-  signUp: PropTypes.func.isRequired,
-  signUpLogin: PropTypes.func.isRequired,
-
   verifyLogin: PropTypes.func.isRequired,
+  signUpUser: PropTypes.func.isRequired,
+  signUpLogin: PropTypes.func.isRequired,
+  userLoggedIn: PropTypes.bool.isRequired,
 };
 
 export default connect(

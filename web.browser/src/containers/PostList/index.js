@@ -49,6 +49,7 @@ const mapStateToProps = (state) => {
   // const { searchText } = state.appData.posts;
 
   return {
+    // userLoggedIn: state.appData.processLogin.login,
     loading: state.appData.posts.loadingResource,
     // searchText: state.appData.posts.searchText,
     posts: state.appData.posts.posts,
@@ -84,6 +85,7 @@ PostList.propTypes = {
   updateVoteDown: PropTypes.func.isRequired,
   // fetchPosts: PropTypes.func.isRequired,
   // searchText: PropTypes.string.isRequired,
+  // userLoggedIn: PropTypes.bool.isRequired,
 };
 
 export default connect(

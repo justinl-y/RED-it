@@ -7,22 +7,31 @@ import { Toolbar, ToolbarTitle } from 'material-ui/Toolbar';
 import Gandalf from 'gandalf-validator';
 import styles from './styles.css';
 
-// const SignUp = ({ onSignUpLoginClick }) => (
-
 class SignUp extends Gandalf {
-  constructor() {
+  constructor({ onSignUpLoginClick }) {
     const fields = {
-      name: {
+      firstName: {
         component: TextField,
         validators: ['required'],
         errorPropName: 'errorText',
         props: {
-          hintText: 'Your Name',
-          floatingLabelText: 'Name',
+          hintText: 'First Name',
+          floatingLabelText: 'First Name',
           style: {
-            width: '100%',
+            width: '50%',
           },
-          type: 'password',
+        },
+      },
+      lastName: {
+        component: TextField,
+        validators: ['required'],
+        errorPropName: 'errorText',
+        props: {
+          hintText: 'Last Name',
+          floatingLabelText: 'Last Name',
+          style: {
+            width: '50%',
+          },
         },
       },
       email: {
@@ -52,17 +61,15 @@ class SignUp extends Gandalf {
       },
     };
 
-    super(fields);
+    super(fields, onSignUpLoginClick);
   }
 
   handleSubmit() {
-    const data = this.getCleanFormData();
+    const register = this.getCleanFormData();
 
-    if (!data) return;
-    console.log(data);
+    if (!register) return;
 
-    // submit to redux
-    console.log('Going to redux');
+    this.props.onSignUpLoginClick({ register });
   }
 
   render() {
@@ -81,7 +88,8 @@ class SignUp extends Gandalf {
             </Toolbar>
             <CardText>
               <form>
-                { fields.name.element }
+                { fields.firstName.element }
+                { fields.lastName.element }
                 { fields.email.element }
                 { fields.password.element }
 

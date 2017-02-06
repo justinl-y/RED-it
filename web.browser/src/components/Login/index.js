@@ -8,7 +8,6 @@ import { Toolbar, ToolbarTitle } from 'material-ui/Toolbar';
 import Gandalf from 'gandalf-validator';
 import styles from './styles.css';
 
-// const Login = ({ onLoginClick, onSignUpClick }) => (
 class Login extends Gandalf {
   constructor({ onLoginClick, onSignUpClick }) {
     const fields = {
@@ -43,20 +42,12 @@ class Login extends Gandalf {
     super(fields, onLoginClick, onSignUpClick);
   }
 
-
-
   handleSubmit() {
-    // const { onLoginClick } = this.state;
-
     const login = this.getCleanFormData();
+
     if (!login) return;
 
-    // console.log(login);
-
     this.props.onLoginClick({ login });
-    // console.log(data);
-    // submit to redux
-    // console.log('Going to redux');
   }
 
   render() {
@@ -80,7 +71,6 @@ class Login extends Gandalf {
                 <RaisedButton
                   backgroundColor="rgb(183, 28, 28)"
                   labelColor="white"
-                  // onClick={(e) => { e.preventDefault(); this.props.onLoginClick(); }}
                   onClick={(e) => { e.preventDefault(); this.handleSubmit(); }}
                   label="Login"
                 />

@@ -1,19 +1,39 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import Categories from '../Categories';
 import styles from './styles.css';
 
-const App = ({ children }) => (
-  <div className={styles.app}>
-    <Categories />
-    { children }
-  </div>
-);
+class App extends Component {
+  componentWillMount() {
+    if (!this.props.userLoggedIn) {
+      browserHistory.push('/login');
+    }
+  }
+
+  render() {
+    return (
+      <div className={styles.app}>
+        <Categories />
+        { this.props.children }
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  userLoggedIn: state.appData.processLogin.login,
+});
 
 App.propTypes = {
   children: PropTypes.object.isRequired,
+  userLoggedIn: PropTypes.bool.isRequired,
 };
 
-export default App;
+// export default App;
+export default connect(
+  mapStateToProps,
+)(App);
 
 /* import React, { Component } from 'react';
 import { Router, Match } from 'react-router';
@@ -35,3 +55,10 @@ class App extends Component {
 }
 
 export default App; */
+
+/* const App = ({ children }) => (
+  <div className={styles.app}>
+    <Categories />
+    { children }
+  </div>
+);*/

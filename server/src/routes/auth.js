@@ -63,12 +63,14 @@ export default function(router) {
 
   router.post('/register', (req, res) => {
     // create user in database with a hashed password using referrental integrity to see if user exists
-    const { first_name, last_name, email, password } = req.body.register;
+    const { firstName, lastName, email, password } = req.body.register;
+
+    // console.log(req.body.register)
     // const salt = bcrypt.genSaltSync(1);
     // const hashedPassword = bcrypt.hashSync(password, salt);
 
     // encrypt password and save new user to database
-    bcrypt.genSalt(5, function(err, saltResult) {
+      bcrypt.genSalt(5, function(err, saltResult) {
       bcrypt.hash(password, saltResult, function(err, hash) {
         //define sql
         const querySQL = `insert into
@@ -81,8 +83,8 @@ export default function(router) {
                             )
                             values
                             (
-                              '${first_name}',
-                              '${last_name}',
+                              '${firstName}',
+                              '${lastName}',
                               '${email}',
                               '${hash}'
                             ) returning user_id;`;
@@ -100,12 +102,14 @@ export default function(router) {
               secure: false,
               maxAge: 7200000,
               httpOnly: true,
-            }).json({ response: 'You are registered and logged in, enjoy' })
+            }).json({ response: true })
           }).catch((error) => {
             res.status(500).json({ error })
           });
       });
     });
+
+    // res.status(200).json({ response: true });
   });
 
   router.get('/logout', (req, res) => {
