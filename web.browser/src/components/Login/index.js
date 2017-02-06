@@ -10,7 +10,7 @@ import styles from './styles.css';
 
 // const Login = ({ onLoginClick, onSignUpClick }) => (
 class Login extends Gandalf {
-  constructor() {
+  constructor({ onLoginClick, onSignUpClick }) {
     const fields = {
       email: {
         component: TextField,
@@ -40,17 +40,23 @@ class Login extends Gandalf {
       },
     };
 
-    super(fields);
+    super(fields, onLoginClick, onSignUpClick);
   }
 
+
+
   handleSubmit() {
-    const data = this.getCleanFormData();
+    // const { onLoginClick } = this.state;
 
-    if (!data) return;
-    console.log(data);
+    const login = this.getCleanFormData();
+    if (!login) return;
 
+    // console.log(login);
+
+    this.props.onLoginClick({ login });
+    // console.log(data);
     // submit to redux
-    console.log('Going to redux');
+    // console.log('Going to redux');
   }
 
   render() {

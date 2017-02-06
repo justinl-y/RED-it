@@ -9,9 +9,57 @@ import config from '../../config';
 import { SESSION_COOKIE } from '../app';
 
 export default function(router) {
-  router.use(cors());
+  // router.use(cors());
+  router.use(cors({
+    origin: ['http://localhost:3000'], // origin: ['http://localhost:8000'], //can change to 8000 on deploy
+    credentials: true
+  }));
   router.use(bodyParser.json());
   router.use(cookieParser());
+
+  router.post('/login', (req, res) => {
+    const { email, password } = req.body.login;
+    // select username and password from database
+    const querySQL = `select
+                        email,
+                        password
+                      from
+                        users
+                      where
+                        email like '${email}';`;
+
+     database.query(querySQL, [])
+      .then((response) => {
+
+        // check for existing user data
+        if (response.rows.length > 0) {
+          // decrypt password
+          const decryptedPassword = bcrypt.compareSync(password, response.rows[0].password);
+
+          if (decryptedPassword) {
+            // create session cookie
+            const sessionUser = { email: email };
+            const JWT = jwt.sign(sessionUser, config.get('APP_SECRET'));
+
+            res.status(200).cookie(SESSION_COOKIE, JWT, {
+              // secure: config.get('HTTPS'), // for production
+              secure: false,
+              maxAge: 7200000,
+              httpOnly: true,
+            }).json({ response: true })
+          } else {
+            res.status(200).json({ response: false });
+          }
+        } else {
+          res.status(200).json({ response: false });
+        }
+
+      }).catch((error) => {
+        res.status(500).json({ error })
+      });
+
+      //res.status(200).json({ response: 'You are logged in, enjoy' });        
+  });
 
   router.post('/register', (req, res) => {
     // create user in database with a hashed password using referrental integrity to see if user exists
@@ -60,54 +108,13 @@ export default function(router) {
     });
   });
 
-  router.post('/login', (req, res) => {
-    const { email, password } = req.body.login;
-
-    // select username and password from database
-    const querySQL = `select
-                        email,
-                        password
-                      from
-                        users
-                      where
-                        email like '${email}';`;
-
-     database.query(querySQL, [])
-      .then((response) => {
-        // check for existing user data
-        if (response.rows.length > 0) {
-          // decrypt password
-          const decryptedPassword = bcrypt.compareSync(password, response.rows[0].password);
-
-          if (decryptedPassword) {
-            // create session cookie
-            const sessionUser = { email: email };
-            const JWT = jwt.sign(sessionUser, config.get('APP_SECRET'));
-
-            res.status(200).cookie(SESSION_COOKIE, JWT, {
-              // secure: config.get('HTTPS'), // for production
-              secure: false,
-              maxAge: 7200000,
-              httpOnly: true,
-            }).json({ response: 'You are logged in, enjoy' })
-          } else {
-            res.status(403).json({ response: 'Access denied' });
-          }
-        } else {
-          res.status(403).json({ response: 'Access denied' });
-        }
-      }).catch((error) => {
-        res.status(500).json({ error })
-      });                   
-  })
-
-  router.post('/logout', (req, res) => {
+  router.get('/logout', (req, res) => {
     // if(req.cookies.token) {
     if(req.cookies) {
       res.clearCookie(SESSION_COOKIE);
     }
 
-    res.status(200).json({ response: 'Thanks for visiting' });
+    res.status(200).json({ response: false });
   })
 
   return router;

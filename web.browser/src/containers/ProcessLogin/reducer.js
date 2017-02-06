@@ -2,6 +2,7 @@ import {
   USER_LOGIN,
   USER_SIGN_UP,
   SIGN_UP_LOGIN,
+  UPDATE_LOGIN,
 } from './actions';
 
 const processLoginPageInitialState = {
@@ -21,6 +22,14 @@ export default (state = processLoginPageInitialState, action) => {
     case SIGN_UP_LOGIN:
       // console.log('SIGN_UP_LOGIN');
       return { ...state, login: !state.login };
+    case UPDATE_LOGIN:
+      let login = false;
+
+      if (action.payload.response) {
+        login = true;
+      }
+
+      return { ...state, login };
     default:
       return state;
   }

@@ -73,15 +73,17 @@ const updatePosts = posts => ({
 });
 
 export const fetchPosts = (id) => {
-  return (dispatch, getState) => {
+  // return (dispatch, getState) => {
+  return (dispatch) => {
     // Async
     dispatch(loadResource());
 
     // getJSON('http://localhost:8000/api/posts').then((posts) => {
-    getJSON(`http://localhost:8000/api/posts/${id}`).then((posts) => {
-      dispatch(updatePosts(posts));
-      dispatch(doneLoading());
-    });
+    getJSON(`http://localhost:8000/api/posts/${id}`)
+      .then((posts) => {
+        dispatch(updatePosts(posts));
+        dispatch(doneLoading());
+      });
   };
 };
 
@@ -91,7 +93,8 @@ export const fetchPosts = (id) => {
 });
 
 export const updatePostVote = (id) => {
-  return (dispatch, getState) => {
+  // return (dispatch, getState) => {
+  return (dispatch) => {
     // Async
     // dispatch(loadResource());
 

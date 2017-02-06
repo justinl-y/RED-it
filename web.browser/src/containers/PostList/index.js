@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import styles from './styles.css';
 import PostToolbar from '../../components/PostToolbar';
 import Post from './../../components/Post';
 import { postsSortNewest, postsSortPopular, voteUp, voteDown } from './actions';
+import styles from './styles.css';
 
 class PostList extends Component {
   componentWillMount() {

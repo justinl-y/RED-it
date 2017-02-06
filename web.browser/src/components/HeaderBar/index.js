@@ -6,7 +6,7 @@ import IconButton from 'material-ui/IconButton';
 import CommunicationImportContacts from 'material-ui/svg-icons/communication/import-contacts';
 import styles from './styles.css';
 
-const HeaderBar = ({ userLoggedIn }) => (
+const HeaderBar = ({ userLoggedIn, userLogout }) => (
   <div>
     <AppBar
       className={styles['header-bar']}
@@ -36,11 +36,12 @@ const HeaderBar = ({ userLoggedIn }) => (
                     />
                   </Link>
                   <Link
-                    to="/"
+                    to="/login"
                   >
                     <FlatButton
                       className={styles['menu-item']}
                       label="Logout"
+                      onClick={userLogout}
                     />
                   </Link>
                 </div>
@@ -64,6 +65,7 @@ const HeaderBar = ({ userLoggedIn }) => (
 
 HeaderBar.propTypes = {
   userLoggedIn: PropTypes.bool.isRequired,
+  userLogout: PropTypes.func.isRequired,
 };
 
 export default HeaderBar;

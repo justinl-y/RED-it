@@ -10,7 +10,7 @@ import styles from './styles.css';
 
 // const NewPost = ({ selectFieldValue, handleSelectChange, selectControlItems }) => (
 class NewPost extends Gandalf {
-  constructor({ selectFieldValue, handleSelectChange, selectControlItems }) {
+  constructor({ selectControlItems }) {
     const fields = {
       title: {
         component: TextField,
@@ -23,7 +23,6 @@ class NewPost extends Gandalf {
             width: '100%',
           },
         },
-        debounce: 300,
       },
       description: {
         component: TextField,
@@ -36,8 +35,20 @@ class NewPost extends Gandalf {
             width: '100%',
           },
         },
-        debounce: 300,
       },
+      /* category: {
+        component: SelectField,
+        // validators: ['required'],
+        errorPropName: 'errorText',
+        props: {
+          hintText: 'Select a category',
+          floatingLabelText: 'Category',
+          style: {
+            width: '100%',
+          },
+        },
+        selectFieldValue: null,
+      },*/
       link: {
         component: TextField,
         validators: ['required'],
@@ -49,7 +60,6 @@ class NewPost extends Gandalf {
             width: '100%',
           },
         },
-        debounce: 300,
       },
       tag: {
         component: TextField,
@@ -62,12 +72,19 @@ class NewPost extends Gandalf {
             width: '100%',
           },
         },
-        debounce: 300,
       },
     };
 
-    super(fields, selectFieldValue, handleSelectChange, selectControlItems);
+    super(fields, selectControlItems);
   }
+
+  /* state = {
+    selectFieldValue: null,
+  };*/
+
+  handleSelectChange = (
+    (event, index, selectFieldValue) => (this.setState({ selectFieldValue }))
+  );
 
   handleSubmit() {
     const data = this.getCleanFormData();
@@ -80,6 +97,7 @@ class NewPost extends Gandalf {
   }
 
   render() {
+    const { selectFieldValue } = this.state;
     const fields = this.state.fields;
 
     return (
@@ -102,12 +120,14 @@ class NewPost extends Gandalf {
                   style={{
                     width: '100%',
                   }}
-                  value={this.props.selectFieldValue}
-                  onChange={this.props.handleSelectChange}
+                  value={selectFieldValue}
+                  onChange={this.handleSelectChange}
                   floatingLabelText="Select a lesson"
                 >
                   {this.props.selectControlItems}
-                </SelectField><br />
+                </SelectField>
+
+                { /* fields.category.element */ }
 
                 { fields.link.element }
                 { fields.tag.element }
@@ -130,7 +150,7 @@ class NewPost extends Gandalf {
 NewPost.propTypes = {
   selectControlItems: PropTypes.arrayOf(PropTypes.object).isRequired,
   // selectFieldValue: PropTypes.arrayOf(PropTypes.object).isRequired,
-  handleSelectChange: PropTypes.func.isRequired,
+  // handleSelectChange: PropTypes.func.isRequired,
 };
 
 export default NewPost;

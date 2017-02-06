@@ -5,43 +5,42 @@ import NewPost from '../../components/NewPost';
 import { fetchCategoriesList } from '../../containers/Categories/actions';
 // import styles from './styles.css'
 
-const menuItems = [
-  <MenuItem key={1} value={1} primaryText="React" />,
-  <MenuItem key={2} value={2} primaryText="React-DOM" />,
-  <MenuItem key={3} value={3} primaryText="Redux" />,
-];
-
-/* const menuItems = this.props.categoriesList.map((category) => {
-  // return <MenuItem key={category.id} value={category.id} primaryText={category} />;
-  return console.log(category);
-});*/
-
 class CreatePost extends Component {
-  state = {
+  /* state = {
     selectFieldValue: null,
-  };
+  }; */
 
   componentWillMount() {
     this.props.fetchCategoriesList();
   }
 
-  handleSelectChange = (
+  /* handleSelectChange = (
     (event, index, value) => (this.setState({ value }))
-  );
+  ); */
+
+  renderControlItems() {
+    return this.props.categories.map(e => (
+      <MenuItem
+        key={e.category_id}
+        value={e.category_id}
+        primaryText={e.title}
+      />
+    ));
+  }
 
   render() {
     return (
       <NewPost
-        selectFieldValue={this.state.selectFieldValue}
-        handleSelectChange={this.handleSelectChange.bind(this)}
-        selectControlItems={menuItems}
+        // selectFieldValue={this.state.selectFieldValue}
+        // handleSelectChange={this.handleSelectChange.bind(this)}
+        selectControlItems={this.renderControlItems()}
       />
     );
   }
 }
 
 const mapStateToProps = state => ({
-  categoriesList: state.appData.categories.categoriesList,
+  categories: state.appData.categories.categoriesList,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -51,6 +50,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 CreatePost.propTypes = {
+  categories: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchCategoriesList: PropTypes.func.isRequired,
 };
 
