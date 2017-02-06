@@ -44,7 +44,6 @@ Posts.propTypes = {
   onSortNewestClick: PropTypes.func.isRequired,
   onSortPopularClick: PropTypes.func.isRequired,
   updateVote: PropTypes.func.isRequired,
-  // fetchPosts: PropTypes.func.isRequired,
 };
 
 export default Posts;

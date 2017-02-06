@@ -25,7 +25,6 @@ const updateCategoriesList = categories => ({
 });
 
 export const fetchCategories = () => {
-  // return (dispatch, getState) => {
   return (dispatch) => {
     // Async
     dispatch(loadResource());
@@ -38,7 +37,6 @@ export const fetchCategories = () => {
 };
 
 export const fetchCategoriesList = () => {
-  // return (dispatch, getState) => {
   return (dispatch) => {
     // Async
     dispatch(loadResource());

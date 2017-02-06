@@ -18,7 +18,6 @@ const postListPageInitialState = {
 
 // reducer
 export default (state = postListPageInitialState, action) => {
-  // console.log(action);
   switch (action.type) {
     case VOTE_UP: {
       const editedPosts = state.posts.map((post) => {

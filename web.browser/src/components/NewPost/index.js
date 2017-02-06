@@ -8,7 +8,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Gandalf from 'gandalf-validator';
 import styles from './styles.css';
 
-// const NewPost = ({ selectFieldValue, handleSelectChange, selectControlItems }) => (
 class NewPost extends Gandalf {
   constructor({ selectControlItems }) {
     const fields = {
@@ -77,10 +76,6 @@ class NewPost extends Gandalf {
 
     super(fields, selectControlItems);
   }
-
-  /* state = {
-    selectFieldValue: null,
-  };*/
 
   handleSelectChange = (
     (event, index, selectFieldValue) => (this.setState({ selectFieldValue }))

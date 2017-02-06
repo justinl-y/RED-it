@@ -93,21 +93,3 @@ Login.propTypes = {
 };
 
 export default Login;
-
-/*
-<TextField
-  style={{
-    width: '100%',
-  }}
-  hintText="Email"
-  errorText="Please enter your email"
-  floatingLabelText="Email"
-/>
-<TextField
-  style={{
-    width: '100%',
-  }}
-  hintText="Password"
-  errorText="Please enter your password"
-  floatingLabelText="Password"
-/> */

@@ -6,17 +6,9 @@ import { fetchCategoriesList } from '../../containers/Categories/actions';
 // import styles from './styles.css'
 
 class CreatePost extends Component {
-  /* state = {
-    selectFieldValue: null,
-  }; */
-
   componentWillMount() {
     this.props.fetchCategoriesList();
   }
-
-  /* handleSelectChange = (
-    (event, index, value) => (this.setState({ value }))
-  ); */
 
   renderControlItems() {
     return this.props.categories.map(e => (
@@ -31,8 +23,6 @@ class CreatePost extends Component {
   render() {
     return (
       <NewPost
-        // selectFieldValue={this.state.selectFieldValue}
-        // handleSelectChange={this.handleSelectChange.bind(this)}
         selectControlItems={this.renderControlItems()}
       />
     );
@@ -54,7 +44,6 @@ CreatePost.propTypes = {
   fetchCategoriesList: PropTypes.func.isRequired,
 };
 
-// export default CreatePost;
 export default connect(
   mapStateToProps,
   mapDispatchToProps,

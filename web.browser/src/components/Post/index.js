@@ -52,7 +52,6 @@ Post.propTypes = {
   description: PropTypes.string.isRequired,
   votes: PropTypes.number.isRequired,
   onUpVoteClick: PropTypes.func.isRequired,
-  onDownVoteClick: PropTypes.func.isRequired,
   tags: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 

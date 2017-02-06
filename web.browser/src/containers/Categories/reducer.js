@@ -1,6 +1,3 @@
-// import mockData from '../../mock-data';
-// const categoriesInitialState = mockData.weeks;
-
 import {
   LOADING_CATEGORIES_BEGINS,
   LOADING_CATEGORIES_ENDS,

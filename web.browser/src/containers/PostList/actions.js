@@ -1,4 +1,4 @@
-import { getJSON, postJSON } from '../../lib/fetch-json'; // , postJSON, putJSON, deleteJSON
+import { getJSON, postJSON } from '../../lib/fetch-json'; // , putJSON, deleteJSON
 
 // action type
 export const VOTE_UP = 'VOTE_UP';
@@ -10,7 +10,6 @@ export const UPDATE_POST = 'UPDATE_POST';
 
 export const SORT_NEWEST_POSTS = 'SORT_NEWEST_POSTS';
 export const SORT_POPULAR_POSTS = 'SORT_POPULAR_POSTS';
-/* export const FILTER_POSTS = 'FILTER_POSTS'; */
 
 export const LOADING_POSTS_BEGIN = 'LOADING_POSTS_BEGIN';
 export const LOADING_POSTS_END = 'LOADING_POSTS_END';
@@ -52,11 +51,6 @@ export const postsSortPopular = () => ({
   payload: null,
 });
 
-/* export const filterPosts = category => ({
-  type: FILTER_POSTS,
-  payload: { category },
-});*/
-
 const loadResource = () => ({
   type: LOADING_POSTS_BEGIN,
   payload: null,
@@ -73,7 +67,6 @@ const updatePosts = posts => ({
 });
 
 export const fetchPosts = (id) => {
-  // return (dispatch, getState) => {
   return (dispatch) => {
     // Async
     dispatch(loadResource());

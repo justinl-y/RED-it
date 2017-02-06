@@ -57,9 +57,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  /* filterPosts: (category) => {
-    dispatch(filterPosts(category));
-  },*/
   fetchCategories: () => {
     dispatch(fetchCategories());
   },
@@ -71,9 +68,7 @@ const mapDispatchToProps = dispatch => ({
 Categories.propTypes = {
   categories: PropTypes.arrayOf(PropTypes.object).isRequired,
   loading: PropTypes.bool.isRequired,
-  // filterPosts: PropTypes.func.isRequired,
   fetchCategories: PropTypes.func.isRequired,
-
   fetchPosts: PropTypes.func.isRequired,
 };
 

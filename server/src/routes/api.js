@@ -49,29 +49,6 @@ export default function APIRoutes(router){
     })
   });
 
-  /* router.get('/posts', (req, res) => {
-    const querySQL = `select
-                        posts.post_id,
-                        posts.title,
-                        posts.link,
-                        posts.description,
-                        posts.votes, 
-                        json_agg(json_build_object('tags_id', tags.tag_id, 'tags_title', tags.title)) as tags,
-                        posts.category_id
-                      from
-                        posts
-                        left outer join post_tags on post_tags.post_id = posts.post_id
-                        left outer join tags on tags.tag_id = post_tags.tag_id
-                      group by
-                          posts.post_id;`;
-
-      database.query(querySQL, []).then((response) => {
-      res.json(response.rows);
-    }).catch((error) => {
-      res.status(500).json({error})
-    })
-  }); */
-
   router.get('/weeks', (req, res) => {
     const querySQL = `select
                         weeks.week_id,

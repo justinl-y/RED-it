@@ -9,7 +9,6 @@ import config from '../../config';
 import { SESSION_COOKIE } from '../app';
 
 export default function(router) {
-  // router.use(cors());
   router.use(cors({
     origin: ['http://localhost:3000'], // origin: ['http://localhost:8000'], //can change to 8000 on deploy
     credentials: true
@@ -56,18 +55,12 @@ export default function(router) {
 
       }).catch((error) => {
         res.status(500).json({ error })
-      });
-
-      //res.status(200).json({ response: 'You are logged in, enjoy' });        
+      });        
   });
 
   router.post('/register', (req, res) => {
     // create user in database with a hashed password using referrental integrity to see if user exists
     const { firstName, lastName, email, password } = req.body.register;
-
-    // console.log(req.body.register)
-    // const salt = bcrypt.genSaltSync(1);
-    // const hashedPassword = bcrypt.hashSync(password, salt);
 
     // encrypt password and save new user to database
       bcrypt.genSalt(5, function(err, saltResult) {
@@ -108,12 +101,9 @@ export default function(router) {
           });
       });
     });
-
-    // res.status(200).json({ response: true });
   });
 
   router.get('/logout', (req, res) => {
-    // if(req.cookies.token) {
     if(req.cookies) {
       res.clearCookie(SESSION_COOKIE);
     }

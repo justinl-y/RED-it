@@ -2,12 +2,11 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import PostToolbar from '../../components/PostToolbar';
 import Post from './../../components/Post';
-import { postsSortNewest, postsSortPopular, updatePostVote, voteDown } from './actions'; // voteUp
+import { postsSortNewest, postsSortPopular, updatePostVote } from './actions';
 import styles from './styles.css';
 
 class PostList extends Component {
   componentWillMount() {
-    // this.props.fetchPosts(this.props.searchText);
   }
 
   renderPosts() {
@@ -20,7 +19,6 @@ class PostList extends Component {
         description={e.description}
         votes={e.votes}
         onUpVoteClick={this.props.updateVoteUp}
-        onDownVoteClick={this.props.updateVoteDown}
         tags={e.tags}
       />
     ));
@@ -46,15 +44,9 @@ class PostList extends Component {
 }
 
 const mapStateToProps = (state) => {
-  // const { searchText } = state.appData.posts;
-
   return {
-    // userLoggedIn: state.appData.processLogin.login,
     loading: state.appData.posts.loadingResource,
-    // searchText: state.appData.posts.searchText,
     posts: state.appData.posts.posts,
-    // posts: searchText === '' ? state.appData.posts.posts : state.appData.posts.posts.filter(item => item.categories.some(c => c === searchText)),
-    // posts: searchText === '' ? state.appData.posts.posts : state.appData.posts.posts.filter(item => item.category_id === parseInt(searchText, 10)),
   };
 };
 
@@ -69,12 +61,6 @@ const mapDispatchToProps = dispatch => ({
     // dispatch(voteUp(id));
     dispatch(updatePostVote(vote));
   },
-  updateVoteDown: (id) => {
-    dispatch(voteDown(id));
-  },
-  /* fetchPosts: (id) => {
-    dispatch(fetchPosts(id));
-  },*/
 });
 
 PostList.propTypes = {
@@ -83,10 +69,6 @@ PostList.propTypes = {
   onSortNewestClick: PropTypes.func.isRequired,
   onSortPopularClick: PropTypes.func.isRequired,
   updateVoteUp: PropTypes.func.isRequired,
-  updateVoteDown: PropTypes.func.isRequired,
-  // fetchPosts: PropTypes.func.isRequired,
-  // searchText: PropTypes.string.isRequired,
-  // userLoggedIn: PropTypes.bool.isRequired,
 };
 
 export default connect(

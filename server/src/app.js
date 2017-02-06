@@ -4,7 +4,6 @@ import fallback from 'express-history-api-fallback';
 import config from '../config';
 import AUTHRoutes from './routes/auth';
 import APIRoutes from './routes/api';
-// import './database/db';
 
 export const SESSION_COOKIE = 'redit_session';
 

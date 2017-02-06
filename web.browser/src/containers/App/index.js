@@ -30,7 +30,6 @@ App.propTypes = {
   userLoggedIn: PropTypes.bool.isRequired,
 };
 
-// export default App;
 export default connect(
   mapStateToProps,
 )(App);
