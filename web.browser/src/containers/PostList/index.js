@@ -12,7 +12,7 @@ class PostList extends Component {
   renderPosts() {
     return this.props.posts.map(e => (
       <Post
-        id={e.post_id}
+        postId={e.post_id}
         title={e.title}
         link={e.link}
         key={e.post_id}
@@ -20,6 +20,7 @@ class PostList extends Component {
         votes={e.votes}
         onUpVoteClick={this.props.updateVoteUp}
         tags={e.tags}
+        userId={this.props.userId}
       />
     ));
   }
@@ -47,6 +48,7 @@ const mapStateToProps = (state) => {
   return {
     loading: state.appData.posts.loadingResource,
     posts: state.appData.posts.posts,
+    userId: state.appData.processLogin.userId,
   };
 };
 
@@ -69,6 +71,7 @@ PostList.propTypes = {
   onSortNewestClick: PropTypes.func.isRequired,
   onSortPopularClick: PropTypes.func.isRequired,
   updateVoteUp: PropTypes.func.isRequired,
+  userId: PropTypes.number.isRequired,
 };
 
 export default connect(

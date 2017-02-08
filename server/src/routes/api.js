@@ -88,11 +88,12 @@ export default function APIRoutes(router){
   })
 
   router.post('/votes', (req, res) => {
-    console.log(req.body);
+    //console.log(req.body);
 
-    // const { userId, postId } = req.body.vote
+    const { userId, postId } = req.body.vote
 
-    /*
+    //console.log(userId, postId);
+
     // attempt to insert vote into user post vote
     const queryInsertVote = `insert into
                                 user_post_votes
@@ -108,7 +109,7 @@ export default function APIRoutes(router){
 
     database.query(queryInsertVote, [])
       .then((response) => {
-        res.status(200).json({ success: true })
+        //res.status(200).json({ success: true })
 
         // Update post vote - If caching update fails, the user should still receive a success message
         const queryUpdateVote = `update
@@ -132,7 +133,8 @@ export default function APIRoutes(router){
 
         return database.query(querySelectVoteCount, [])
           .then((response) => {
-            res.json(console.log(response.rows));
+            // console.log(response.rows);
+            res.status(200).json(response.rows);
           }).catch((err) => {
             res.status(500).json({err})
           })
@@ -141,9 +143,8 @@ export default function APIRoutes(router){
         res.status(409).json({ response: false })
         // res.status(500).json({error})
       })
-      */
 
-      res.status(200).json({ success: true })
+      // res.status(200).json({ success: true })
     })
 
   router.post('/post' , (req, res) => {

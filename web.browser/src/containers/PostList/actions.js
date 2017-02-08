@@ -1,8 +1,9 @@
 import { getJSON, postJSON } from '../../lib/fetch-json'; // , putJSON, deleteJSON
 
 // action type
-export const VOTE_UP = 'VOTE_UP';
-export const VOTE_DOWN = 'VOTE_DOWN';
+/* export const VOTE_UP = 'VOTE_UP';
+export const VOTE_DOWN = 'VOTE_DOWN';*/
+export const UPDATE_VOTES = 'UPDATE_VOTES';
 
 export const ADD_POST = 'ADD_POST';
 export const DELETE_POST = 'DELETE_POST';
@@ -16,7 +17,7 @@ export const LOADING_POSTS_END = 'LOADING_POSTS_END';
 export const UPDATE_POSTS = 'UPDATE_POSTS';
 
 // action creator
-export const voteUp = id => ({
+/* export const voteUp = id => ({
   type: VOTE_UP,
   payload: { id },
 });
@@ -24,6 +25,11 @@ export const voteUp = id => ({
 export const voteDown = id => ({
   type: VOTE_DOWN,
   payload: { id },
+});*/
+
+const updateVotes = postVote => ({
+  type: UPDATE_VOTES,
+  payload: postVote,
 });
 
 export const addPost = ({
@@ -80,18 +86,10 @@ export const fetchPosts = (id) => {
   };
 };
 
-export const UPDATE_VOTES = 'UPDATE_VOTES';
-
-const updateVotes = id => ({
-  type: UPDATE_VOTES,
-  payload: id,
-});
-
 export const updatePostVote = (vote) => {
   const voteString = JSON.stringify(vote);
 
   return (dispatch) => {
-    console.log(voteString);
     // dispatch(loadResource());
 
     postJSON('http://localhost:8000/api/votes', voteString).then((response) => {

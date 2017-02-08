@@ -44,9 +44,7 @@ class Login extends Gandalf {
 
   handleSubmit() {
     const login = this.getCleanFormData();
-
     if (!login) return;
-
     this.props.onLoginClick({ login });
   }
 

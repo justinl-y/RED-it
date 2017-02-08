@@ -1,14 +1,16 @@
 // import expect from 'expect';
 import deepFreeze from 'deep-freeze';
 import {
-    VOTE_UP,
-    VOTE_DOWN,
+    /* VOTE_UP,
+    VOTE_DOWN,*/
     SORT_NEWEST_POSTS,
     SORT_POPULAR_POSTS,
     FILTER_POSTS,
     LOADING_POSTS_BEGIN,
     LOADING_POSTS_END,
-    UPDATE_POSTS } from './actions';
+    UPDATE_POSTS,
+    UPDATE_VOTES,
+  } from './actions';
 
 const postListPageInitialState = {
   loadingResource: false,
@@ -19,7 +21,7 @@ const postListPageInitialState = {
 // reducer
 export default (state = postListPageInitialState, action) => {
   switch (action.type) {
-    case VOTE_UP: {
+    /*case VOTE_UP: {
       const editedPosts = state.posts.map((post) => {
         if (Number(post.id) !== Number(action.payload.id)) return post;
 
@@ -28,7 +30,7 @@ export default (state = postListPageInitialState, action) => {
 
       return { ...state, posts: editedPosts };
     }
-    case VOTE_DOWN:
+    case VOTE_DOWN: {
       const editedPosts = state.posts.map((post) => {
         if (Number(post.id) !== Number(action.payload.id)) return post;
 
@@ -36,6 +38,19 @@ export default (state = postListPageInitialState, action) => {
       });
 
       return { ...state, posts: editedPosts };
+    }*/
+    case UPDATE_VOTES: {
+      console.log(action.payload);
+      const editedPosts = state.posts.map((post) => {
+        console.log(post.post_id);
+        if (post.post_id !== action.payload[0].post_id) return post;
+        console.log('fired');
+
+        return { ...post, votes: action.payload[0].votes };
+      });
+
+      return { ...state, posts: editedPosts };
+    }
     case SORT_POPULAR_POSTS:
       const sortPopular = state.posts.slice().sort((a, b) => (
         Number(b.votes) - Number(a.votes)
