@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import MenuItem from 'material-ui/MenuItem';
 import NewPost from '../../components/NewPost';
 import { fetchCategoriesList } from '../../containers/Categories/actions';
-// import styles from './styles.css'
+// import styles from './styles.css';
 
 class CreatePost extends Component {
   componentWillMount() {

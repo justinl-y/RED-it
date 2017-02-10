@@ -9,9 +9,11 @@ import {
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Provider } from 'react-redux';
-import './styles/index.css';
 import store from './redux/store';
+
+import './styles/index.css';
 import muiTheme from './styles/mui-theme';
+
 import MainLayout from './layouts/MainLayout';
 import App from './containers/App';
 import ProcessLogin from './containers/ProcessLogin';
