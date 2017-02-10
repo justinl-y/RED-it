@@ -40,7 +40,9 @@ export default function APIRoutes(router){
                       where 
                         category_id = $1
                       group by
-	                      posts.post_id;`;
+	                      posts.post_id
+                      order by
+                        posts.post_id asc;`;
 
       database.query(querySQL, [req.params.categoryId]).then((response) => {
       res.json(response.rows);

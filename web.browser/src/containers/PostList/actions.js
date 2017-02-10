@@ -1,8 +1,6 @@
 import { getJSON, postJSON } from '../../lib/fetch-json'; // , putJSON, deleteJSON
 
 // action type
-/* export const VOTE_UP = 'VOTE_UP';
-export const VOTE_DOWN = 'VOTE_DOWN';*/
 export const UPDATE_VOTES = 'UPDATE_VOTES';
 
 export const ADD_POST = 'ADD_POST';
@@ -17,16 +15,6 @@ export const LOADING_POSTS_END = 'LOADING_POSTS_END';
 export const UPDATE_POSTS = 'UPDATE_POSTS';
 
 // action creator
-/* export const voteUp = id => ({
-  type: VOTE_UP,
-  payload: { id },
-});
-
-export const voteDown = id => ({
-  type: VOTE_DOWN,
-  payload: { id },
-});*/
-
 const updateVotes = postVote => ({
   type: UPDATE_VOTES,
   payload: postVote,
