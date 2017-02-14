@@ -1,0 +1,19 @@
+.category {
+  text-decoration: none;
+}
+
+.category a:link {
+    color: black;
+}
+
+.category a:visited {
+    color: black;
+}
+
+.category a:hover {
+    color: grey;
+}
+
+.category a:active {
+    color: black;
+}
