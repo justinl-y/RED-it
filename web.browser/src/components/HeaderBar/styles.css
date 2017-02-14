@@ -1,0 +1,29 @@
+/* .header-bar a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: white !important;
+} */
+
+/* .header-bar a:link {
+    color: white;
+}
+
+.header-bar a:visited {
+    color: white;
+}
+
+ .header-bar a:hover {
+    color: white;
+} 
+
+.header-bar a:active {
+    color: white;
+} */
+
+.home-icon {
+    color: white !important;
+}
+
+.menu-item {
+    color: white !important;
+}
