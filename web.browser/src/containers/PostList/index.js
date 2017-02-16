@@ -60,7 +60,6 @@ const mapDispatchToProps = dispatch => ({
     dispatch(postsSortPopular());
   },
   updateVoteUp: (vote) => {
-    // dispatch(voteUp(id));
     dispatch(updatePostVote(vote));
   },
 });

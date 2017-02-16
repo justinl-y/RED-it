@@ -10,11 +10,13 @@ class Post extends Component {
     super(props);
   }*/
 
-  handleClick() {
+  handleClick(e) {
     // const login = this.getCleanFormData();
     // if (!login) return;
+    e.preventDefault();
 
     const vote = { postId: this.props.postId, userId: this.props.userId };
+
     this.props.onUpVoteClick({ vote });
   }
 
@@ -40,7 +42,7 @@ class Post extends Component {
               <FlatButton
                 className={styles['post-vote-button']}
                 // onClick={(e) => { e.preventDefault(); onUpVoteClick(id); }}
-                onClick={(e) => { e.preventDefault(); this.handleClick(); }}
+                onClick={e => this.handleClick(e)}
               >
                 &#42779; Vote Up
               </FlatButton>
