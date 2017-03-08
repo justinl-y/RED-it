@@ -26,7 +26,7 @@ const updateCategoriesList = categories => ({
 
 export const fetchCategories = () => {
   return (dispatch) => {
-    // Async
+    // async
     dispatch(loadResource());
 
     getJSON('http://localhost:8000/api/weeks').then((category) => {
@@ -38,7 +38,7 @@ export const fetchCategories = () => {
 
 export const fetchCategoriesList = () => {
   return (dispatch) => {
-    // Async
+    // async
     dispatch(loadResource());
 
     getJSON('http://localhost:8000/api/categories').then((category) => {

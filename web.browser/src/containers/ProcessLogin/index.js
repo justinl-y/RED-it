@@ -5,7 +5,7 @@ import Login from '../../components/Login';
 import SignUp from '../../components/SignUp';
 import { userVerifyLogin, userSignUp, registerUser } from './actions';
 
-class PostList extends Component {
+class ProcesLogin extends Component {
   componentWillUpdate() {
     if (!this.props.userLoggedIn) {
       browserHistory.push('/');
@@ -50,7 +50,7 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-PostList.propTypes = {
+ProcesLogin.propTypes = {
   userToSignUp: PropTypes.bool.isRequired,
   verifyLogin: PropTypes.func.isRequired,
   signUpUser: PropTypes.func.isRequired,
@@ -61,4 +61,4 @@ PostList.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(PostList);
+)(ProcesLogin);
