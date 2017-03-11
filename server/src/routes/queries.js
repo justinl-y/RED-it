@@ -72,7 +72,7 @@ export const selectPostVote = (postId) => {
             post_id = '${postId}';`
 };
 
-export const insertPost = (title, link, date, description, user_id, category_id) => {
+export const insertPost = (title, description, link, categoryId, userId, postDate) => {
   return `insert into 
             posts 
               (title,
@@ -80,12 +80,14 @@ export const insertPost = (title, link, date, description, user_id, category_id)
               date,
               description,
               user_id,
-              category_id)
+              category_id,
+              votes)
             values 
               ('${title}',
               '${link}',
-              '${date}',
+              '${postDate}',
               '${description}',
-              '${user_id}',
-              '${category_id}');`
+              '${userId}',
+              '${categoryId}',
+              0);`
 };

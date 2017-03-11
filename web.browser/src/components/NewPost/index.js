@@ -77,22 +77,49 @@ class NewPost extends Gandalf {
     super(fields, selectControlItems);
   }
 
+  formatDate() {
+    const today = new Date();
+    let day = today.getDate();
+    let month = today.getMonth() + 1;
+    const year = today.getFullYear();
+
+    if (day < 10) {
+      day = `0${day}`;
+    }
+
+    if (month < 10) {
+      month = `0${month}`;
+    }
+
+    return `${year}-${month}-${day}`;
+  }
+
   handleSelectChange = (
-    (event, index, selectFieldValue) => (this.setState({ selectFieldValue }))
+    (e, index, categoryId) => {
+      e.preventDefault();
+      this.setState({ categoryId });
+    }
   );
 
-  handleSubmit() {
-    const data = this.getCleanFormData();
+  handleSubmit(e) {
+    e.preventDefault();
 
-    if (!data) return;
-    console.log(data);
+    const post = this.getCleanFormData();
+
+    if (!post) return;
+
+    // create combined post object
+    const categoryId = this.state.categoryId;
+    const userId = this.props.userId;
+    const postDate = this.formatDate();
+    const fullPost = { ...post, categoryId, userId, postDate };
 
     // submit to redux
-    console.log('Going to redux');
+    this.props.onSubmitClick({ post: fullPost });
   }
 
   render() {
-    const { selectFieldValue } = this.state;
+    const { categoryId } = this.state;
     const fields = this.state.fields;
 
     return (
@@ -115,7 +142,7 @@ class NewPost extends Gandalf {
                   style={{
                     width: '100%',
                   }}
-                  value={selectFieldValue}
+                  value={categoryId}
                   onChange={this.handleSelectChange}
                   floatingLabelText="Select a lesson"
                 >
@@ -131,7 +158,7 @@ class NewPost extends Gandalf {
                   backgroundColor="rgb(183, 28, 28)"
                   labelColor="white"
                   label="Submit"
-                  onClick={(e) => { e.preventDefault(); this.handleSubmit(); }}
+                  onClick={(e) => { this.handleSubmit(e); }}
                 />
               </form>
             </CardText>
@@ -144,8 +171,7 @@ class NewPost extends Gandalf {
 
 NewPost.propTypes = {
   selectControlItems: PropTypes.arrayOf(PropTypes.object).isRequired,
-  // selectFieldValue: PropTypes.arrayOf(PropTypes.object).isRequired,
-  // handleSelectChange: PropTypes.func.isRequired,
+  onSubmitClick: PropTypes.func.isRequired,
 };
 
 export default NewPost;

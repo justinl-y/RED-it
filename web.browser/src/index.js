@@ -17,7 +17,8 @@ import muiTheme from './styles/mui-theme';
 import MainLayout from './layouts/MainLayout';
 import App from './containers/App';
 import ProcessLogin from './containers/ProcessLogin';
-import CreatePost from './containers/CreatePost';
+import ProcessPost from './containers/ProcessPost';
+// import CreatePost from './containers/CreatePost';
 import PostList from './containers/PostList';
 import Welcome from './containers/Welcome';
 import NotFound from './components/NotFound';
@@ -35,7 +36,7 @@ ReactDOM.render(
           <Route path="/" component={App}>
             <IndexRoute component={Welcome} />
             <Route path="/posts">
-              <Route path="new" component={CreatePost} />
+              <Route path="new" component={ProcessPost} />
               <Route path=":category" component={PostList} />
             </Route>
           </Route>
