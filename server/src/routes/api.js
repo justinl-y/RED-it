@@ -81,28 +81,43 @@ export default function APIRoutes(router){
     const { userId, postId } = req.body.vote;
     
     try {
-      await insertVote(userId, postId);
+      try {
+        await insertVote(userId, postId)
+      } catch (err) {
+        if (err.code === '23505') {
+          res.status(409).json({ response: false });
+        } else {
+          throw err;
+        }
+      }
+      
       await updateVote(postId);
       const select = await selectVote(postId);
       
       res.status(200).send(select.rows);
     } catch(err) {
-      if (err.code === '23505') {
-        res.status(409).json({ response: false });
-      } else {
-        // res.status(500).send(err);
-        res.status(500).json({ response: false })
-      }
+      // res.status(500).send(err);
+      res.status(500).json({ response: false })
+    }
+  });
+
+  // post post end point
+  router.get('/post/:postId', async function(req, res) {
+    try {
+      await database.query(selectPost, [req.params.postId]);
+      res.status(200).json(response.rows);
+    } catch(err) {
+      res.status(500).json({err});
     }
   });
   
+  // post post end point
   router.post('/post', async function(req, res) {
+    console.log('put' + req.body.post);
+
     const { title, description, link, tag, categoryId, userId, postDate } = req.body.post;
 
-    console.log(req.body.post);
-
     try {
-      console.log(title, description, link, tag, categoryId, userId, postDate);
       await database.query(insertPost(title, description, link, categoryId, userId, postDate), []);
       res.status(200).json({ success: true });
     } catch(err) {
@@ -110,7 +125,31 @@ export default function APIRoutes(router){
     }
   });
 
-  // post post end point
+  // post put end point
+  router.put('/post', async function(req, res) {
+    const { postId, title, description, link, tag, categoryId, userId, postDate } = req.body.post;
+
+    try {
+      await database.query(updatePost(postId, title, description, link, categoryId, userId, postDate), []);
+      res.status(200).json({ success: true });
+    } catch(err) {
+      res.status(500).json({err});
+    }
+  });
+
+  // post delete end point
+  router.delete('/post', async function(req, res) {
+    const { postId } = req.body.post;
+
+    try {
+      await database.query(deletePost(postId), []);
+      res.status(200).json({ success: true });
+    } catch(err) {
+      res.status(500).json({err});
+    }
+  });
+
+  
   /*router.post('/post', (req, res) => {
     // console.log(req.body.post);
 

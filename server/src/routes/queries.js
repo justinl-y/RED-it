@@ -72,6 +72,20 @@ export const selectPostVote = (postId) => {
             post_id = '${postId}';`
 };
 
+export const selectPost = 
+  `select
+      post_id,
+      title,
+      link,
+      date,
+      description,
+      user_id,
+      category_id,
+    from
+      posts
+    where
+      post_id = $1;`;
+
 export const insertPost = (title, description, link, categoryId, userId, postDate) => {
   return `insert into 
             posts 
@@ -90,4 +104,23 @@ export const insertPost = (title, description, link, categoryId, userId, postDat
               '${userId}',
               '${categoryId}',
               0);`
+};
+
+export const updatePost = (postId, title, description, link, categoryId) => {
+  return `update
+            posts
+          set 
+            title = '${title}',
+            link = ${link}',
+            description = '${description}',
+            category_id = '${categoryId}',
+          where
+            post_id = '${postId}';`
+};
+
+export const deletePost = (postId) => {
+  return `delete from
+            posts
+          where
+            post_id = '${postId}';`
 };

@@ -1,12 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-// import { browserHistory } from 'react-router';
-
 import MenuItem from 'material-ui/MenuItem';
-import NewPost from '../../components/NewPost';
+import PostForm from '../../components/PostForm';
 import { fetchCategoriesList } from '../../containers/Categories/actions';
-
-import { insertPost } from './actions';
+import { insertPost, updatePost } from './actions';
 
 class ProcessPost extends Component {
   componentWillMount() {
@@ -24,19 +21,25 @@ class ProcessPost extends Component {
   }
 
   render() {
-    const { editPost } = this.props;
+    const { editPost, title } = this.props;
 
     return (
       <div>
         {
           !editPost ?
-            <NewPost
+            <PostForm
+              userId={this.props.userId}
+              title={title}
               selectControlItems={this.renderControlItems()}
               onSubmitClick={this.props.insertPost}
-              userId={this.props.userId}
             />
           :
-           null
+            <PostForm
+              userId={this.props.userId}
+              title={title}
+              selectControlItems={this.renderControlItems()}
+              onSubmitClick={this.props.updatePost}
+            />
         }
       </div>
     );
@@ -47,6 +50,7 @@ const mapStateToProps = state => ({
   categories: state.appData.categories.categoriesList,
   editPost: state.appData.processPost.editPost,
   userId: state.appData.processLogin.userId,
+  title: state.appData.processPost.title,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -56,6 +60,9 @@ const mapDispatchToProps = dispatch => ({
   insertPost: (post) => {
     dispatch(insertPost(post));
   },
+  updatePost: (post) => {
+    dispatch(updatePost(post));
+  },
 });
 
 ProcessPost.propTypes = {
@@ -63,7 +70,9 @@ ProcessPost.propTypes = {
   fetchCategoriesList: PropTypes.func.isRequired,
   editPost: PropTypes.bool.isRequired,
   insertPost: PropTypes.func.isRequired,
+  updatePost: PropTypes.func.isRequired,
   userId: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default connect(

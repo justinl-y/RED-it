@@ -1,54 +1,53 @@
-import { postJSON } from '../../lib/fetch-json';
+import { postJSON, putJSON, deleteJSON } from '../../lib/fetch-json';
 
 // action type
-export const POST_ADDED = 'POST_ADDED';
-export const POST_EDITED = 'POST_EDITED';
+export const POST_EDIT_TRUE = 'POST_EDIT_TRUE';
+export const POST_EDIT_FALSE = 'POST_EDIT_FALSE';
 
 // action creator
 export const postAdded = result => ({
-  type: POST_ADDED,
+  type: POST_EDIT_FALSE,
   payload: result,
 });
 
 export const postEdited = result => ({
-  type: POST_EDITED,
+  type: POST_EDIT_TRUE,
   payload: result,
 });
 
-/* export const userVerifyLogin = (login) => {
-  const loginString = JSON.stringify(login);
+export const postDeleted = id => ({
+  type: POST_EDIT_FALSE,
+  payload: id,
+});
 
-  return (dispatch) => {
-    // dispatch(loadResource());
-    postJSON('http://localhost:8000/auth/login', loginString).then((result) => {
-      dispatch(updateLogin(result));
-      // dispatch(doneLoading());
-    });
-  };
-};*/
-
+// thunks
 export const insertPost = (post) => {
   const postString = JSON.stringify(post);
 
-  // console.log(postString);
-
   return (dispatch) => {
-    // dispatch(loadResource());
-    postJSON('http://localhost:8000/api/post', postString).then((result) => {
-      dispatch(postAdded(result));
-      // dispatch(doneLoading());
-    });
+    postJSON('http://localhost:8000/api/post', postString)
+      .then((result) => {
+        dispatch(postAdded(result));
+      });
   };
 };
 
-/* export const editPost = (register) => {
-  const loginString = JSON.stringify(register);
+/* export const editPost = (post) => {
+  const postString = JSON.stringify(post);
 
   return (dispatch) => {
-    // dispatch(loadResource());
-    postJSON('http://localhost:8000/auth/register', loginString).then((result) => {
-      dispatch(userSignUpLogin(result));
-      // dispatch(doneLoading());
-    });
+    patchJSON('http://localhost:8000/auth/post', postString)
+      .then((result) => {
+        dispatch(postEdited(result));
+      });
   };
-}; */
+};*/
+
+export const deletePost = (id) => {
+  return (dispatch) => {
+    deleteJSON('http://localhost:8000/auth/post', id)
+      .then((result) => {
+        dispatch(postDeleted(result));
+      });
+  };
+};

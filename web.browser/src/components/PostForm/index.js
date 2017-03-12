@@ -7,8 +7,9 @@ import SelectField from 'material-ui/SelectField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Gandalf from 'gandalf-validator';
 import styles from './styles.css';
+// import { browserHistory } from 'react-router';
 
-class NewPost extends Gandalf {
+class PostForm extends Gandalf {
   constructor({ selectControlItems }) {
     const fields = {
       title: {
@@ -77,7 +78,7 @@ class NewPost extends Gandalf {
     super(fields, selectControlItems);
   }
 
-  formatDate() {
+  formatDate = () => {
     const today = new Date();
     let day = today.getDate();
     let month = today.getMonth() + 1;
@@ -131,7 +132,7 @@ class NewPost extends Gandalf {
         >
           <Paper>
             <Toolbar>
-              <ToolbarTitle text="Share a new link" />
+              <ToolbarTitle text={this.props.title} />
             </Toolbar>
             <CardText>
               <form>
@@ -144,7 +145,7 @@ class NewPost extends Gandalf {
                   }}
                   value={categoryId}
                   onChange={this.handleSelectChange}
-                  floatingLabelText="Select a lesson"
+                  floatingLabelText="Select a category"
                 >
                   {this.props.selectControlItems}
                 </SelectField>
@@ -169,12 +170,12 @@ class NewPost extends Gandalf {
   }
 }
 
-NewPost.propTypes = {
+PostForm.propTypes = {
   selectControlItems: PropTypes.arrayOf(PropTypes.object).isRequired,
   onSubmitClick: PropTypes.func.isRequired,
 };
 
-export default NewPost;
+export default PostForm;
 
 /*
 <TextField
