@@ -32,16 +32,16 @@ export const insertPost = (post) => {
   };
 };
 
-/* export const editPost = (post) => {
+export const editPost = (post) => {
   const postString = JSON.stringify(post);
 
   return (dispatch) => {
-    patchJSON('http://localhost:8000/auth/post', postString)
+    putJSON('http://localhost:8000/auth/post', postString)
       .then((result) => {
         dispatch(postEdited(result));
       });
   };
-};*/
+};
 
 export const deletePost = (id) => {
   return (dispatch) => {

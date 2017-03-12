@@ -7,7 +7,7 @@ import SelectField from 'material-ui/SelectField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Gandalf from 'gandalf-validator';
 import styles from './styles.css';
-// import { browserHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 
 class PostForm extends Gandalf {
   constructor({ selectControlItems }) {
@@ -117,6 +117,7 @@ class PostForm extends Gandalf {
 
     // submit to redux
     this.props.onSubmitClick({ post: fullPost });
+    browserHistory.push('/');
   }
 
   render() {

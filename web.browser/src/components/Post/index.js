@@ -4,15 +4,8 @@ import FlatButton from 'material-ui/FlatButton';
 import Chip from 'material-ui/Chip';
 import styles from './styles.css';
 
-// const Post = ({ id, title, link, description, votes, onUpVoteClick, tags, userId}) => (
 class Post extends Component {
-  /* constructor(props) {
-    super(props);
-  }*/
-
   handleClick(e) {
-    // const login = this.getCleanFormData();
-    // if (!login) return;
     e.preventDefault();
 
     const vote = { postId: this.props.postId, userId: this.props.userId };

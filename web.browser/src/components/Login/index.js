@@ -9,7 +9,7 @@ import Gandalf from 'gandalf-validator';
 import styles from './styles.css';
 
 class Login extends Gandalf {
-  constructor({ onLoginClick, onSignUpClick }) {
+  constructor() {
     const fields = {
       email: {
         component: TextField,
@@ -39,10 +39,12 @@ class Login extends Gandalf {
       },
     };
 
-    super(fields, onLoginClick, onSignUpClick);
+    super(fields);
   }
 
-  handleSubmit() {
+  handleSubmit(e) {
+    e.preventDefault();
+
     const login = this.getCleanFormData();
     if (!login) return;
     this.props.onLoginClick({ login });
@@ -69,7 +71,7 @@ class Login extends Gandalf {
                 <RaisedButton
                   backgroundColor="rgb(183, 28, 28)"
                   labelColor="white"
-                  onClick={(e) => { e.preventDefault(); this.handleSubmit(); }}
+                  onClick={(e) => { this.handleSubmit(e); }}
                   label="Login"
                 />
                 <FlatButton

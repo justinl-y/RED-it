@@ -113,8 +113,6 @@ export default function APIRoutes(router){
   
   // post post end point
   router.post('/post', async function(req, res) {
-    console.log('put' + req.body.post);
-
     const { title, description, link, tag, categoryId, userId, postDate } = req.body.post;
 
     try {
@@ -149,22 +147,5 @@ export default function APIRoutes(router){
     }
   });
 
-  
-  /*router.post('/post', (req, res) => {
-    // console.log(req.body.post);
-
-    const { title, description, link, tag, categoryId, userId, postDate } = req.body.post;
-
-    // console.log(req.body.post);
-
-    database.query(insertPost(title, description, link, categoryId, userId, postDate), [])
-      .then((response) => {
-        //res.json(response.rows);
-        res.status(200).json({ success: true })
-      }).catch((err) => {
-        res.status(500).json({err})
-      })
-  });*/
-
   return router;
-}
+};
