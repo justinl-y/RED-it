@@ -6,9 +6,6 @@ import { postsSortNewest, postsSortPopular, updatePostVote } from './actions';
 import styles from './styles.css';
 
 class PostList extends Component {
-  componentWillMount() {
-  }
-
   renderPosts() {
     return this.props.posts.map(e => (
       <Post

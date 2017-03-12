@@ -76,9 +76,20 @@ class PostForm extends Gandalf {
     };
 
     super(fields, selectControlItems);
+
+    // this.formatDate = this.formatDate.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  handleSelectChange = (
+    (e, index, categoryId) => {
+      e.preventDefault();
+      this.setState({ categoryId });
+    }
+  );
+
   formatDate = () => {
+  // formatDate() {
     const today = new Date();
     let day = today.getDate();
     let month = today.getMonth() + 1;
@@ -95,14 +106,7 @@ class PostForm extends Gandalf {
     return `${year}-${month}-${day}`;
   }
 
-  handleSelectChange = (
-    (e, index, categoryId) => {
-      e.preventDefault();
-      this.setState({ categoryId });
-    }
-  );
-
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
 
     const post = this.getCleanFormData();
@@ -123,6 +127,7 @@ class PostForm extends Gandalf {
   render() {
     const { categoryId } = this.state;
     const fields = this.state.fields;
+    const { title } = this.props;
 
     return (
       <div className={styles['new-post']}>
@@ -133,7 +138,7 @@ class PostForm extends Gandalf {
         >
           <Paper>
             <Toolbar>
-              <ToolbarTitle text={this.props.title} />
+              <ToolbarTitle text={title} />
             </Toolbar>
             <CardText>
               <form>
@@ -160,7 +165,7 @@ class PostForm extends Gandalf {
                   backgroundColor="rgb(183, 28, 28)"
                   labelColor="white"
                   label="Submit"
-                  onClick={(e) => { this.handleSubmit(e); }}
+                  onClick={this.handleSubmit}
                 />
               </form>
             </CardText>

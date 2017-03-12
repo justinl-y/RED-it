@@ -32,7 +32,7 @@ const HeaderBar = ({ userLoggedIn, userLogout }) => (
                   >
                     <FlatButton
                       className={styles['menu-item']}
-                      label="Share a new link"
+                      label="Add A New Post"
                     />
                   </Link>
                   <Link

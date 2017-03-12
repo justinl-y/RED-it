@@ -40,14 +40,26 @@ class Login extends Gandalf {
     };
 
     super(fields);
+
+    this.handleLogin = this.handleLogin.bind(this);
+    this.handleSignUp = this.handleSignUp.bind(this);
   }
 
-  handleSubmit(e) {
+  // for login
+  handleLogin(e) {
     e.preventDefault();
 
     const login = this.getCleanFormData();
+
     if (!login) return;
     this.props.onLoginClick({ login });
+  }
+
+  // for signup
+  handleSignUp(e) {
+    e.preventDefault();
+
+    this.props.onSignUpClick();
   }
 
   render() {
@@ -71,11 +83,11 @@ class Login extends Gandalf {
                 <RaisedButton
                   backgroundColor="rgb(183, 28, 28)"
                   labelColor="white"
-                  onClick={(e) => { this.handleSubmit(e); }}
+                  onClick={this.handleLogin}
                   label="Login"
                 />
                 <FlatButton
-                  onClick={(e) => { e.preventDefault(); this.props.onSignUpClick(); }}
+                  onClick={this.handleSignUp}
                   label="Sign Up"
                 />
               </form>

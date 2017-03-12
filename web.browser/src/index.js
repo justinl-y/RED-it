@@ -18,9 +18,8 @@ import MainLayout from './layouts/MainLayout';
 import App from './containers/App';
 import ProcessLogin from './containers/ProcessLogin';
 import ProcessPost from './containers/ProcessPost';
-// import CreatePost from './containers/CreatePost';
 import PostList from './containers/PostList';
-import Welcome from './containers/Welcome';
+import Welcome from './components/Welcome';
 import NotFound from './components/NotFound';
 
 // Needed for onTouchTap (Material UI)

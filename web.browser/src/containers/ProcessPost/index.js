@@ -6,6 +6,12 @@ import { fetchCategoriesList } from '../../containers/Categories/actions';
 import { insertPost, updatePost } from './actions';
 
 class ProcessPost extends Component {
+  constructor() {
+    super();
+
+    this.renderControlItems = this.renderControlItems.bind(this);
+  }
+
   componentWillMount() {
     this.props.fetchCategoriesList();
   }

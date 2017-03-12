@@ -62,9 +62,13 @@ class SignUp extends Gandalf {
     };
 
     super(fields, onSignUpLoginClick);
+
+    this.handleSignUp = this.handleSignUp.bind(this);
   }
 
-  handleSubmit() {
+  handleSignUp(e) {
+    e.preventDefault();
+
     const register = this.getCleanFormData();
 
     if (!register) return;
@@ -97,7 +101,7 @@ class SignUp extends Gandalf {
                   backgroundColor="rgb(183, 28, 28)"
                   labelColor="white"
                   label="Login"
-                  onClick={(e) => { e.preventDefault(); this.handleSubmit(); }}
+                  onClick={this.handleSignUp}
                 />
               </form>
             </CardText>
