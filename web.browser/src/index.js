@@ -4,7 +4,7 @@ import {
    Router,
    Route,
    IndexRoute,
-   browserHistory, // Miss, Match, BrowserRouter,
+   browserHistory,
 } from 'react-router';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -47,23 +47,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root'),
 );
-
-/* ReactDOM.render(
-  <Provider store={store}>
-    <MuiThemeProvider muiTheme={muiTheme}>
-      <Router history={browserHistory}>
-        <Route path="/" component={MainLayout} />
-      </Router>
-    </MuiThemeProvider>
-  </Provider>,
-  document.getElementById('root'),
-);*/
-
-/* <Match pattern="/posts/new" component={CreatePost} />
-<Match path="/posts" component={PostList} />
-<Match exactly path="/" component={MainLayout} />
-<Miss
-  render={() => (
-    <div>404!</div>
-  )}
-/> */

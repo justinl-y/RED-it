@@ -55,7 +55,7 @@ export default function(router) {
 
       }).catch((error) => {
         res.status(500).json({ error })
-      });        
+      });
   });
 
   router.post('/register', (req, res) => {

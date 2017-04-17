@@ -79,10 +79,10 @@ export const updatePostVote = (vote) => {
 
   return (dispatch) => {
     // dispatch(loadResource());
-
-    postJSON('http://localhost:8000/api/votes', voteString).then((response) => {
-      dispatch(updateVotes(response));
-      // dispatch(doneLoading());
-    });
+    postJSON('http://localhost:8000/api/votes', voteString)
+      .then((response) => {
+        dispatch(updateVotes(response));
+        // dispatch(doneLoading());
+      });
   };
 };
