@@ -4,7 +4,7 @@
 
 The purpose of this project was to make a full-stack JavaScript component based web application, 
 using  with React and Redux as client side technologies connecting to a REST api served through 
-Express to a persistance layer of a PostgresSQL database.
+Express to a persistance layer of a PostgreSQL database.
 
 This project was designed to mimic a reddit topic posting application.
 
@@ -14,7 +14,7 @@ This project was designed to mimic a reddit topic posting application.
 - Redux
 - Express
 - REST api
-- PostgresSQL
+- PostgreSQL
 - Dev tools (Webpack, ESLint, Babel)
 
 ## Personal Learnings
@@ -22,10 +22,10 @@ The development of this project allowed me to explore React and Redux as develop
 libraries for building client-side component-based single page applications.
 
 I also learned how to set up an express server and construct REST end points and build 
-a PostgresSQL database.
+a PostgreSQL database.
 
 In addition I also learned how to initiate and setup a project development environment 
-using tools such as javaScript linters and babel transpilers.
+using tools such as Webpack, JavaScript linters and babel transpilers.
 
 ## ⚛️ Installation
 
