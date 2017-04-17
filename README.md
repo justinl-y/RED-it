@@ -2,26 +2,32 @@
 
 <img src="./screenshot.png" alt="Image of Red it app" width="auto" height="500">
 
-The purpose of this project was to make a React, component based web application using Redux to manage data state within the program.
+The purpose of this project was to make a full-stack JavaScript component based web application, 
+using  with React and Redux as client side technologies connecting to a REST api served through 
+Express to a persistance layer of a PostgresSQL database.
 
-This project was designed to mimic a reddit post application.
+This project was designed to mimic a reddit topic posting application.
 
 ## Technologies Used
+- Javascript
 - React
 - Redux
-- Javascript
-- Webpack
-- ESLint
-- Babel
+- Express
+- REST api
+- PostgresSQL
+- Dev tools (Webpack, ESLint, Babel)
 
 ## Personal Learnings
-The development of this project allowed me to explore React and Redux as a development 
-framework for building component-based single page applications.
+The development of this project allowed me to explore React and Redux as development 
+libraries for building client-side component-based single page applications.
 
-I also learned how to initiate and setup a project development environment 
+I also learned how to set up an express server and construct REST end points and build 
+a PostgresSQL database.
+
+In addition I also learned how to initiate and setup a project development environment 
 using tools such as javaScript linters and babel transpilers.
 
-## ⚛️ RED React Seed Application
+## ⚛️ Installation
 
 #### Install
 - Clone or download this repository
