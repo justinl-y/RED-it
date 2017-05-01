@@ -1,6 +1,6 @@
 # RED it
 
-<img src="./screenshot.png" alt="Image of Red it app" width="auto" height="500">
+<img align="center" src="./screenshot.png" alt="Image of Red it app" width="auto" height="500">
 
 The purpose of this project was to make a full-stack JavaScript component based web application, 
 using  with React and Redux as client side technologies connecting to a REST api served through 
