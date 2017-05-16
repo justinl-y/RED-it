@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:inspect": "NODE_ENV=development nodemon --debug index.js"
+    "start:debug": "NODE_ENV=development nodemon --inspect index.js"
   },
   "keywords": [],
   "author": "MK <mackenzie@redacademy.com> (http://mackenziekieran.com)",

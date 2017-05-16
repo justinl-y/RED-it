@@ -11,7 +11,7 @@ import { fetchCategories } from './actions';
 import styles from './styles.css';
 
 class Categories extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchCategories();
   }
 

@@ -12,7 +12,7 @@ class ProcessPost extends Component {
     this.renderControlItems = this.renderControlItems.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchCategoriesList();
   }
 
