@@ -1,6 +1,8 @@
 {
   "name": "web.browser",
   "version": "0.1.0",
+  "description": "React client for Redit",
+  "author": "JLY",
   "private": true,
   "devDependencies": {
     "babel-eslint": "^7.1.1",
@@ -31,26 +33,5 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "parser": "babel-eslint",
-    "extends": "airbnb",
-    "env": {
-      "browser": true,
-      "node": true
-    },
-    "plugins": [
-      "import",
-      "react",
-      "jsx-a11y"
-    ],
-    "rules": {
-      "max-len": 0,
-      "global-require": 0,
-      "no-case-declarations": 0,
-      "no-param-reassign": 1,
-      "react/prefer-stateless-function": 0,
-      "react/jsx-no-bind": 0
-    }
   }
 }

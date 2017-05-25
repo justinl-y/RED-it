@@ -1,4 +1,4 @@
-export const selectPostsByCategoryID = 
+export const selectPostsByCategoryID =
   `select
     posts.post_id,
     posts.title,
@@ -17,7 +17,7 @@ export const selectPostsByCategoryID =
   order by
     posts.post_id asc;`;
 
-export const selectWeeks = 
+export const selectWeeks =
   `select
     weeks.week_id,
     weeks.title,
@@ -30,7 +30,7 @@ export const selectWeeks =
   order by
     weeks.title asc;`;
 
-export const selectCategories = 
+export const selectCategories =
   `select
     category_id,
     title
@@ -39,40 +39,40 @@ export const selectCategories =
   order by
     title asc;`;
 
-export const insertPostVote = (userId, postId) => {
-  return `insert into
-            user_post_votes
-              (
-                user_id,
-                post_id
-              )
-              values
-              (
-                '${userId}',
-                '${postId}'
-              );`;
-};
+export const insertPostVote = (userId, postId) => (
+  `insert into
+      user_post_votes
+        (
+          user_id,
+          post_id
+        )
+        values
+        (
+          '${userId}',
+          '${postId}'
+        );`
+);
 
-export const updatePostVote = (postId) => {
-  return `update
-            posts
-          set
-            votes = votes + 1
-          where
-            post_id = '${postId}';`;
-};
+export const updatePostVote = postId => (
+  `update
+      posts
+    set
+      votes = votes + 1
+    where
+      post_id = '${postId}';`
+);
 
-export const selectPostVote = (postId) => {
-  return `select
-            post_id,
-            votes 
-          from 
-            posts 
-          where
-            post_id = '${postId}';`
-};
+export const selectPostVote = postId => (
+  `select
+      post_id,
+      votes 
+    from 
+      posts 
+    where
+      post_id = '${postId}';`
+);
 
-export const selectPost = 
+export const selectPost =
   `select
       post_id,
       title,
@@ -86,41 +86,41 @@ export const selectPost =
     where
       post_id = $1;`;
 
-export const insertPost = (title, description, link, categoryId, userId, postDate) => {
-  return `insert into 
-            posts 
-              (title,
-              link,
-              date,
-              description,
-              user_id,
-              category_id,
-              votes)
-            values 
-              ('${title}',
-              '${link}',
-              '${postDate}',
-              '${description}',
-              '${userId}',
-              '${categoryId}',
-              0);`
-};
+export const insertPost = (title, description, link, categoryId, userId, postDate) => (
+  `insert into 
+      posts 
+        (title,
+        link,
+        date,
+        description,
+        user_id,
+        category_id,
+        votes)
+      values 
+        ('${title}',
+        '${link}',
+        '${postDate}',
+        '${description}',
+        '${userId}',
+        '${categoryId}',
+        0);`
+);
 
-export const updatePost = (postId, title, description, link, categoryId) => {
-  return `update
-            posts
-          set 
-            title = '${title}',
-            link = ${link}',
-            description = '${description}',
-            category_id = '${categoryId}',
-          where
-            post_id = '${postId}';`
-};
+export const updatePost = (postId, title, description, link, categoryId) => (
+  `update
+      posts
+    set 
+      title = '${title}',
+      link = ${link}',
+      description = '${description}',
+      category_id = '${categoryId}',
+    where
+      post_id = '${postId}';`
+);
 
-export const deletePost = (postId) => {
-  return `delete from
-            posts
-          where
-            post_id = '${postId}';`
-};
+export const deletePost = postId => (
+  `delete from
+      posts
+    where
+      post_id = '${postId}';`
+);

@@ -12,7 +12,7 @@ const app = express();
 
 const router = express.Router({
   mergeParams: true,
-})
+});
 
 app.use('/auth', AUTHRoutes(router));
 app.use('/api', APIRoutes(router));

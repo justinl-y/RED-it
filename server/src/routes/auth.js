@@ -4,15 +4,16 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import cookieParser from 'cookie-parser';
 
-import database from '../database/db';
 import config from '../../config';
 import { SESSION_COOKIE } from '../app';
+import database from '../database/db';
 
-export default function(router) {
+export default (router) => {
   router.use(cors({
     origin: ['http://localhost:3000'], // origin: ['http://localhost:8000'], //can change to 8000 on deploy
-    credentials: true
+    credentials: true,
   }));
+
   router.use(bodyParser.json());
   router.use(cookieParser());
 
@@ -27,9 +28,8 @@ export default function(router) {
                       where
                         email like '${email}';`;
 
-     database.query(querySQL, [])
+    database.query(querySQL, [])
       .then((response) => {
-
         // check for existing user data
         if (response.rows.length > 0) {
           // decrypt password
@@ -37,7 +37,7 @@ export default function(router) {
 
           if (decryptedPassword) {
             // create session cookie
-            const sessionUser = { email: email };
+            const sessionUser = { email };
             const JWT = jwt.sign(sessionUser, config.get('APP_SECRET'));
 
             res.status(200).cookie(SESSION_COOKIE, JWT, {
@@ -45,16 +45,15 @@ export default function(router) {
               secure: false,
               maxAge: 7200000,
               httpOnly: true,
-            }).json({ response: true, userId: response.rows[0].user_id })
+            }).json({ response: true, userId: response.rows[0].user_id });
           } else {
             res.status(200).json({ response: false });
           }
         } else {
           res.status(200).json({ response: false });
         }
-
       }).catch((error) => {
-        res.status(500).json({ error })
+        res.status(500).json({ error });
       });
   });
 
@@ -63,9 +62,9 @@ export default function(router) {
     const { firstName, lastName, email, password } = req.body.register;
 
     // encrypt password and save new user to database
-      bcrypt.genSalt(5, function(err, saltResult) {
-      bcrypt.hash(password, saltResult, function(err, hash) {
-        //define sql
+    bcrypt.genSalt(5, (err, saltResult) => {
+      bcrypt.hash(password, saltResult, (hash) => {
+        // define sql
         const querySQL = `insert into
                             users
                             (
@@ -81,12 +80,12 @@ export default function(router) {
                               '${email}',
                               '${hash}'
                             ) returning user_id;`;
-        
+
         // execute query
         database.query(querySQL, [])
           .then((response) => {
             // create and object with the user email
-            const sessionUser = { email: email };
+            const sessionUser = { email };
             // encrypt the object using jwt
             const JWT = jwt.sign(sessionUser, config.get('APP_SECRET'));
 
@@ -95,21 +94,21 @@ export default function(router) {
               secure: false,
               maxAge: 7200000,
               httpOnly: true,
-            }).json({ response: true, userId: response.rows[0].user_id })
+            }).json({ response: true, userId: response.rows[0].user_id });
           }).catch((error) => {
-              res.status(500).json({ error })
+            res.status(500).json({ error });
           });
       });
     });
   });
 
   router.get('/logout', (req, res) => {
-    if(req.cookies) {
+    if (req.cookies) {
       res.clearCookie(SESSION_COOKIE);
     }
 
     res.status(200).json({ response: false });
-  })
+  });
 
   return router;
-}
+};

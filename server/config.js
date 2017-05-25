@@ -1,5 +1,6 @@
 const nconf = require('nconf');
-const config = module.exports = nconf.argv()
+
+export const config = module.exports = nconf.argv()
 
 .env([
   'APP_SECRET',
@@ -8,10 +9,10 @@ const config = module.exports = nconf.argv()
   'POSTGRES_USER',
   'POSTGRES_PASSWORD',
   'POSTGRES_DBNAME',
-  'HTTPS'
+  'HTTPS',
 ])
 
 .defaults({
-  'STATIC_PATH': '../web.browser/build',
-  'HTTPS': (process.env.NODE_ENV === 'production')
-})
+  STATIC_PATH: '../web.browser/build',
+  HTTPS: (process.env.NODE_ENV === 'production'),
+});

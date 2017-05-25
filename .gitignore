@@ -7,3 +7,4 @@ web.browser/node_modules
 web.browser/build
 
 .vscode/
+yarn.lock
