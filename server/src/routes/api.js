@@ -16,7 +16,7 @@ import {
   updatePost,
   deletePostVote,
   deletePost,
-} from './queries';
+} from './queries-api';
 
 export default (router) => {
   router.use(cors({

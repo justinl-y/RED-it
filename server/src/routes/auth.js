@@ -7,6 +7,13 @@ import cookieParser from 'cookie-parser';
 import config from '../../config';
 import { SESSION_COOKIE } from '../app';
 import database from '../database/db';
+import {
+  selectUserDetails,
+  insertUserDetils,
+} from './queries-auth';
+
+const MAX_CONNECTION_TIME = 7200000;
+const APP_SECRET = config.get('APP_SECRET');
 
 export default (router) => {
   router.use(cors({
@@ -19,16 +26,8 @@ export default (router) => {
 
   router.post('/login', (req, res) => {
     const { email, password } = req.body.login;
-    // select username and password from database
-    const querySQL = `select
-                        user_id,
-                        password
-                      from
-                        users
-                      where
-                        email like '${email}';`;
 
-    database.query(querySQL, [])
+    database.query(selectUserDetails(email), [])
       .then((response) => {
         // check for existing user data
         if (response.rows.length > 0) {
@@ -38,12 +37,12 @@ export default (router) => {
           if (decryptedPassword) {
             // create session cookie
             const sessionUser = { email };
-            const JWT = jwt.sign(sessionUser, config.get('APP_SECRET'));
+            const JWT = jwt.sign(sessionUser, APP_SECRET);
 
             res.status(200).cookie(SESSION_COOKIE, JWT, {
               // secure: config.get('HTTPS'), // for production
               secure: false,
-              maxAge: 7200000,
+              maxAge: MAX_CONNECTION_TIME,
               httpOnly: true,
             }).json({ response: true, userId: response.rows[0].user_id });
           } else {
@@ -64,35 +63,17 @@ export default (router) => {
     // encrypt password and save new user to database
     bcrypt.genSalt(5, (err, saltResult) => {
       bcrypt.hash(password, saltResult, (err, hash) => {
-        // define sql
-        const querySQL = `insert into
-                            users
-                            (
-                              first_name,
-                              last_name,
-                              email,
-                              password
-                            )
-                            values
-                            (
-                              '${firstName}',
-                              '${lastName}',
-                              '${email}',
-                              '${hash}'
-                            ) returning user_id;`;
-
-        // execute query
-        database.query(querySQL, [])
+        database.query(insertUserDetils(firstName, lastName, email, hash), [])
           .then((response) => {
             // create and object with the user email
             const sessionUser = { email };
             // encrypt the object using jwt
-            const JWT = jwt.sign(sessionUser, config.get('APP_SECRET'));
+            const JWT = jwt.sign(sessionUser, APP_SECRET);
 
             res.status(200).cookie(SESSION_COOKIE, JWT, {
               // secure: config.get('HTTPS'), // for production
               secure: false,
-              maxAge: 7200000,
+              maxAge: MAX_CONNECTION_TIME,
               httpOnly: true,
             }).json({ response: true, userId: response.rows[0].user_id });
           }).catch((error) => {
