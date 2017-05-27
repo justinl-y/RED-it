@@ -85,23 +85,17 @@ export default (router) => {
     const { userId, postId } = req.body.vote;
 
     try {
-      try {
-        await insertVote(userId, postId);
-      } catch (err) {
-        if (err.code === '23505') {
-          res.status(409).json({ response: false });
-        } else {
-          throw err;
-        }
-      }
-
+      await insertVote(userId, postId);
       await updateVote(postId);
       const select = await selectVote(postId);
 
-      res.status(200).send(select.rows);
+      return res.status(200).send(select.rows);
     } catch (err) {
-      // res.status(500).send(err);
-      res.status(500).json({ response: false });
+      if (err.code === '23505') {
+        return res.status(409).json({ response: false });
+      }
+
+      return res.status(500).json({ err });
     }
   });
 

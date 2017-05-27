@@ -63,7 +63,7 @@ export default (router) => {
 
     // encrypt password and save new user to database
     bcrypt.genSalt(5, (err, saltResult) => {
-      bcrypt.hash(password, saltResult, (hash) => {
+      bcrypt.hash(password, saltResult, (err, hash) => {
         // define sql
         const querySQL = `insert into
                             users

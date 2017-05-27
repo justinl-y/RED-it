@@ -25,32 +25,26 @@ export const userVerifyLogin = (login) => {
   const loginString = JSON.stringify(login);
 
   return (dispatch) => {
-    // dispatch(loadResource());
     postJSON('http://localhost:8000/auth/login', loginString).then((result) => {
       dispatch(updateLogin(result));
-      // dispatch(doneLoading());
     });
   };
 };
 
-export const userLogout = () => {
-  return (dispatch) => {
-    // dispatch(loadResource());
+export const userLogout = () => (
+  (dispatch) => {
     getJSON('http://localhost:8000/auth/logout').then((result) => {
       dispatch(updateLogin(result));
-      // dispatch(doneLoading());
     });
-  };
-};
+  }
+);
 
 export const registerUser = (register) => {
   const loginString = JSON.stringify(register);
 
   return (dispatch) => {
-    // dispatch(loadResource());
     postJSON('http://localhost:8000/auth/register', loginString).then((result) => {
       dispatch(userSignUpLogin(result));
-      // dispatch(doneLoading());
     });
   };
 };
