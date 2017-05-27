@@ -1,13 +1,13 @@
 // FetchJson, a Fetch wrapper to aid in our sanity
 // Meant for use with JSON APIs and async/await
 
-const createErrorContext = (url, params) => {
-  return {
+const createErrorContext = (url, params) => (
+  {
     name: 'FetchJsonError',
     url,
     params,
-  };
-};
+  }
+);
 
 const fetchJSON = (url, params = { method: 'GET' }) => {
   const headers = { headers: new Headers({ 'Content-Type': 'application/json;charset=UTF-8' }), credentials: 'include' };

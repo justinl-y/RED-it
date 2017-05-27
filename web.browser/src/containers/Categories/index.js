@@ -1,18 +1,21 @@
 import React, { Component, PropTypes } from 'react';
-import AppBar from 'material-ui/AppBar';
-import Drawer from 'material-ui/Drawer';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+
+import AppBar from 'material-ui/AppBar';
+import Drawer from 'material-ui/Drawer';
 import IconButton from 'material-ui/IconButton';
 import CommunicationImportContacts from 'material-ui/svg-icons/communication/import-contacts';
+
 import Week from '../../components/Week';
+import { fetchCategoriesByWeek } from './actions';
 import { fetchPosts } from '../PostList/actions';
-import { fetchCategories } from './actions';
+
 import styles from './styles.css';
 
 class Categories extends Component {
   componentDidMount() {
-    this.props.fetchCategories();
+    this.props.fetchCategoriesByWeek();
   }
 
   renderCategories() {
@@ -52,13 +55,13 @@ class Categories extends Component {
 }
 
 const mapStateToProps = state => ({
-  categories: state.appData.categories.categories,
   loading: state.appData.categories.loadingResource,
+  categories: state.appData.categories.categories,
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchCategories: () => {
-    dispatch(fetchCategories());
+  fetchCategoriesByWeek: () => {
+    dispatch(fetchCategoriesByWeek());
   },
   fetchPosts: (id) => {
     dispatch(fetchPosts(id));
@@ -66,10 +69,10 @@ const mapDispatchToProps = dispatch => ({
 });
 
 Categories.propTypes = {
-  categories: PropTypes.arrayOf(PropTypes.object).isRequired,
   loading: PropTypes.bool.isRequired,
-  fetchCategories: PropTypes.func.isRequired,
+  fetchCategoriesByWeek: PropTypes.func.isRequired,
   fetchPosts: PropTypes.func.isRequired,
+  categories: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default connect(

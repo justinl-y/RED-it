@@ -8,5 +8,4 @@ const create = body => postJSON(apiRoot, body);
 const update = (id, body) => putJSON(`${apiRoot}/${id}`, body);
 const remove = id => deleteJSON(`${apiRoot}/${id}`);
 
-// API
 export default { list, get, create, update, remove };

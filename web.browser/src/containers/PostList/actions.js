@@ -1,38 +1,30 @@
 import { getJSON, postJSON, deleteJSON } from '../../lib/fetch-json';
 
 // action type
-export const UPDATE_VOTES = 'UPDATE_VOTES';
-
-export const ADD_POST = 'ADD_POST';
-export const REMOVE_POST = 'REMOVE_POST';
-export const UPDATE_POST = 'UPDATE_POST';
-
-export const SORT_NEWEST_POSTS = 'SORT_NEWEST_POSTS';
-export const SORT_POPULAR_POSTS = 'SORT_POPULAR_POSTS';
-
 export const LOADING_POSTS_BEGIN = 'LOADING_POSTS_BEGIN';
 export const LOADING_POSTS_END = 'LOADING_POSTS_END';
+export const GET_POSTS = 'GET_POSTS';
+export const SORT_NEWEST_POSTS = 'SORT_NEWEST_POSTS';
+export const SORT_POPULAR_POSTS = 'SORT_POPULAR_POSTS';
+export const UPDATE_VOTES = 'UPDATE_VOTES';
+export const REMOVE_POST = 'REMOVE_POST';
+
 export const UPDATE_POSTS = 'UPDATE_POSTS';
 
 // action creator
-const updateVotes = postVote => ({
-  type: UPDATE_VOTES,
-  payload: postVote,
-});
-
-export const addPost = ({
-  type: ADD_POST,
+const loadResource = () => ({
+  type: LOADING_POSTS_BEGIN,
   payload: null,
 });
 
-export const removePost = id => ({
-  type: REMOVE_POST,
-  payload: { id },
+const doneLoading = () => ({
+  type: LOADING_POSTS_END,
+  payload: null,
 });
 
-export const updatePost = id => ({
-  type: UPDATE_POST,
-  payload: { id },
+const getPosts = posts => ({
+  type: GET_POSTS,
+  payload: posts,
 });
 
 export const postsSortNewest = () => ({
@@ -45,32 +37,27 @@ export const postsSortPopular = () => ({
   payload: null,
 });
 
-const loadResource = () => ({
-  type: LOADING_POSTS_BEGIN,
-  payload: null,
+const updateVotes = postVote => ({
+  type: UPDATE_VOTES,
+  payload: postVote,
 });
 
-const doneLoading = () => ({
-  type: LOADING_POSTS_END,
-  payload: null,
+export const removePost = id => ({
+  type: REMOVE_POST,
+  payload: { id },
 });
 
-const updatePosts = posts => ({
-  type: UPDATE_POSTS,
-  payload: posts,
-});
-
-export const fetchPosts = (id) => {
-  return (dispatch) => {
+export const fetchPosts = id => (
+  (dispatch) => {
     dispatch(loadResource());
 
     getJSON(`http://localhost:8000/api/posts/${id}`)
       .then((posts) => {
-        dispatch(updatePosts(posts));
+        dispatch(getPosts(posts));
         dispatch(doneLoading());
       });
-  };
-};
+  }
+);
 
 export const updatePostVote = (postIds) => {
   const postdIdsString = JSON.stringify({ postIds });
