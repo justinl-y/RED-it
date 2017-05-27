@@ -118,9 +118,18 @@ export const updatePost = (postId, title, description, link, categoryId) => (
       post_id = '${postId}';`
 );
 
-export const deletePost = postId => (
+export const deletePostVote = (postId, userId) => (
+  `delete from
+      user_post_votes
+    where
+      post_id = '${postId}'
+      and user_id = '${userId}';`
+);
+
+export const deletePost = (postId, userId) => (
   `delete from
       posts
     where
-      post_id = '${postId}';`
+      post_id = '${postId}'
+      and user_id = '${userId}';`
 );

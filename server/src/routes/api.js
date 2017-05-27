@@ -14,6 +14,7 @@ import {
   selectPost,
   insertPost,
   updatePost,
+  deletePostVote,
   deletePost,
 } from './queries';
 
@@ -82,7 +83,7 @@ export default (router) => {
 
   // post vote end point
   router.post('/votes', async (req, res) => {
-    const { userId, postId } = req.body.vote;
+    const { userId, postId } = req.body.postIds;
 
     try {
       await insertVote(userId, postId);
@@ -133,15 +134,25 @@ export default (router) => {
     }
   });
 
+  const deleteUserPostVote = (postId, userId) => (
+    database.query(deletePostVote(postId, userId), [])
+  );
+
+  const deleteUserPost = (postId, userId) => (
+    database.query(deletePost(postId, userId), [])
+  );
+
   // post delete end point
   router.delete('/post', async (req, res) => {
-    const { postId } = req.body.post;
+    const { postId, userId } = req.body.postIds;
 
     try {
-      await database.query(deletePost(postId), []);
-      res.status(200).json({ success: true });
+      await deleteUserPostVote(postId, userId);
+      await deleteUserPost(postId, userId);
+
+      return res.status(200).json({ success: true });
     } catch (err) {
-      res.status(500).json({ err });
+      return res.status(500).json({ err });
     }
   });
 

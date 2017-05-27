@@ -2,7 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import PostToolbar from '../../components/PostToolbar';
 import Post from './../../components/Post';
-import { postsSortNewest, postsSortPopular, updatePostVote } from './actions';
+import { postsSortNewest, postsSortPopular, updatePostVote, deletePost } from './actions';
+
 import styles from './styles.css';
 
 class PostList extends Component {
@@ -18,6 +19,7 @@ class PostList extends Component {
         onUpVoteClick={this.props.updateVoteUp}
         tags={e.tags}
         userId={this.props.userId}
+        onDeleteClick={this.props.deletePost}
       />
     ));
   }
@@ -41,13 +43,11 @@ class PostList extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    loading: state.appData.posts.loadingResource,
-    posts: state.appData.posts.posts,
-    userId: state.appData.processLogin.userId,
-  };
-};
+const mapStateToProps = state => ({
+  loading: state.appData.posts.loadingResource,
+  posts: state.appData.posts.posts,
+  userId: state.appData.processLogin.userId,
+});
 
 const mapDispatchToProps = dispatch => ({
   onSortNewestClick: () => {
@@ -59,6 +59,9 @@ const mapDispatchToProps = dispatch => ({
   updateVoteUp: (vote) => {
     dispatch(updatePostVote(vote));
   },
+  deletePost: (post) => {
+    dispatch(deletePost(post));
+  },
 });
 
 PostList.propTypes = {
@@ -67,6 +70,7 @@ PostList.propTypes = {
   onSortNewestClick: PropTypes.func.isRequired,
   onSortPopularClick: PropTypes.func.isRequired,
   updateVoteUp: PropTypes.func.isRequired,
+  deletePost: PropTypes.func.isRequired,
   userId: PropTypes.number.isRequired,
 };
 

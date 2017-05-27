@@ -1,4 +1,4 @@
-import { postJSON, putJSON, deleteJSON } from '../../lib/fetch-json';
+import { postJSON, putJSON } from '../../lib/fetch-json';
 
 // action type
 export const POST_EDIT_TRUE = 'POST_EDIT_TRUE';
@@ -43,11 +43,3 @@ export const editPost = (post) => {
   };
 };
 
-export const deletePost = (id) => {
-  return (dispatch) => {
-    deleteJSON('http://localhost:8000/auth/post', id)
-      .then((result) => {
-        dispatch(postDeleted(result));
-      });
-  };
-};

@@ -27,6 +27,6 @@ const requestJSON = (url, body, method) => (
 const getJSON = fetchJSON;
 const postJSON = (url, body) => requestJSON(url, body, 'POST');
 const putJSON = (url, body) => requestJSON(url, body, 'PUT');
-const deleteJSON = url => requestJSON(url, null, 'DELETE');
+const deleteJSON = (url, body) => requestJSON(url, body, 'DELETE');
 
 export { getJSON, postJSON, putJSON, deleteJSON };

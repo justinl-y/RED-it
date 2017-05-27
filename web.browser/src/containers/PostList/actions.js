@@ -1,10 +1,10 @@
-import { getJSON, postJSON } from '../../lib/fetch-json'; // , putJSON, deleteJSON
+import { getJSON, postJSON, deleteJSON } from '../../lib/fetch-json';
 
 // action type
 export const UPDATE_VOTES = 'UPDATE_VOTES';
 
 export const ADD_POST = 'ADD_POST';
-export const DELETE_POST = 'DELETE_POST';
+export const REMOVE_POST = 'REMOVE_POST';
 export const UPDATE_POST = 'UPDATE_POST';
 
 export const SORT_NEWEST_POSTS = 'SORT_NEWEST_POSTS';
@@ -25,8 +25,8 @@ export const addPost = ({
   payload: null,
 });
 
-export const deletePost = id => ({
-  type: DELETE_POST,
+export const removePost = id => ({
+  type: REMOVE_POST,
   payload: { id },
 });
 
@@ -62,10 +62,8 @@ const updatePosts = posts => ({
 
 export const fetchPosts = (id) => {
   return (dispatch) => {
-    // Async
     dispatch(loadResource());
 
-    // getJSON('http://localhost:8000/api/posts').then((posts) => {
     getJSON(`http://localhost:8000/api/posts/${id}`)
       .then((posts) => {
         dispatch(updatePosts(posts));
@@ -74,15 +72,24 @@ export const fetchPosts = (id) => {
   };
 };
 
-export const updatePostVote = (vote) => {
-  const voteString = JSON.stringify(vote);
+export const updatePostVote = (postIds) => {
+  const postdIdsString = JSON.stringify({ postIds });
 
   return (dispatch) => {
-    // dispatch(loadResource());
-    postJSON('http://localhost:8000/api/votes', voteString)
-      .then((response) => {
-        dispatch(updateVotes(response));
-        // dispatch(doneLoading());
+    postJSON('http://localhost:8000/api/votes', postdIdsString)
+      .then((result) => {
+        dispatch(updateVotes(result));
+      });
+  };
+};
+
+export const deletePost = (postIds) => {
+  const postIdsString = JSON.stringify({ postIds });
+
+  return (dispatch) => {
+    deleteJSON('http://localhost:8000/api/post', postIdsString)
+      .then((result) => {
+        dispatch(removePost(result));
       });
   };
 };
