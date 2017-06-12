@@ -11,7 +11,7 @@ import {
   selectPostVote,
   insertPostVote,
   updatePostVote,
-  selectPost,
+  selectPostById,
   insertPost,
   updatePost,
   deletePostVote,
@@ -103,10 +103,10 @@ export default (router) => {
   // post post end point
   router.get('/post/:postId', async (req, res) => {
     try {
-      await database.query(selectPost, [req.params.postId]);
-      res.status(200).json(res.rows);
+      const response = await database.query(selectPostById, [req.params.postId]);
+      return res.status(200).json(response.rows);
     } catch (err) {
-      res.status(500).json({ err });
+      return res.status(500).json({ err });
     }
   });
 

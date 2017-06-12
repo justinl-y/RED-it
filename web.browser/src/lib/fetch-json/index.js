@@ -10,13 +10,18 @@ const createErrorContext = (url, params) => (
 );
 
 const fetchJSON = (url, params = { method: 'GET' }) => {
-  const headers = { headers: new Headers({ 'Content-Type': 'application/json;charset=UTF-8' }), credentials: 'include' };
+  const headers = {
+    headers: new Headers({ 'Content-Type': 'application/json;charset=UTF-8' }),
+    credentials: 'include',
+  };
 
-  return fetch(url, Object.assign(params, headers)).then((res) => {
-    // console.log(params);
-    if (res.ok) return res.json();
-    throw createErrorContext(url, params);
-  });
+  return fetch(url, Object.assign(params, headers))
+    .then((res) => {
+      // console.log(params);
+      if (res.ok) return res.json();
+
+      throw createErrorContext(url, params);
+    });
 };
 
 const requestJSON = (url, body, method) => (

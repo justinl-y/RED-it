@@ -1,4 +1,5 @@
-import { getJSON } from '../../lib/fetch-json';
+// import { getJSON } from '../../lib/fetch-json';
+import API from '../../lib/api'; // <-- TODO - remaining api functionality to feed in from here
 
 // action type
 export const LOADING_CATEGORIES_BEGINS = 'LOADING_CATEGORIES_BEGINS';
@@ -31,7 +32,8 @@ export const fetchCategoriesByWeek = () => (
   (dispatch) => {
     dispatch(loadResource());
 
-    getJSON('http://localhost:8000/api/weeks')
+    // getJSON('http://localhost:8000/api/weeks')
+    API.list('weeks') // <--- Api list all
       .then((result) => {
         dispatch(getCategoriesByWeek(result));
         dispatch(doneLoading());
@@ -43,7 +45,8 @@ export const fetchCategoriesList = () => (
   (dispatch) => {
     dispatch(loadResource());
 
-    getJSON('http://localhost:8000/api/categories')
+    // getJSON('http://localhost:8000/api/categories')
+    API.list('categories') // <--- Api list all
       .then((result) => {
         dispatch(getCategoriesList(result));
         dispatch(doneLoading());

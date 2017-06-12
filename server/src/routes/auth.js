@@ -88,7 +88,7 @@ export default (router) => {
       res.clearCookie(SESSION_COOKIE);
     }
 
-    res.status(200).json({ response: false });
+    return res.status(200).json({ response: false });
   });
 
   return router;

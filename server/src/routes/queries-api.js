@@ -72,7 +72,7 @@ export const selectPostVote = postId => (
       post_id = '${postId}';`
 );
 
-export const selectPost =
+export const selectPostById = (
   `select
       post_id,
       title,
@@ -80,11 +80,12 @@ export const selectPost =
       date,
       description,
       user_id,
-      category_id,
+      category_id
     from
       posts
     where
-      post_id = $1;`;
+      post_id = $1;`
+);
 
 export const insertPost = (title, description, link, categoryId, userId, postDate) => (
   `insert into 
